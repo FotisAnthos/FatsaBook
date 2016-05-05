@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class LoginSignupScreen extends JFrame implements ActionListener{
+public class LoginSignupScreen extends JFrame {
 	
 	private JTextField username;
 	private JPasswordField password;
@@ -17,8 +17,7 @@ public class LoginSignupScreen extends JFrame implements ActionListener{
 	public LoginSignupScreen(){
 		super("Login & Signup Screen");
 		
-		Container contentPane = this.getContentPane();
-		
+		JPanel contentPane = new JPanel();		
 		
 		//Input Fields - username & password
 		username = new JTextField("");
@@ -41,7 +40,7 @@ public class LoginSignupScreen extends JFrame implements ActionListener{
 
 
 	
-	
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 
@@ -50,7 +49,13 @@ public class LoginSignupScreen extends JFrame implements ActionListener{
 	 {
 		public void actionPerformed(ActionEvent e)
 		{
-				//TODO
+				
+				
+				{
+					
+					
+				}
+				
 
 		}
 	 }
@@ -59,16 +64,15 @@ public class LoginSignupScreen extends JFrame implements ActionListener{
 	 {
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO
 			 	new CreateUserScreen(); 
 			}
 	 }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	 
+	 
+	
+
+	
 
 
 

@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class CreateUserScreen extends JFrame{
+public class CreateUserScreen extends JFrame {
 	private JTextField username;
 	private JTextField mail;
 	
@@ -16,7 +16,7 @@ public class CreateUserScreen extends JFrame{
 	{
 		super("Create User Screen");
 		
-		Container contentPane = this.getContentPane();
+		JPanel contentPane = new JPanel();
 		
 		username = new JTextField();
 		contentPane.add(username);
@@ -30,8 +30,8 @@ public class CreateUserScreen extends JFrame{
 		CreationKit = new JButton("Sign_up in");
 		contentPane.add(CreationKit);
 		CreationKit.addActionListener(new CreationKitActionListener());
-
 		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
 	
@@ -43,8 +43,10 @@ public class CreateUserScreen extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 //TODO add password to constructor
-			 	User u = new User(username.getText(), mail.getText());
+			 	if( !DataBase.isuser(username.getText()))
+			 		{
+			 		User u = new User(username.getText(), mail.getText(), password.getPassword().toString());
+		 	 		}
 		 	}
 		
 	}

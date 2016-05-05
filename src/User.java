@@ -10,15 +10,23 @@ public class User {
 
 	private String name;
 	private String mail;
-	//TODO password
-	public User(String name, String mail) {
+	private String password;
+	//TODO check password
+	public User(String name, String mail, String cs) //cs-> serializable?
+	{
 		this.name = name;
 		this.mail = mail;
+		this.password = cs;
 
 		friends = new ArrayList<User>();
 		groups = new ArrayList<Group>();
 	}
-
+	
+	public boolean isPasswordCorrect(String passkey)
+	{
+		return(passkey.equals(password));
+	}
+	
 	public boolean haveFriend(User other) {
 		for(User friend : friends) {
 			if(other.mail == friend.mail)
