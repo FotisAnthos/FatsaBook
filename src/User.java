@@ -10,7 +10,7 @@ public class User {
 
 	private String name;
 	private String mail;
-
+	//TODO password
 	public User(String name, String mail) {
 		this.name = name;
 		this.mail = mail;
