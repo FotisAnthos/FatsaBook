@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class mainpage extends JFrame{
+public class MainPage extends JFrame{
 	
 	private JButton search;
 	private JButton groups;
@@ -13,7 +13,7 @@ public class mainpage extends JFrame{
 	private JButton timeline;
 	private JButton nextposts;
 	
-	public mainpage()
+	public MainPage()
 	{
 		JPanel mainpanel = new JPanel();
 		//Buttons
