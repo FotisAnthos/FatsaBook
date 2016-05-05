@@ -33,6 +33,7 @@ public class CreateUserScreen extends JFrame{
 
 		
 		this.setVisible(true);
+		
 	}
 	
 	
