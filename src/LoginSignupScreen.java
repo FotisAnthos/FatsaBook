@@ -12,18 +12,14 @@ public class LoginSignupScreen extends JFrame implements ActionListener{
 	private JButton Sign_in;
 	private JButton Sign_up;
 	
-	/*
-	 * JPasswordField idField = new JPasswordField ();
-		idField.setEchoChar(‘*’);
-	 */
+	
 	
 	public LoginSignupScreen(){
 		super("Login & Signup Screen");
 		
 		Container contentPane = this.getContentPane();
 		
-		JPanel ThePanel = new JPanel();
-		contentPane.add(ThePanel);
+		
 		//Input Fields - username & password
 		username = new JTextField("");
 		contentPane.add(username);
@@ -64,6 +60,7 @@ public class LoginSignupScreen extends JFrame implements ActionListener{
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO
+			 	new CreateUserScreen(); 
 			}
 	 }
 
