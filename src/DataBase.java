@@ -24,7 +24,9 @@ public class DataBase {
 	
 	public void deleteUser(User auser)
 	{
-		String input = JOptionPane.showInputDialog("Enter Input:");
+
+		String input = JOptionPane.showInputDialog("Enter password to delete user");
+
 		if(auser.isPasswordCorrect(input)) users.remove(auser);
 	}
 	
@@ -76,6 +78,7 @@ public class DataBase {
 
 		return null;
 	}
+	
 	//TODO check checkUser ** static?
 	public static boolean checkUser(String name)
 	{

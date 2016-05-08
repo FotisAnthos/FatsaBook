@@ -38,6 +38,7 @@ public class User {
 		return false;
 	}
 
+
 	public void addFriend(User newFriend) {
 		if(this.hashCode() == newFriend.hashCode()) {
 			System.out.println("The user is the same!");
@@ -139,6 +140,7 @@ public class User {
 		}
 		System.out.println("---------------------------------");
 	}
+	
 
 	public void printEnrolledGroups() {
 		System.out.println("********************************");
