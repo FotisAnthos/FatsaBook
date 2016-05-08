@@ -6,8 +6,8 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		new DataBase();		
-		new LoginSignupScreen();
+		DataBase d =new DataBase();		
+		LoginSignupScreen LSS = new LoginSignupScreen();
 		
 
 	}

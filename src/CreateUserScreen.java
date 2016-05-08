@@ -44,13 +44,11 @@ public class CreateUserScreen extends JFrame {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	if( !DataBase.isuser(username.getText()))
-			 		{
-			 		User u = new User(username.getText(), mail.getText(), password.getPassword().toString());
-		 	 		}
-		 	}
-		
+			 	//TODO add createUser
+			 
+			DataBase.CreateUser(username.getText(), mail.getText(), password.getPassword().toString());
 	}
 	
 
+}
 }

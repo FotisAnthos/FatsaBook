@@ -27,7 +27,7 @@ public class LoginSignupScreen extends JFrame {
 		password.setEchoChar('*');
 		contentPane.add(password);
 		
-		//Buttons - https://www.youtube.com/watch?v=VCLxJd1d84s
+		//Buttons 
 		Sign_in = new JButton("Sign in");
 		contentPane.add(Sign_in);
 		Sign_in.addActionListener(new SigninActionListener());
@@ -49,12 +49,20 @@ public class LoginSignupScreen extends JFrame {
 	 {
 		public void actionPerformed(ActionEvent e)
 		{
+			
+			
+			if(DataBase.checkUser(username.getText()))
+			{
+				new MainPage(username.getText());
+				
+			}
 				
 				
-				{
+				
 					
 					
-				}
+					
+				
 				
 
 		}

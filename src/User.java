@@ -7,21 +7,30 @@ public class User {
 	
 	private ArrayList<User> friends;
 	private ArrayList<Group> groups;
+	
+	private ArrayList<Post> personalPosts;
+	private ArrayList<Post>	groupPosts;
+	
+	
 
 	private String name;
 	private String mail;
 	private String password;
 	//TODO check password
-	public User(String name, String mail, String cs) //cs-> serializable?
+	public User(String name, String mail, String cs) 
 	{
 		this.name = name;
 		this.mail = mail;
 		this.password = cs;
-
+		
 		friends = new ArrayList<User>();
 		groups = new ArrayList<Group>();
+		personalPosts = new ArrayList<Post>();
+		groupPosts = new ArrayList<Post>();
 	}
 	
+	
+
 	public boolean isPasswordCorrect(String passkey)
 	{
 		return(passkey.equals(password));
@@ -35,6 +44,7 @@ public class User {
 
 		return false;
 	}
+
 
 	public void addFriend(User newFriend) {
 		if(this.hashCode() == newFriend.hashCode()) {
@@ -137,6 +147,7 @@ public class User {
 		}
 		System.out.println("---------------------------------");
 	}
+	
 
 	public void printEnrolledGroups() {
 		System.out.println("********************************");
@@ -185,4 +196,5 @@ public class User {
 
 		return new Post(date, aString, this);
 	}
+	
 }
