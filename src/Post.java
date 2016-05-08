@@ -2,7 +2,7 @@ import java.util.*;
 import javax.swing.*;
 
 public class Post {
-
+//Allazo auto edw
 	private Date date;
 	private String postText;
 	private User user;
