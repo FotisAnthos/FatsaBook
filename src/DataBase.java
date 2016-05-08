@@ -24,7 +24,9 @@ public class DataBase {
 	
 	public void deleteUser(User auser)
 	{
-		String input = JOptionPane.showInputDialog("Enter password to delete");
+
+		String input = JOptionPane.showInputDialog("Enter password to delete user");
+
 		if(auser.isPasswordCorrect(input)) users.remove(auser);
 	}
 	
@@ -38,6 +40,11 @@ public class DataBase {
 		return users;
 
 	}
+	//TODO save users
+	public void saveUsers()
+	{
+		
+	}
 
 	public ArrayList<Group> getgroups() {
 		// TODO Retrieve groups from savefiles
@@ -45,31 +52,33 @@ public class DataBase {
 		
 	}
 	
-	//TODO complete getUser
-	public User getUser(String username)
+	//TODO complete getUserInstance
+	public User getUserInstance(String username)
 	{
 		for(User u : users)
 		{
 			if(u.getName().equals(username))
 			{
-				
+				return u;
 			}
 		}
+		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
 		return null;
 	}
-	public static boolean isUser(String name)
+	public Group getGroupInstance(String groupname)
 	{
-		for(User u : users)
+		for(Group g : groups)
 		{
-			if(u.getName().equals(name))
+			if(g.getName().equals(groupname))
 			{
-				return true;
+				return g;
 			}
-			
-		}		
-		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.ERROR_MESSAGE);
-		return false;
+		}
+		JOptionPane.showMessageDialog(null,"Group not found!","Message",JOptionPane.WARNING_MESSAGE);
+
+		return null;
 	}
+	
 	//TODO check checkUser ** static?
 	public static boolean checkUser(String name)
 	{
@@ -88,6 +97,18 @@ public class DataBase {
 		}
 		
 		
+		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
+		return false;
+	}
+	public static boolean isUser(String name)
+	{
+		for(User u : users)
+		{
+			if(u.getName().equals(name))
+			{
+				return true;
+			}			
+		}
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
 		return false;
 	}
