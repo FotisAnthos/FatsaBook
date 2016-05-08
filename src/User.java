@@ -22,6 +22,8 @@ public class User {
 		groups = new ArrayList<Group>();
 	}
 	
+	
+
 	public boolean isPasswordCorrect(String passkey)
 	{
 		return(passkey.equals(password));

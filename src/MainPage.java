@@ -13,15 +13,15 @@ public class MainPage extends JFrame{
 	private JButton timeline;
 	private JButton nextposts;
 	
-	public MainPage()
+	public MainPage(String string)
 	{
 		JPanel mainpanel = new JPanel();
 		//Buttons
-		search = new JButton("Search");
-		groups = new JButton("Groups");
-		friends = new JButton("Friends");
-		timeline = new JButton("Timeline");
-		nextposts = new JButton("More Posts");
+		search = new JButton("Search");//Opens a new Search Screen
+		groups = new JButton("Groups");//Opens a Screen with a list of groups the user is enlisted to
+		friends = new JButton("Friends");//Opens a Screen with a list of Users the user is friends with
+		timeline = new JButton("Timeline");//Opens a Screen with the user's posts
+		nextposts = new JButton("More Posts");//Displays more posts from groups and friends to the MainPage
 		
 		mainpanel.add(search);
 		mainpanel.add(groups);
