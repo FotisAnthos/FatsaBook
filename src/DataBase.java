@@ -22,6 +22,12 @@ public class DataBase {
 		users.add(auser);
 	}
 	
+	public void deleteUser(User auser)
+	{
+		String input = JOptionPane.showInputDialog("Enter password to delete");
+		if(auser.isPasswordCorrect(input)) users.remove(auser);
+	}
+	
 	public static void addGroup(Group agroup)
 	{
 		groups.add(agroup);
@@ -50,6 +56,19 @@ public class DataBase {
 			}
 		}
 		return null;
+	}
+	public static boolean isUser(String name)
+	{
+		for(User u : users)
+		{
+			if(u.getName().equals(name))
+			{
+				return true;
+			}
+			
+		}		
+		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.ERROR_MESSAGE);
+		return false;
 	}
 	//TODO check checkUser ** static?
 	public static boolean checkUser(String name)
