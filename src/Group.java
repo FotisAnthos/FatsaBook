@@ -37,7 +37,6 @@ public abstract class Group {
 	public abstract void addPost(Post post);
 	public abstract void addReplyToPost(Post post, Post reply);
 	public abstract void printWall();
-	public abstract String getLatestPost();
 	public abstract boolean canAddPost(User user);
 
 }
