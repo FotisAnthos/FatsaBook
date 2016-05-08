@@ -1,7 +1,5 @@
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
@@ -87,31 +85,25 @@ public class DataBase {
 
 	
 	
+	
+
+
+
+	
+	
 	public boolean retrieveAll()
 	{
 		this.retrievalOfObject(users);
 		this.retrievalOfObject(groups);
 	}
 
-	//TODO save users
-	public void saveUsers()
-	{
-		
-	}
 
 	public ArrayList<Group> getgroups() {
 		// TODO Retrieve groups from savefiles
 		return groups;
 
 	}
-		
-		
-		
-		
-		
-		
-	
-	
+
 	public boolean retrievalOfObject(Object ObjectType)
 	{
 		String name = ObjectType.getClass().getName();
@@ -139,14 +131,7 @@ public class DataBase {
 		return true;
 	}
 	
-
-	
-
-
-	
-	
-
-	//TODO complete getUserInstance
+//TODO complete getUserInstance
 	public User getUserInstance(String username)
 	{
 		for(User u : users)
@@ -159,7 +144,6 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
 		return null;
 	}
-
 
 	public Group getGroupInstance(String groupname)
 	{
@@ -196,7 +180,6 @@ public class DataBase {
 	}
 
 	public static boolean isUser(String name)
-
 	{
 		for(User u : users)
 		{
