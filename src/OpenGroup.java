@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class OpenGroup extends Group {
 
 	private ArrayList<User> members;
-	private ArrayList<Post> posts;
+	private ArrayList<Post> posts; //use Stack
 
 	public OpenGroup(String name, String info) {
 		super(name, info);
@@ -78,17 +78,69 @@ public class OpenGroup extends Group {
 			post.printPost();
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//-------------------------------------------------------------------------------------
+	/*public class PostsStack<Post> extends ArrayList<Post> {
 
-	public String getLatestPost() {
-		//We can't find the last element from an ArrayList. so....
-		int lastindx = posts.size() - 1; //we find first the size of the Array and extract 1
-		Post lastPost = posts.get(lastindx); //so this is the last element!
+	    public void push(Post p) {
+	        add(p);
+	    }
 
-		if(lastPost.getReply() != null) {
-			String lpStr = lastPost.toString() + lastPost.printAllReplies();
-			return lpStr;
-		}
-		return lastPost.toString();
+	    public Post pop() {
+	        return remove(size() - 1);
+	    }
+
+	    public boolean empty() {
+	        return size() == 0;
+	    }
+
+	    public Post peek() {
+	        return get(size() - 1);
+	    }
 	}
 
+	
+*/
 }
+
+
+/*
+ * @(#)$Id: ObjectStack.java 3619 2008-03-26 07:23:03Z yui $
+ *
+ * Copyright 2006-2008 Makoto YUI
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * Contributors:
+ *     Makoto YUI - initial porting
+ */
+//package xbird.util.collections;
+
