@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class DataBase {
 	
 	public void CreateUser(String name, String mail, String password)
 	{
-		//TODO do this
+		
 	}
 
 	
@@ -34,6 +35,7 @@ public class DataBase {
 	{
 
 		String input = JOptionPane.showInputDialog("Enter password to delete user");
+
 		if(auser.isPasswordCorrect(input)) users.remove(auser);
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -82,23 +84,34 @@ public class DataBase {
 		
 		
 	}
+
 	
 	
 	public boolean retrieveAll()
 	{
 		this.retrievalOfObject(users);
 		this.retrievalOfObject(groups);
-		
-		
-		
-		
-		
-		
-		
-		
-		return true;
 	}
-	//TODO create group
+
+	//TODO save users
+	public void saveUsers()
+	{
+		
+	}
+
+	public ArrayList<Group> getgroups() {
+		// TODO Retrieve groups from savefiles
+		return groups;
+
+	}
+		
+		
+		
+		
+		
+		
+	
+	
 	public boolean retrievalOfObject(Object ObjectType)
 	{
 		String name = ObjectType.getClass().getName();
@@ -126,11 +139,13 @@ public class DataBase {
 		return true;
 	}
 	
+
 	
 
 
 	
 	
+
 	//TODO complete getUserInstance
 	public User getUserInstance(String username)
 	{
@@ -144,7 +159,8 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
 		return null;
 	}
-	
+
+
 	public Group getGroupInstance(String groupname)
 	{
 		for(Group g : groups)
@@ -178,7 +194,9 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
 		return false;
 	}
-	public boolean isUser(String name)
+
+	public static boolean isUser(String name)
+
 	{
 		for(User u : users)
 		{

@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,7 @@ public class LoginSignupScreen extends JFrame {
 		username = new JTextField("");
 		contentPane.add(username);
 
-		password = new JPasswordField(4); //4 is the minimum amount of password characters
+		password = new JPasswordField(4);//4 is the minimum amount of password characters
 		password.setEchoChar('*');
 		contentPane.add(password);
 		
@@ -85,3 +86,4 @@ public class LoginSignupScreen extends JFrame {
 
 
 }
+
