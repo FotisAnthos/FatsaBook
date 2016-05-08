@@ -52,6 +52,7 @@ public class LoginSignupScreen extends JFrame {
 			if(DataBase.checkUser(username.getText()))
 			{
 				new MainPage(username.getText());
+				
 			}
 				
 				
