@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,10 +35,7 @@ public class DataBase {
 	{
 
 		String input = JOptionPane.showInputDialog("Enter password to delete user");
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 		if(auser.isPasswordCorrect(input)) users.remove(auser);
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -86,15 +84,15 @@ public class DataBase {
 		
 		
 	}
-<<<<<<< HEAD
+
 	
 	
 	public boolean retrieveAll()
 	{
 		this.retrievalOfObject(users);
 		this.retrievalOfObject(groups);
-		
-=======
+	}
+
 	//TODO save users
 	public void saveUsers()
 	{
@@ -104,16 +102,16 @@ public class DataBase {
 	public ArrayList<Group> getgroups() {
 		// TODO Retrieve groups from savefiles
 		return groups;
->>>>>>> origin/master
-		
-		
-		
-		
-		
-		
-		
-		return true;
+
 	}
+		
+		
+		
+		
+		
+		
+	
+	
 	public boolean retrievalOfObject(Object ObjectType)
 	{
 		String name = ObjectType.getClass().getName();
@@ -141,14 +139,13 @@ public class DataBase {
 		return true;
 	}
 	
-<<<<<<< HEAD
+
 	
 
 
 	
 	
-=======
->>>>>>> origin/master
+
 	//TODO complete getUserInstance
 	public User getUserInstance(String username)
 	{
@@ -162,10 +159,8 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
 		return null;
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/master
+
+
 	public Group getGroupInstance(String groupname)
 	{
 		for(Group g : groups)
@@ -199,11 +194,9 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
 		return false;
 	}
-<<<<<<< HEAD
-	public boolean isUser(String name)
-=======
+
 	public static boolean isUser(String name)
->>>>>>> origin/master
+
 	{
 		for(User u : users)
 		{
