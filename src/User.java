@@ -187,4 +187,5 @@ public class User {
 
 		return new Post(date, aString, this);
 	}
+	
 }

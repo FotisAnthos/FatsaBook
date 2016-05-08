@@ -22,6 +22,12 @@ public class DataBase {
 		users.add(auser);
 	}
 	
+	public void deleteUser(User auser)
+	{
+		String input = JOptionPane.showInputDialog("Enter Input:");
+		if(auser.isPasswordCorrect(input)) users.remove(auser);
+	}
+	
 	public static void addGroup(Group agroup)
 	{
 		groups.add(agroup);
@@ -32,6 +38,10 @@ public class DataBase {
 		return users;
 
 	}
+	public void saveUsers()
+	{
+		
+	}
 
 	public ArrayList<Group> getgroups() {
 		// TODO Retrieve groups from savefiles
@@ -39,16 +49,30 @@ public class DataBase {
 		
 	}
 	
-	//TODO complete getUser
-	public User getUser(String username)
+	//TODO complete getUserInstance
+	public User getUserInstance(String username)
 	{
 		for(User u : users)
 		{
 			if(u.getName().equals(username))
 			{
-				
+				return u;
 			}
 		}
+		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
+		return null;
+	}
+	public Group getGroupInstance(String groupname)
+	{
+		for(Group g : groups)
+		{
+			if(g.getName().equals(groupname))
+			{
+				return g;
+			}
+		}
+		JOptionPane.showMessageDialog(null,"Group not found!","Message",JOptionPane.WARNING_MESSAGE);
+
 		return null;
 	}
 	//TODO check checkUser ** static?
@@ -69,6 +93,18 @@ public class DataBase {
 		}
 		
 		
+		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
+		return false;
+	}
+	public static boolean isUser(String name)
+	{
+		for(User u : users)
+		{
+			if(u.getName().equals(name))
+			{
+				return true;
+			}			
+		}
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
 		return false;
 	}
