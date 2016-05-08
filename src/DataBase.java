@@ -98,7 +98,7 @@ public class DataBase {
 		
 		return true;
 	}
-	
+	//TODO create group
 	public boolean retrievalOfObject(Object ObjectType)
 	{
 		String name = ObjectType.getClass().getName();
