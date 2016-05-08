@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +50,8 @@ public class DataBase {
 
 	//TODO save --find better way
 	public boolean save()
+<<<<<<< HEAD
+=======
 	{
 		
 		try {
@@ -82,22 +88,85 @@ public class DataBase {
 		
 		
 	}
+
 	
 	
 	public boolean retrieveAll()
 	{
 		this.retrievalOfObject(users);
 		this.retrievalOfObject(groups);
+	}
+
+	//TODO save users
+	public void saveUsers()
+>>>>>>> refs/remotes/origin/master
+	{
+		
+		try {
+			FileOutputStream fileOut = new FileOutputStream(".users.txt");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(users);
+			out.close();
+			fileOut.close();		
+		}
+		catch(IOException i) {
+			i.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Users could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		finally {
+			System.out.println("Users saved...");
+		}
+		try {
+			FileOutputStream fileOut = new FileOutputStream(".groups.txt");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(groups);
+			out.close();
+			fileOut.close();		
+		}
+		catch(IOException i) {
+			i.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Groups could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		finally {
+			System.out.println("Groups saved...");
+		}
+		return true;
+		
+		
+	}
+<<<<<<< HEAD
+	
+	
+	public boolean retrieveAll()
+	{
+		this.retrievalOfObject(users);
+		this.retrievalOfObject(groups);
+=======
+
+	public ArrayList<Group> getgroups() {
+		// TODO Retrieve groups from savefiles
+		return groups;
+
+	}
+		
+>>>>>>> refs/remotes/origin/master
 		
 		
 		
 		
 		
+<<<<<<< HEAD
 		
 		
 		
 		return true;
 	}
+=======
+	
+	
+>>>>>>> refs/remotes/origin/master
 	public boolean retrievalOfObject(Object ObjectType)
 	{
 		String name = ObjectType.getClass().getName();
@@ -125,11 +194,19 @@ public class DataBase {
 		return true;
 	}
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 	
 
 
 	
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 	//TODO complete getUserInstance
 	public User getUserInstance(String username)
 	{
@@ -143,7 +220,12 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
 		return null;
 	}
+<<<<<<< HEAD
 	
+=======
+
+
+>>>>>>> refs/remotes/origin/master
 	public Group getGroupInstance(String groupname)
 	{
 		for(Group g : groups)
@@ -177,7 +259,13 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
 		return false;
 	}
+<<<<<<< HEAD
 	public boolean isUser(String name)
+=======
+
+	public static boolean isUser(String name)
+
+>>>>>>> refs/remotes/origin/master
 	{
 		for(User u : users)
 		{
