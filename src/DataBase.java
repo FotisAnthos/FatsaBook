@@ -98,6 +98,7 @@ public class DataBase {
 		
 		return true;
 	}
+	
 	public boolean retrievalOfObject(Object ObjectType)
 	{
 		String name = ObjectType.getClass().getName();
