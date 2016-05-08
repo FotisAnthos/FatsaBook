@@ -49,12 +49,17 @@ public class LoginSignupScreen extends JFrame {
 	 {
 		public void actionPerformed(ActionEvent e)
 		{
+			if(DataBase.checkUser(username.getText()))
+			{
+				new MainPage(username.getText());
+			}
 				
 				
-				{
+				
 					
 					
-				}
+					
+				
 				
 
 		}
