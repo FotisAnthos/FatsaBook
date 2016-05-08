@@ -4,13 +4,13 @@ import java.util.ArrayList;
 public class OpenGroup extends Group {
 
 	private ArrayList<User> members;
-	private PostsStack posts;
+	private ArrayList<Post> posts; //use Stack
 
 	public OpenGroup(String name, String info) {
 		super(name, info);
 
 		members = new ArrayList<User>();
-		posts = new PostsStack();
+		posts = new ArrayList<Post>();
 	}
 
 	//returns true if the current user is member of this group
@@ -98,7 +98,7 @@ public class OpenGroup extends Group {
 	
 	
 	//-------------------------------------------------------------------------------------
-	public class PostsStack<Post> extends ArrayList<Post> {
+	/*public class PostsStack<Post> extends ArrayList<Post> {
 
 	    public void push(Post p) {
 	        add(p);
@@ -118,5 +118,29 @@ public class OpenGroup extends Group {
 	}
 
 	
-
+*/
 }
+
+
+/*
+ * @(#)$Id: ObjectStack.java 3619 2008-03-26 07:23:03Z yui $
+ *
+ * Copyright 2006-2008 Makoto YUI
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * Contributors:
+ *     Makoto YUI - initial porting
+ */
+//package xbird.util.collections;
+
