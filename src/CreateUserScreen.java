@@ -45,8 +45,7 @@ public class CreateUserScreen extends JFrame {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO add createUser
-			 
-			DataBase.CreateUser(username.getText(), mail.getText(), password.getPassword().toString());
+			 DataBase.CreateUser(username.getText(), mail.getText(), password.getPassword().toString());
 	}
 	
 

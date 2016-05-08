@@ -38,7 +38,7 @@ public class User {
 	
 	public boolean haveFriend(User other) {
 		for(User friend : friends) {
-			if(other.mail == friend.mail)
+			if(friend.getMail().equals(other.getMail()))
 				return true;
 		}
 
@@ -47,7 +47,7 @@ public class User {
 
 
 	public void addFriend(User newFriend) {
-		if(this.hashCode() == newFriend.hashCode()) {
+		if(this.getMail().equals(newFriend.getMail())) {
 			System.out.println("The user is the same!");
 			return;
 		}
@@ -72,7 +72,7 @@ public class User {
 		}
 	}
 
-	public void setGroup(Group group) {
+	public void addToGroup(Group group) {
 		groups.add(group);
 	}
 
