@@ -1,35 +1,33 @@
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
+import javax.swing.*;
 
 public class Post {
 
 	private Date date;
-	private String post;
+	private String postText;
 	private User user;
-	private Post reply;
+	private ArrayList<Post> replies;
 	private ArrayList<User> Likes;
 
 	public Post(Date date, String post, User user) {
 		this.date = date;
-		this.post = post;
+		this.postText = post;
 		this.user = user;
-		this.reply = null;
+		this.replies = null;
 		this.Likes = null;
 		
 	}
 
 	public void printPost () {
 		System.out.println(this.toString());
-		if(reply != null) //if post has replies
+		if(!replies.isEmpty()) //if post has replies
 			printReplies();
 	}
 
 	public void printReplies () {
-		Post replies = reply;
-
-		while (replies != null){
-			System.out.println("  -> " + replies.toString());
-			replies = replies.reply;
+		for(Post r : replies)
+		{
+			r.printPost();
 		}
 
 	}
@@ -64,7 +62,7 @@ public class Post {
 
 	//overrides toString
 	public String toString() {
-		String print = "| " +this.date+ " | " +this.user.getName()+ " : " +this.post;
+		String print = "| " +this.date+ " | " +this.user.getName()+ " : " +this.postText;
 
 		return print;
 	}
@@ -76,12 +74,20 @@ public class Post {
 
 
 	public String getPost() {
-		return post;
+		return postText;
 	}
 
 	public User getUser() {
 		return user;
 	}
+
+	public void setReply(Post reply2) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	
 
 	
 

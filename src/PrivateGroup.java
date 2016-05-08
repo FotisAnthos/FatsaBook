@@ -76,16 +76,6 @@ public class PrivateGroup extends Group{
 		}
 	}
 
-	public String getLatestPost() {
-		//We can't find the last element from an ArrayList. so....
-		int lastindx = posts.size() - 1; //we find first the size of the Array and extract 1
-		Post lastPost = posts.get(lastindx); //so this is the last element!
-
-		if(lastPost.getReply() != null) { //if the post have reply
-			String lpStr = lastPost.toString() + lastPost.printAllReplies();
-			return lpStr;
-		}
-		return lastPost.toString();
-	}
+	
 
 }

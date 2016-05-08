@@ -4,13 +4,13 @@ import java.util.ArrayList;
 public class OpenGroup extends Group {
 
 	private ArrayList<User> members;
-	private ArrayList<Post> posts;
+	private PostsStack posts;
 
 	public OpenGroup(String name, String info) {
 		super(name, info);
 
 		members = new ArrayList<User>();
-		posts = new ArrayList<Post>();
+		posts = new PostsStack();
 	}
 
 	//returns true if the current user is member of this group
@@ -78,17 +78,45 @@ public class OpenGroup extends Group {
 			post.printPost();
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//-------------------------------------------------------------------------------------
+	public class PostsStack<Post> extends ArrayList<Post> {
 
-	public String getLatestPost() {
-		//We can't find the last element from an ArrayList. so....
-		int lastindx = posts.size() - 1; //we find first the size of the Array and extract 1
-		Post lastPost = posts.get(lastindx); //so this is the last element!
+	    public void push(Post p) {
+	        add(p);
+	    }
 
-		if(lastPost.getReply() != null) {
-			String lpStr = lastPost.toString() + lastPost.printAllReplies();
-			return lpStr;
-		}
-		return lastPost.toString();
+	    public Post pop() {
+	        return remove(size() - 1);
+	    }
+
+	    public boolean empty() {
+	        return size() == 0;
+	    }
+
+	    public Post peek() {
+	        return get(size() - 1);
+	    }
 	}
+
+	
 
 }
