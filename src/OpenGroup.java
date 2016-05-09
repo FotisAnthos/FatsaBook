@@ -28,7 +28,7 @@ public class OpenGroup extends Group {
 		}
 
 		members.add(user);
-		user.setGroup(this);
+		user.addToGroup(this);
 	}
 
 	public void printMembers() {
