@@ -8,9 +8,10 @@ public class DataBase {
 	// TODO double check users & groups about static
 	//TODO failsafe saving of all new staff if someone is to close the program 
 	
+
 	private static ArrayList<User> users;
 	private static ArrayList<Group> groups;
-	
+
 	
 	public DataBase() {
 		
@@ -22,13 +23,14 @@ public class DataBase {
 	}
 	
 	
+
 	public static void CreateUser(String name, String mail, String password)
 	{
 		if(isUser(mail));
 		User u = new User(name, mail, password);
+	}
 		
 				
-	}
 
 	
 	
@@ -41,6 +43,7 @@ public class DataBase {
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+
 	public static void addGroup(Group agroup)
 	{
 		groups.add(agroup);
@@ -98,8 +101,10 @@ public class DataBase {
 	{
 		this.retrievalOfObject(users);
 		this.retrievalOfObject(groups);
+
 		
 		return true;
+
 	}
 
 
@@ -115,7 +120,10 @@ public class DataBase {
 		try {
 			FileInputStream fileIn = new FileInputStream("."+ name + ".txt");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
+
 			ArrayList<Object> users = (ArrayList<Object>) in.readObject();//TODO check
+
+
 			in.close();
 			fileIn.close();	
 			
@@ -165,7 +173,9 @@ public class DataBase {
 	}
 	
 	//TODO check checkUser ** static?
+
 	public static boolean checkUser(String name)
+
 	{
 		for(User u : users)
 		{
@@ -189,6 +199,7 @@ public class DataBase {
 		for(User u : users)
 		{
 			if(u.getMail().equals(mail))
+
 			{
 				return true;
 			}			
@@ -199,6 +210,7 @@ public class DataBase {
 	
 	
 	
+
 	public static boolean isgroup(String g)
 	{
 		for(Group gr : groups)
