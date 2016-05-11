@@ -11,12 +11,14 @@ public class DataBase {
 
 	private static ArrayList<User> users;
 	private static ArrayList<Group> groups;
+	private static ArrayList<Post> posts;
 
 	
 	public DataBase() {
 		
 		this.users = null;
 		this.groups = null;
+		this.posts = null;
 		
 		
 		
@@ -24,10 +26,12 @@ public class DataBase {
 	
 	
 
-	public static void CreateUser(String name, String mail, String password)
+	public static void createUser(String name, String mail, String password)
 	{
-		if(isUser(mail));
+		if(isUser(mail)){
 		User u = new User(name, mail, password);
+		users.add(u);
+		}
 	}
 		
 				
@@ -39,16 +43,46 @@ public class DataBase {
 
 		String input = JOptionPane.showInputDialog("Enter password to delete user");
 
-		if(auser.isPasswordCorrect(input)) users.remove(auser);
+		if(auser.isPasswordCorrect(input)) users.remove(auser); 
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 
-	public static void addGroup(Group agroup)
-	{
-		groups.add(agroup);
+	
+	
+
+	public static boolean createGroup(String name, String info, boolean is_open) { //if group is to be open b==true else b==false
+		if(!isGroup(name)){
+			if(is_open){
+				Group agroup = new OpenGroup(name, info);
+				groups.add(agroup);
+			}
+			else {
+				Group agroup = new PrivateGroup(name, info);
+				groups.add(agroup);
+			}
+			return true; //Group Created
+		}
+			
+		
+		return false; //Group not Created		
 	}
 	
+	public static boolean deleteGroup(String name){
+		if(isGroup(name)){
+			//TODO show confirmation panel
+			Group agroup = getGroupInstance(name);
+			groups.remove(agroup);
+			
+		}
+		
+		
+		
+		
+		return false;		
+	}
+
+
 
 	//TODO save --find better way
 	public boolean save()
@@ -145,7 +179,7 @@ public class DataBase {
 	}
 	
 //TODO complete getUserInstance
-	public User getUserInstance(String username)
+	public static User getUserInstance(String username)
 	{
 		for(User u : users)
 		{
@@ -158,7 +192,7 @@ public class DataBase {
 		return null;
 	}
 
-	public Group getGroupInstance(String groupname)
+	public static Group getGroupInstance(String groupname)
 	{
 		for(Group g : groups)
 		{
@@ -174,7 +208,21 @@ public class DataBase {
 	
 	//TODO check checkUser ** static?
 
-	public static boolean checkUser(String name)
+	public static Group getPost(String postID) {
+		for(Group gr : groups)
+		{
+			if(gr.getName().equals(postID))
+			{
+				return gr;
+			}
+		}
+		return null;
+		
+	}
+
+
+
+	public static boolean checkUserPassword(String name)
 
 	{
 		for(User u : users)
@@ -211,7 +259,7 @@ public class DataBase {
 	
 	
 
-	public static boolean isgroup(String g)
+	public static boolean isGroup(String g)
 	{
 		for(Group gr : groups)
 		{

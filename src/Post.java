@@ -2,12 +2,12 @@ import java.util.*;
 import javax.swing.*;
 
 public class Post {
-//Allazo auto edw
+
 	private Date date;
 	private String postText;
 	private User user;
-	private ArrayList<Post> replies;
-	private ArrayList<User> Likes;
+	private ArrayList<String> replies; //replies -> String(?) -> postID
+	private ArrayList<String> Likes; //likes -> String -> user.mail
 
 	public Post(Date date, String post, User user) {
 		this.date = date;
@@ -25,9 +25,9 @@ public class Post {
 	}
 
 	public void printReplies () {
-		for(Post r : replies)
+		for(String r : replies)
 		{
-			r.printPost();
+			DataBase.getPost(r);
 		}
 
 	}
@@ -48,13 +48,16 @@ public class Post {
 		return repl;
 	}
 	*/
-	public void addLike(User auser)
+	public boolean addLike(String auser)
 	{
 		if(!Likes.add(auser)) 
 			{
-				System.out.printf("Like couldn't be added!!: ", auser.getName(), "\n");
+				System.out.printf("Like couldn't be added!!: ", auser, "\n");
+				return false;
 			}
+		return true;
 	}
+	
 	public int NumberOfLikes()
 	{
 		return Likes.size();
