@@ -131,10 +131,9 @@ public class DataBase {
 
 	
 	
-	public boolean retrieveAll()
+	public boolean retrieve()
 	{
-		this.retrievalOfObject(users);
-		this.retrievalOfObject(groups);
+		
 
 		
 		return true;
@@ -148,37 +147,7 @@ public class DataBase {
 
 	}
 
-	public boolean retrievalOfObject(Object ObjectType)
-	{
-		String name = ObjectType.getClass().getName();
-		try {
-			FileInputStream fileIn = new FileInputStream("."+ name + ".txt");
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-
-			ArrayList<Object> users = (ArrayList<Object>) in.readObject();//TODO check
-
-
-			in.close();
-			fileIn.close();	
-			
-		}
-		catch(IOException i) {
-			i.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Could not be retrieved from file", "Warning", JOptionPane.WARNING_MESSAGE);
-			return false;
-		}
-		catch(ClassNotFoundException c) {
-			c.printStackTrace();
-			return false;
-		}
-		finally {
-			System.out.println("Loaded");
-			
-		}
-		return true;
-	}
-	
-//TODO complete getUserInstance
+	//TODO complete getUserInstance
 	public static User getUserInstance(String username)
 	{
 		for(User u : users)

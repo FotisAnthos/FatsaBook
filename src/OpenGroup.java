@@ -78,6 +78,11 @@ public class OpenGroup extends Group {
 			post.printPost();
 		}
 	}
+	public boolean removeMember(User user){
+		if(members.remove(user))
+			return true;
+		return false;
+	}
 	
 	
 	

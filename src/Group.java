@@ -33,10 +33,13 @@ public abstract class Group {
 
 	public abstract boolean isMember(User user);
 	public abstract void addMember(User user);
+	public abstract boolean removeMember(User user);
 	public abstract void printMembers();
 	public abstract void addPost(Post post);
 	public abstract void addReplyToPost(Post post, Post reply);
 	public abstract void printWall();
 	public abstract boolean canAddPost(User user);
+
+	
 
 }
