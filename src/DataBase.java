@@ -12,6 +12,8 @@ public class DataBase {
 	private static ArrayList<User> users;
 	private static ArrayList<Group> groups;
 	private static ArrayList<Post> posts;
+	public User m_User;
+	public Post m_Post;
 
 	
 	public DataBase() {

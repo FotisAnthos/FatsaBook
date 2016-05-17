@@ -11,6 +11,7 @@ public class CreateUserScreen extends JFrame {
 	private JPasswordField password;
 	
 	private JButton CreationKit;
+	public DataBase m_DataBase;
 	
 	public CreateUserScreen()
 	{
@@ -51,3 +52,26 @@ public class CreateUserScreen extends JFrame {
 
 }
 }
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:10 לל
+ */
+class CreationKitActionListener implements ActionListener {
+
+	public CreationKitActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end CreationKitActionListener

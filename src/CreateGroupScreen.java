@@ -15,6 +15,8 @@ public class CreateGroupScreen extends JFrame{
 	private ButtonGroup group;
 	private JRadioButton opengroup;
 	private JRadioButton privategroup;
+	public Group m_Group;
+	public DataBase m_DataBase;
 
 	public CreateGroupScreen()
 	{
@@ -63,3 +65,26 @@ public class CreateGroupScreen extends JFrame{
 			 	}
 	}
 }
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:10 לל
+ */
+class GECKActionListener implements ActionListener {
+
+	public GECKActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end GECKActionListener

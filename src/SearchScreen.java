@@ -14,6 +14,7 @@ public class SearchScreen extends JFrame{
 	
 	private JTextField username;
 	private JButton Search;
+	public Group m_Group;
 	
 	
 	public SearchScreen()

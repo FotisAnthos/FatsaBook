@@ -5,9 +5,17 @@ public class Post {
 
 	private Date date;
 	private String postText;
-	private User user;
+	private User user;//the creator
+	
 	private ArrayList<String> replies; //replies -> String(?) -> postID
 	private ArrayList<String> Likes; //likes -> String -> user.mail
+	private static int No_ofPosts;
+	/**
+	 * the creator
+	 */
+	private User owner;
+	private int post_id;
+	public User m_User;
 
 	public Post(Date date, String post, User user) {
 		this.date = date;

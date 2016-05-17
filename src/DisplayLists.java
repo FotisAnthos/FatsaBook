@@ -52,6 +52,8 @@ public class DisplayLists extends JFrame{
 			 	//TODO 			 	
 			}
 	 }
+	public CreateGroupScreen m_CreateGroupScreen;
+
 	
 	
 

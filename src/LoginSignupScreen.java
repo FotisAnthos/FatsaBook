@@ -12,6 +12,8 @@ public class LoginSignupScreen extends JFrame {
 	
 	private JButton Sign_in;
 	private JButton Sign_up;
+	public CreateUserScreen m_CreateUserScreen;
+	public MainPage m_MainPage;
 	
 	
 	
@@ -86,4 +88,50 @@ public class LoginSignupScreen extends JFrame {
 
 
 }
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:10 לל
+ */
+class SigninActionListener implements ActionListener {
+
+	public SigninActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end SigninActionListener
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:10 לל
+ */
+class SignupActionListener implements ActionListener {
+
+	public SignupActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end SignupActionListener
 

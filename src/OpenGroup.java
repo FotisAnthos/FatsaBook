@@ -5,6 +5,7 @@ public class OpenGroup extends Group {
 
 	private ArrayList<User> members;
 	private ArrayList<Post> posts; //use Stack
+	private static int No_ofOpenGroups;
 
 	public OpenGroup(String name, String info) {
 		super(name, info);

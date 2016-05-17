@@ -11,6 +11,9 @@ public class MainPage extends JFrame{
 	private JButton friends;
 	private JButton timeline;
 	private JButton nextposts;
+	public DisplayLists m_DisplayLists;
+	public SearchScreen m_SearchScreen;
+	public User m_User;
 	
 	public MainPage(String string)
 	{
@@ -92,3 +95,49 @@ public class MainPage extends JFrame{
 	}
 
 }
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:11 לל
+ */
+class nextpostsActionListener implements ActionListener {
+
+	public nextpostsActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end nextpostsActionListener
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:11 לל
+ */
+class timelineActionListener implements ActionListener {
+
+	public timelineActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end timelineActionListener
