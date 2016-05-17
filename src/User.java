@@ -17,6 +17,7 @@ public class User {
 	private String mail;
 	private String password;
 	private static int No_ofUsers;
+	public User_Timeline m_User_Timeline;
 	//TODO check password
 	public User(String name, String mail, String cs) 
 	{

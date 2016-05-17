@@ -140,4 +140,105 @@ class timelineActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e){
 
 	}
-}//end timelineActionListener
+}
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 7:18:16 לל
+ */
+public class Home_Page extends JFrame {
+
+	/**
+	 * @author Flotis
+	 * @version 1.0
+	 * @created 17-Ìבת-2016 7:18:16 לל
+	 */
+	class SearchActionListener implements ActionListener {
+
+		public SearchActionListener(){
+
+		}
+
+		public void finalize() throws Throwable {
+
+		}
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+
+		}
+	}//end SearchActionListener
+
+	/**
+	 * @author Flotis
+	 * @version 1.0
+	 * @created 17-Ìבת-2016 7:18:16 לל
+	 */
+	class groupsActionListener implements ActionListener {
+
+		public groupsActionListener(){
+
+		}
+
+		public void finalize() throws Throwable {
+
+		}
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+
+		}
+	}//end groupsActionListener
+
+	/**
+	 * @author Flotis
+	 * @version 1.0
+	 * @created 17-Ìבת-2016 7:18:16 לל
+	 */
+	class friendsActionListener implements ActionListener {
+
+		public friendsActionListener(){
+
+		}
+
+		public void finalize() throws Throwable {
+
+		}
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+
+		}
+	}//end friendsActionListener
+
+	private JButton friends;
+	private JButton groups;
+	private JButton nextposts;
+	private JButton search;
+	private JButton timeline;
+	public SearchScreen m_SearchScreen;
+	public Display_Lists m_Display_Lists;
+	public User m_User;
+
+	public Home_Page(){
+
+	}
+
+	public void finalize() throws Throwable {
+		super.finalize();
+	}
+	/**
+	 * 
+	 * @param string
+	 */
+	public Home_Page(String string){
+
+	}
+}//end Home_Page//end timelineActionListener

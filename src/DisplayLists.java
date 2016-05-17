@@ -58,3 +58,51 @@ public class DisplayLists extends JFrame{
 	
 
 }
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 7:18:09 לל
+ */
+public class Display_Lists extends JFrame {
+
+	/**
+	 * @author Flotis
+	 * @version 1.0
+	 * @created 17-Ìבת-2016 7:18:09 לל
+	 */
+	class listener implements ActionListener {
+
+		public listener(){
+
+		}
+
+		public void finalize() throws Throwable {
+
+		}
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+
+		}
+	}//end listener
+
+	public CreateGroupScreen m_CreateGroupScreen;
+
+	public Display_Lists(){
+
+	}
+
+	public void finalize() throws Throwable {
+		super.finalize();
+	}
+	/**
+	 * 
+	 * @param objects
+	 */
+	public Display_Lists(ArrayList<Object> objects){
+
+	}
+}//end Display_Lists

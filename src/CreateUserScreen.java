@@ -12,6 +12,7 @@ public class CreateUserScreen extends JFrame {
 	
 	private JButton CreationKit;
 	public DataBase m_DataBase;
+	public LoginSignupScreen m_LoginSignupScreen;
 	
 	public CreateUserScreen()
 	{

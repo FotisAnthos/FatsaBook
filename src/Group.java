@@ -5,6 +5,7 @@ public abstract class Group {
 	private static int No_ofGroups;
 	public DataBase m_DataBase;
 	public User m_User;
+	public Post m_Post;
 
 	public Group(String name, String info) {
 		this.name = name;

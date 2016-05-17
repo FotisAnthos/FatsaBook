@@ -7,7 +7,7 @@ public class Post {
 	private String postText;
 	private User user;//the creator
 	
-	private ArrayList<String> replies; //replies -> String(?) -> postID
+	private ArrayList<int> replies; //replies -> String(?) -> postID
 	private ArrayList<String> Likes; //likes -> String -> user.mail
 	private static int No_ofPosts;
 	/**
@@ -16,6 +16,7 @@ public class Post {
 	private User owner;
 	private int post_id;
 	public User m_User;
+	public Post_View m_Post_View;
 
 	public Post(Date date, String post, User user) {
 		this.date = date;
@@ -96,6 +97,10 @@ public class Post {
 		// TODO Auto-generated method stub
 		
 		
+	}
+
+	public boolean display_Likes(){
+		return false;
 	}
 
 	
