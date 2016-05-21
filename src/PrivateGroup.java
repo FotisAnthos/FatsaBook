@@ -2,9 +2,11 @@ import java.util.ArrayList;
 
 
 public class PrivateGroup extends Group{
-
+	//TODO take them to class Group
 	private ArrayList<User> members;
 	private ArrayList<Post> posts;
+	private ArrayList<User> admins;
+	private static int No_ofPrivateGroups;
 
 	public PrivateGroup(String name, String info) {
 		super(name, info);
@@ -75,6 +77,24 @@ public class PrivateGroup extends Group{
 			post.printPost();
 		}
 	}
+	public boolean removeMember(User user){
+		if(members.remove(user))
+			return true;
+		return false;
+	}
+
+	public boolean addAdmin(){
+		return false;
+	}
+
+	public boolean isAdmin(){
+		return false;
+	}
+
+	public boolean removeAdmin(){
+		return false;
+	}
+	
 
 	
 

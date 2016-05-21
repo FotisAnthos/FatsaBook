@@ -15,6 +15,8 @@ public class CreateGroupScreen extends JFrame{
 	private ButtonGroup group;
 	private JRadioButton opengroup;
 	private JRadioButton privategroup;
+	public Group m_Group;
+	public DataBase m_DataBase;
 
 	public CreateGroupScreen()
 	{
@@ -47,18 +49,42 @@ public class CreateGroupScreen extends JFrame{
 		{
 			 public void actionPerformed(ActionEvent e)
 			 	{
-				 	if( !DataBase.isgroup(name.getText()))
-				 		{
+				 	if( !DataBase.isGroup(name.getText()))
+				 		{	//TODO change syso to popup window
 				 			if(group.getSelection() == opengroup )
 				 			{
-				 				DataBase.addGroup(new OpenGroup(name.getText(), info.getText()));
+				 				if(!DataBase.createGroup(name.getText(), info.getText(), true)) System.out.println("Error-Create Group Failed!");
 				 			}
 				 			else if(group.getSelection() == privategroup )
 				 			{
-				 				DataBase.addGroup(new PrivateGroup(name.getText(), info.getText()));
+				 				if(!DataBase.createGroup(name.getText(), info.getText(), false)) System.out.println("Error-Create Group Failed!");
 				 			}
 				 			else System.out.println("Error-Create Group Failed!");
+				 			
 			 	 		}
 			 	}
 	}
 }
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:10 לל
+ */
+class GECKActionListener implements ActionListener {
+
+	public GECKActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end GECKActionListener

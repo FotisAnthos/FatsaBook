@@ -11,6 +11,8 @@ public class CreateUserScreen extends JFrame {
 	private JPasswordField password;
 	
 	private JButton CreationKit;
+	public DataBase m_DataBase;
+	public LoginSignupScreen m_LoginSignupScreen;
 	
 	public CreateUserScreen()
 	{
@@ -45,9 +47,32 @@ public class CreateUserScreen extends JFrame {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO add createUser
-			 DataBase.CreateUser(username.getText(), mail.getText(), password.getPassword().toString());
+			 DataBase.createUser(username.getText(), mail.getText(), password.getPassword().toString());
 	}
 	
 
 }
 }
+
+/**
+ * @author Flotis
+ * @version 1.0
+ * @updated 17-Ìבת-2016 6:39:10 לל
+ */
+class CreationKitActionListener implements ActionListener {
+
+	public CreationKitActionListener(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e){
+
+	}
+}//end CreationKitActionListener

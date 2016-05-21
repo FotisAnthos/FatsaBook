@@ -9,13 +9,15 @@ public class User {
 	private ArrayList<Group> groups;
 	
 	private ArrayList<Post> personalPosts;
-	private ArrayList<Post>	groupPosts;
+
 	
 	
 
 	private String name;
 	private String mail;
 	private String password;
+	private static int No_ofUsers;
+	public User_Timeline m_User_Timeline;
 	//TODO check password
 	public User(String name, String mail, String cs) 
 	{
@@ -26,7 +28,6 @@ public class User {
 		friends = new ArrayList<User>();
 		groups = new ArrayList<Group>();
 		personalPosts = new ArrayList<Post>();
-		groupPosts = new ArrayList<Post>();
 	}
 	
 	
@@ -36,7 +37,7 @@ public class User {
 		return(passkey.equals(password));
 	}
 	
-	public boolean haveFriend(User other) {
+	public boolean isFriend(User other) {
 		for(User friend : friends) {
 			if(friend.getMail().equals(other.getMail()))
 				return true;
@@ -52,7 +53,7 @@ public class User {
 			return;
 		}
 		else {
-			if(haveFriend(newFriend)) {
+			if(isFriend(newFriend)) {
 				System.out.println("Users are already friends!");
 				return;
 			}
@@ -63,6 +64,11 @@ public class User {
 		System.out.println(this.name+" and "+newFriend.name+" are now friends!");
 	}
 
+	public boolean removeFriend(User afriend){
+		if(friends.remove(afriend))
+			return true;
+		return false;
+	}
 	public void enrollInGroup(Group agroup) {
 
 		if(agroup.isMember(this))
@@ -70,6 +76,12 @@ public class User {
 		else {
 			agroup.addMember(this);
 		}
+	}
+	public boolean deleteFromGroup(Group agroup){
+		if(agroup.removeMember(this))
+			return true;
+		return false;
+		
 	}
 
 	public void addToGroup(Group group) {
@@ -194,7 +206,10 @@ public class User {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		Date date = new Date(ts.getTime());
 
-		return new Post(date, aString, this);
+		Post apost = new Post(date, aString, this);
+		personalPosts.add(apost);
+		return apost;
+		
 	}
 	
 }
