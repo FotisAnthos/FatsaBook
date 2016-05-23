@@ -1,7 +1,9 @@
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Home_Page extends JFrame{
 	
@@ -36,9 +38,10 @@ public class Home_Page extends JFrame{
 		nextposts.addActionListener(new nextpostsActionListener());
 		
 		
-		this.setContentPane(mainpanel);
 		
-		this.setSize(1000,500);
+		
+		
+		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		pack();
 		this.setVisible(true);
@@ -93,12 +96,5 @@ public class Home_Page extends JFrame{
 	}
 
 }
-
-
-
-
-
-
-
 
 
