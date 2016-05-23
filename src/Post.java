@@ -7,7 +7,7 @@ public class Post {
 	private String postText;
 	private User user;//the creator
 	
-	private ArrayList<int> replies; //replies -> String(?) -> postID
+	private ArrayList<Integer> replies; //replies -> String(?) -> postID
 	private ArrayList<String> Likes; //likes -> String -> user.mail
 	private static int No_ofPosts;
 	/**
@@ -15,8 +15,8 @@ public class Post {
 	 */
 	private User owner;
 	private int post_id;
-	public User m_User;
-	public Post_View m_Post_View;
+
+	
 
 	public Post(Date date, String post, User user) {
 		this.date = date;
@@ -24,8 +24,22 @@ public class Post {
 		this.user = user;
 		this.replies = null;
 		this.Likes = null;
+		No_ofPosts++;
 		
 	}
+	
+
+	public Post(Date date, String postText, User user, ArrayList<Integer> replies, ArrayList<String> likes, User owner,
+			int post_id) {
+		this.date = date;
+		this.postText = postText;
+		this.user = user;
+		this.replies = replies;
+		Likes = likes;
+		this.owner = owner;
+		this.post_id = post_id;
+	}//To be used only from DataBase class
+
 
 	public void printPost () {
 		System.out.println(this.toString());
@@ -34,7 +48,7 @@ public class Post {
 	}
 
 	public void printReplies () {
-		for(String r : replies)
+		for(int r : replies)
 		{
 			DataBase.getPost(r);
 		}
@@ -85,9 +99,7 @@ public class Post {
 	}
 
 
-	public String getPost() {
-		return postText;
-	}
+
 
 	public User getUser() {
 		return user;
@@ -102,6 +114,12 @@ public class Post {
 	public boolean display_Likes(){
 		return false;
 	}
+
+	public static int getNo_ofPosts() {
+		return No_ofPosts;
+	}
+
+	
 
 	
 

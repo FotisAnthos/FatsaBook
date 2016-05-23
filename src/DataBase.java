@@ -188,10 +188,10 @@ public final class DataBase {
 	
 	//TODO check checkUser ** static?
 
-	public static Group getPost(String postID) {
+	public static Group getPost(int r) {
 		for(Group gr : groups)
 		{
-			if(gr.getName().equals(postID))
+			if(gr.getName().equals(r))
 			{
 				return gr;
 			}
@@ -245,6 +245,66 @@ public final class DataBase {
 			}
 		}
 		return false;
+	}
+
+
+
+	public static ArrayList<User> getUsers() {
+		return users;
+	}
+
+
+
+	public static void setUsers(ArrayList<User> users) {
+		DataBase.users = users;
+	}
+
+
+
+	public static ArrayList<Group> getGroups() {
+		return groups;
+	}
+
+
+
+	public static void setGroups(ArrayList<Group> groups) {
+		DataBase.groups = groups;
+	}
+
+
+
+	public static ArrayList<Post> getPosts() {
+		return posts;
+	}
+
+
+
+	public static void setPosts(ArrayList<Post> posts) {
+		DataBase.posts = posts;
+	}
+
+
+
+	public User getM_User() {
+		return m_User;
+	}
+
+
+
+	public void setM_User(User m_User) {
+		this.m_User = m_User;
+	}
+
+
+
+	public Post getM_Post() {
+		return m_Post;
+	}
+
+
+
+	public void setM_Post(Post m_Post) {
+		this.m_Post = m_Post;
 	}
 	
 	

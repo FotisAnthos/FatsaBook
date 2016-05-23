@@ -14,7 +14,7 @@ public class LoginSignupScreen extends JFrame {
 	private JButton Sign_up;
 	private JLabel label,label2;
 	public CreateUserScreen m_CreateUserScreen;
-	public MainPage m_MainPage;
+	public Home_Page m_MainPage;
 	public User m_User;
 	public Home_Page m_Home_Page;
 	
@@ -70,7 +70,7 @@ public class LoginSignupScreen extends JFrame {
 		{	
 			if(DataBase.checkUserPassword(username.getText(),password.getText()))
 			{
-				new MainPage(username.getText());
+				new Home_Page(username.getText());
 				
 			}	
 

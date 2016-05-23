@@ -1,4 +1,4 @@
-
+import javax.swing.JButton;
 
 /**
  * @author Flotis
@@ -17,13 +17,7 @@ public class Group_Timeline extends Home_Page implements JFrame {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-	/**
-	 * 
-	 * @param agroup
-	 */
+	
 	public void Group_Timeline(Group agroup){
 
 	}
