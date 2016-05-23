@@ -36,10 +36,9 @@ public class Home_Page extends JFrame{
 		nextposts.addActionListener(new nextpostsActionListener());
 		
 		
+		this.setContentPane(mainpanel);
 		
-		
-		
-		
+		this.setSize(1000,500);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		pack();
 		this.setVisible(true);
