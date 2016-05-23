@@ -29,10 +29,13 @@ public final class DataBase {
 	}
 	
 	public static User findUser(String name,String password){
+		User temp = new User(" ", " ", " ");
 		for(User u: users){
-			if(name==u.getName() && password==u.getPassword())
-				return u;
+			if(name==u.getName() && password==u.getPassword()){
+				temp = u;
+			}
 		}
+		return temp;
 	}
 	
 

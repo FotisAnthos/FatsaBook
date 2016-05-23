@@ -12,12 +12,13 @@ import javax.swing.JTextField;
 
 public class SearchScreen extends JFrame{
 	
-	private JTextField username;
+	private JTextField search;
 	private JButton Search;
 	public Group m_Group;
-	private JTextField name;
 	public User_Timeline m_User_Timeline;
 	public User m_User;
+	private JRadioButton usersearch;
+	private JRadioButton groupsearch;
 	
 	
 	public SearchScreen()
@@ -25,8 +26,8 @@ public class SearchScreen extends JFrame{
 		super("Search Screen");
 		JPanel contentPane = new JPanel();
 		
-		JRadioButton usersearch = new JRadioButton("Users Search", true);
-        JRadioButton groupsearch = new JRadioButton("Group Search", false);
+		usersearch = new JRadioButton("Users Search", true);
+        groupsearch = new JRadioButton("Group Search", false);
  
         ButtonGroup group = new ButtonGroup();
         group.add(usersearch);
@@ -34,6 +35,8 @@ public class SearchScreen extends JFrame{
  
         setLayout(new FlowLayout());
         
+        search = new JTextField(10);
+        contentPane.add(search);
         Search = new JButton("Search");
 		contentPane.add(Search);
 		Search.addActionListener(new SearchActionListener());
@@ -43,7 +46,7 @@ public class SearchScreen extends JFrame{
         
         this.setContentPane(contentPane);
         
- 
+        this.setSize(getPreferredSize());
         pack();
         this.setVisible(true);
 	
@@ -52,7 +55,18 @@ public class SearchScreen extends JFrame{
 	 {
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO 			 	
+			 	if(usersearch.isSelected()){
+			 		for(User u :DataBase.users){
+			 			if(search.getText().equals(u.getName()))
+			 				new User_Timeline();
+			 		}
+			 	}
+			 	else if(groupsearch.isSelected()){
+			 		for(Group g :DataBase.groups){
+			 			if(search.getText().equals(g.getName()))
+			 				new Group_Timeline();
+			 		}
+			 	}
 			}
 	 }
 
