@@ -8,9 +8,14 @@
 /Group_Timeline.class
 /Post_View.class
 /User_Timeline.class
+<<<<<<< HEAD
 /nextpostsActionListener.class
 /timelineActionListener.class
 /GECKActionListener.class
 /CreationKitActionListener.class
 /SigninActionListener.class
 /SignupActionListener.class
+=======
+/Home_Page$nextpostsActionListener.class
+/Home_Page$timelineActionListener.class
+>>>>>>> refs/remotes/origin/master
