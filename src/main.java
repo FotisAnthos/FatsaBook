@@ -5,8 +5,7 @@ public class main {
 	
 
 	public static void main(String[] args) {
-		
-		DataBase d =new DataBase();		
+			
 		new LoginSignupScreen();
 		
 

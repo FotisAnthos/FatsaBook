@@ -8,3 +8,9 @@
 /Group_Timeline.class
 /Post_View.class
 /User_Timeline.class
+/nextpostsActionListener.class
+/timelineActionListener.class
+/GECKActionListener.class
+/CreationKitActionListener.class
+/SigninActionListener.class
+/SignupActionListener.class

@@ -34,14 +34,14 @@ public class SearchScreen extends JFrame{
  
         setLayout(new FlowLayout());
         
-        Search = new JButton("Sign_up in");
+        Search = new JButton("Search");
 		contentPane.add(Search);
 		Search.addActionListener(new SearchActionListener());
  
         contentPane.add(usersearch);
         contentPane.add(groupsearch);
-       
-        contentPane.add(username);
+        
+        this.setContentPane(contentPane);
         
  
         pack();
