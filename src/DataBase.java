@@ -28,12 +28,17 @@ public final class DataBase {
 		
 	}
 	
-	public static void print(){
-		for( User u: users){
-			System.out.println(u.getName() + " " + u.GetPassword());
+	public static User findUser(String name,String password){
+		User temp = new User(" ", " ", " ");
+		for(User u: users){
+			if(name==u.getName() && password==u.getPassword()){
+				temp = u;
+			}
 		}
+		return temp;
 	}
 	
+
 	
 
 	public static void createUser(String name, String mail, String password)

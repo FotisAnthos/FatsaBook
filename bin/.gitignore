@@ -9,13 +9,25 @@
 /Post_View.class
 /User_Timeline.class
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/Lydia11
 /nextpostsActionListener.class
 /timelineActionListener.class
 /GECKActionListener.class
 /CreationKitActionListener.class
 /SigninActionListener.class
 /SignupActionListener.class
+<<<<<<< HEAD
+=======
 =======
 /Home_Page$nextpostsActionListener.class
 /Home_Page$timelineActionListener.class
 >>>>>>> refs/remotes/origin/master
+>>>>>>> origin/Lydia11
+/MainPage$SearchActionListener.class
+/MainPage$friendsActionListener.class
+/MainPage$groupsActionListener.class
+/MainPage$nextpostsActionListener.class
+/MainPage$timelineActionListener.class
+/MainPage.class
