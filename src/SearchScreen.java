@@ -58,13 +58,13 @@ public class SearchScreen extends JFrame{
 			 	if(usersearch.isSelected()){
 			 		for(User u :DataBase.users){
 			 			if(search.getText().equals(u.getName()))
-			 				new User_Timeline();
+			 				new User_Timeline(u);
 			 		}
 			 	}
 			 	else if(groupsearch.isSelected()){
 			 		for(Group g :DataBase.groups){
 			 			if(search.getText().equals(g.getName()))
-			 				new Group_Timeline();
+			 				new Group_Timeline(g);
 			 		}
 			 	}
 			}

@@ -149,12 +149,12 @@ public class User {
 
 	public void printFriendList() {
 		System.out.println("********************************");
-		System.out.println("Friends of "+this.name);
+		System.out.println("Friends of "+this.getName());
 		System.out.println("********************************");
 
 		int counter = 1;
 		for(User friend : friends) {
-			System.out.println(counter+": "+friend.toString());
+			System.out.println(counter+": "+friend.getName());
 			counter ++;
 		}
 		System.out.println("---------------------------------");
