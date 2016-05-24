@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Επιτρέπει τη δημιουργία νέας ομάδας με την εισαγωγή του ονόματος της ομάδας
+ * και την επιλογή δημόσιας ή ιδιωτικής δημιουργείται η νέα ομάδα και ο χρήστης
+ * παραπέμπεται στο χρονολόγιο της ομάδας που δημιούργησε. (Group_Timeline)
+ */
 
 public class CreateGroupScreen extends JFrame{
 	
@@ -66,11 +71,6 @@ public class CreateGroupScreen extends JFrame{
 	}
 }
 
-/**
- * @author Flotis
- * @version 1.0
- * @updated 17-Μαϊ-2016 6:39:10 μμ
- */
 class GECKActionListener implements ActionListener {
 
 	public GECKActionListener(){
@@ -78,13 +78,10 @@ class GECKActionListener implements ActionListener {
 	}
 
 	public void finalize() throws Throwable {
-
+		
 	}
-	/**
-	 * 
-	 * @param e
-	 */
+
 	public void actionPerformed(ActionEvent e){
 
 	}
-}//end GECKActionListener
+}
