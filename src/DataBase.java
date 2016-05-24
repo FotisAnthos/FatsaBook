@@ -4,35 +4,49 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 //from this class we recover data from the save files
-public class DataBase {
+public final class DataBase {
 	// TODO double check users & groups about static
 	//TODO failsafe saving of all new staff if someone is to close the program 
 	
 
-	private static ArrayList<User> users;
-	private static ArrayList<Group> groups;
-	private static ArrayList<Post> posts;
+	protected static  ArrayList<User> users = new ArrayList<User>();
+	protected static ArrayList<Group> groups = new ArrayList<Group>();
+	protected static ArrayList<Post> posts = new ArrayList<Post>();
+
 	public User m_User;
 	public Post m_Post;
 
 	
 	public DataBase() {
 		
-		this.users = null;
-		this.groups = null;
-		this.posts = null;
+		
+//		this.users = null;
+//		this.groups = null;
+//		this.posts = null;
 		
 		
 		
 	}
 	
+	public static User findUser(String name,String password){
+		User temp = new User(" ", " ", " ");
+		for(User u: users){
+			if(name==u.getName() && password==u.getPassword()){
+				temp = u;
+			}
+		}
+		return temp;
+	}
+	
+
 	
 
 	public static void createUser(String name, String mail, String password)
 	{
-		if(isUser(mail)){
+		if(!isUser(mail)){
 		User u = new User(name, mail, password);
 		users.add(u);
+		
 		}
 	}
 		
@@ -40,7 +54,7 @@ public class DataBase {
 
 	
 	
-	public void deleteUser(User auser)
+	public static void deleteUser(User auser)
 	{
 
 		String input = JOptionPane.showInputDialog("Enter password to delete user");
@@ -53,7 +67,7 @@ public class DataBase {
 	
 	
 
-	public static boolean createGroup(String name, String info, boolean is_open) { //if group is to be open b==true else b==false
+	public static  boolean createGroup(String name, String info, boolean is_open) { //if group is to be open b==true else b==false
 		if(!isGroup(name)){
 			if(is_open){
 				Group agroup = new OpenGroup(name, info);
@@ -87,7 +101,7 @@ public class DataBase {
 
 
 	//TODO save --find better way
-	public boolean save()
+	public static boolean save()
 	{
 		
 		try {
@@ -133,7 +147,7 @@ public class DataBase {
 
 	
 	
-	public boolean retrieve()
+	public static boolean retrieve()
 	{
 		
 
@@ -193,22 +207,20 @@ public class DataBase {
 
 
 
-	public static boolean checkUserPassword(String name)
+	public static boolean checkUserPassword(String name,String password)
 
 	{
 		for(User u : users)
 		{
 			if(u.getName().equals(name))
 			{
-				while(true)
-				{
-				String input = JOptionPane.showInputDialog("Enter Input:");
-				if(u.isPasswordCorrect(input)) return true;
-				}
+//				while(true)
+//				{
+//				String input = JOptionPane.showInputDialog("Enter Input:");
+				if(u.isPasswordCorrect(password)) return true;
+//				}
 			}
-		}
-		
-		
+		}	
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
 		return false;
 	}
@@ -218,12 +230,10 @@ public class DataBase {
 		for(User u : users)
 		{
 			if(u.getMail().equals(mail))
-
 			{
 				return true;
 			}			
 		}
-		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
 		return false;
 	}
 	
