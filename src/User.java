@@ -1,5 +1,6 @@
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 
@@ -205,6 +206,13 @@ public class User {
 	public ArrayList<Group> getGroups() {
 		return groups;
 	}
+	
+
+	public ArrayList<Post> getPersonalPosts() {
+		return personalPosts;
+	}
+
+
 
 	public Post createPost(String aString) {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
@@ -215,17 +223,7 @@ public class User {
 		return apost;
 		
 	}
-	public void postsToBeDisplayed(User auser){
-		if(auser.isFriend(auser)){
-			
-			
-			
-			
-			
-			
-			
-		}
-		// TODO return
-	}
+	
+	
 	
 }

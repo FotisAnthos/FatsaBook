@@ -2,7 +2,7 @@ import java.sql.Timestamp;
 import java.util.*;
 import javax.swing.*;
 
-public class Post implements Comparable {
+public class Post implements Comparable<Post> {
 
 	private Date date;
 	private String postText;
@@ -124,12 +124,11 @@ public class Post implements Comparable {
 	
 
 
-	@Override
-	public int compareTo(Object o) {
-		Timestamp ts = new Timestamp(System.currentTimeMillis());
-		Date thisnow = new Date(ts.getTime());
-		if( )
-		
+
+
+	@Override //TODO check again, may create some problem in sorting //Override for implementation Comparable
+	public int compareTo(Post apost) {
+		 return (date.compareTo(apost.getDate()));
 	}
 
 	
