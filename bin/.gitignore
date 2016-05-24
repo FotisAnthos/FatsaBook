@@ -35,3 +35,9 @@
 /DisplayLists.class
 /DisplayLists$TimelineListener.class
 /DisplayLists$TimelineListener$listener.class
+/AddDeleteFriendListener.class
+/User_Timeline$AddDeleteFriendListener.class
+/User_Timeline$CommonFriendsListener.class
+/User_Timeline$NextPostsListener.class
+/User_Timeline$AddFriendListener.class
+/User_Timeline$DeleteFriendListener.class

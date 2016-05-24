@@ -2,10 +2,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 
 public class User {
 	
-	private ArrayList<User> friends;
+	private ArrayList<User> friends = new ArrayList<User>();
 	private ArrayList<Group> groups;
 	
 	private ArrayList<Post> personalPosts;
@@ -16,7 +18,6 @@ public class User {
 	private String name;
 	private String mail;
 	private String password;
-	private static int No_ofUsers;
 	public User_Timeline m_User_Timeline;
 	//TODO check password
 	public User(String name, String mail, String cs) 
@@ -39,7 +40,7 @@ public class User {
 	
 	public boolean isFriend(User other) {
 		for(User friend : friends) {
-			if(friend.getMail().equals(other.getMail()))
+			if(friend.getMail().equals(other.getMail()) && friend.getName().equals(other.getName()))
 				return true;
 		}
 
@@ -48,27 +49,30 @@ public class User {
 
 
 	public void addFriend(User newFriend) {
-		if(this.getMail().equals(newFriend.getMail())) {
-			System.out.println("The user is the same!");
-			return;
-		}
-		else {
-			if(isFriend(newFriend)) {
-				System.out.println("Users are already friends!");
-				return;
-			}
-		}
+//		if(this.getMail().equals(newFriend.getMail())) {
+//			System.out.println("The user is the same!");
+//			return;
+//		}
+//		else {
+//			if(isFriend(newFriend)) {
+//				System.out.println("Users are already friends!");
+//				return;
+//			}
+//		}
 
 		friends.add(newFriend);
 		newFriend.friends.add(this);
-		System.out.println(this.name+" and "+newFriend.name+" are now friends!");
+		JOptionPane.showMessageDialog(null,"You are now friends!","Message",JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public boolean removeFriend(User afriend){
-		if(friends.remove(afriend))
-			return true;
-		return false;
+	public void removeFriend(User afriend){
+//		if(friends.remove(afriend))
+//			return true;
+//		return false;
+		friends.remove(afriend);
+		afriend.friends.remove(this);
 	}
+	
 	public void enrollInGroup(Group agroup) {
 
 		if(agroup.isMember(this))

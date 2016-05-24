@@ -19,11 +19,13 @@ public class SearchScreen extends JFrame{
 	public User m_User;
 	private JRadioButton usersearch;
 	private JRadioButton groupsearch;
+	private User user;
 	
 	
-	public SearchScreen()
+	public SearchScreen(User user)
 	{
 		super("Search Screen");
+		this.user=user;
 		JPanel contentPane = new JPanel();
 		
 		usersearch = new JRadioButton("Users Search", true);
@@ -58,7 +60,7 @@ public class SearchScreen extends JFrame{
 			 	if(usersearch.isSelected()){
 			 		for(User u :DataBase.users){
 			 			if(search.getText().equals(u.getName()))
-			 				new User_Timeline(u);
+			 				new User_Timeline(user,u);
 			 		}
 			 	}
 			 	else if(groupsearch.isSelected()){

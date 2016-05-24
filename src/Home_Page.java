@@ -13,7 +13,6 @@ import javax.swing.ListSelectionModel;
 
 public class Home_Page extends JFrame{
 	
-	
 	private JButton search;
 	private JButton groups;
 	private JButton friends;
@@ -73,7 +72,7 @@ public class Home_Page extends JFrame{
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO 
-			 	new SearchScreen();
+			 	new SearchScreen(u);
 		 	}
 		
 	}
@@ -81,8 +80,8 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists DL = new DisplayLists(null ,u.getGroups());
-			 DisplayLists.createAndShowGUI(null ,u.getGroups() );
+			 DisplayLists DL1 = new DisplayLists(u,null ,u.getGroups());
+			 DisplayLists.createAndShowGUI(u,null ,u.getGroups() );
 			 
 			 for(Group group: u.getGroups()){
 				 DL.addObject(group);
@@ -96,8 +95,8 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists DL = new DisplayLists(DataBase.users , null);
-			 DisplayLists.createAndShowGUI(u.getFriends() ,null );
+			 DisplayLists DL2 = new DisplayLists(u,u.getFriends() , null);
+			 DisplayLists.createAndShowGUI(u,u.getFriends() ,null );
 				 
 			 	for(User user : u.getFriends()){
 			 		DL.addObject(user);
@@ -111,7 +110,7 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	new User_Timeline(u);
+			 	new User_Timeline(u,null);
 
 		 	}
 		

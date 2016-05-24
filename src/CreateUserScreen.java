@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class CreateUserScreen extends JFrame {
+	
 	private JTextField username;
 	private JTextField mail;
 	

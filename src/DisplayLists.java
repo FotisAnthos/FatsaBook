@@ -29,6 +29,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	private JList list;
 	private DefaultListModel listmodel;
 	private JButton timelinebutton;
+	private User user;
 	private ArrayList<User> users;
 	private ArrayList<Group> groups;
 	/**
@@ -36,9 +37,10 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 * @version 1.0
 	 * @created 17-Ìבת-2016 7:18:09 לל
 	 */
-	public DisplayLists(ArrayList<User> u,ArrayList<Group> g){
+	public DisplayLists(User user,ArrayList<User> u,ArrayList<Group> g){
 		super( new BorderLayout());
 		
+		this.user = user;
 		users = u;
 		groups = g;
 		
@@ -65,7 +67,6 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 	buttonPane.add(timelinebutton);
 	 	buttonPane.add(Box.createHorizontalStrut(5));
 	 	buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
-	 	buttonPane.add(Box.createHorizontalStrut(5));
 	 	buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
 	 	add(listScrollPane, BorderLayout.CENTER);
@@ -100,7 +101,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			int index = list.getSelectedIndex();
 			
 			if(groups==null){
-				new User_Timeline(DataBase.users.get(index));
+				new User_Timeline(user,DataBase.users.get(index));
 			}
 			else if(users==null)
 				new Group_Timeline(DataBase.groups.get(index));
@@ -137,13 +138,13 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 * @param objects
 	 */
 	
-	public static void createAndShowGUI(ArrayList<User> u,ArrayList<Group> g) {
+	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g) {
         //Create and set up the window.
-        JFrame frame = new JFrame("ListDemo");
+        JFrame frame = new JFrame("List");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = new DisplayLists(u,g);
+        JComponent newContentPane = new DisplayLists(user,u,g);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  

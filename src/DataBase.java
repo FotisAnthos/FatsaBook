@@ -49,6 +49,10 @@ public final class DataBase {
 		
 		}
 	}
+	
+	public static void addUser(User u){
+		users.add(u);
+	}
 		
 				
 
