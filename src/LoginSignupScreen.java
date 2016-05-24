@@ -24,7 +24,7 @@ public class LoginSignupScreen extends JFrame {
 		
 		//Username Label and input text field
 		username_label = new JLabel("Username");
-		username = new JTextField("");
+		username = new JTextField("",20);
 		
 		//Password Label and input text field
 		password = new JPasswordField(4);//4 is the minimum amount of password characters
