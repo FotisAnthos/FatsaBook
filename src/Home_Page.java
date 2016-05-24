@@ -13,7 +13,7 @@ public class Home_Page extends JFrame{
 	private JButton nextposts;
 	
 	
-	public Home_Page(User activeUser) //receives the active user
+	public Home_Page(User activeuser) //receives the active user
 	{
 		
 		JPanel mainpanel = new JPanel();
