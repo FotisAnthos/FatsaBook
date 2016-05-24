@@ -11,10 +11,12 @@ public class Home_Page extends JFrame{
 	private JButton friends;
 	private JButton timeline;
 	private JButton nextposts;
+	private User activeuser;
 	
 	
 	public Home_Page(User activeuser) //receives the active user
 	{
+		this.activeuser = activeuser;
 		
 		JPanel mainpanel = new JPanel();
 		//Buttons
@@ -51,7 +53,6 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO 
 			 	new SearchScreen();
 		 	}
 		
@@ -60,8 +61,8 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO
-
+			 //TODO
+			 new Display_Lists();
 		 	}
 		
 	}
@@ -69,8 +70,8 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO
-
+			 //TODO
+			 new Display_Lists();
 		 	}
 		
 	}
@@ -78,8 +79,7 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO
-
+			 	new User_Timeline(activeuser);
 		 	}
 		
 	}

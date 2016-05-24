@@ -1,21 +1,24 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
-/**
- * @author Flotis
- * @version 1.0
- * @created 17-Ìבת-2016 7:35:50 לל
- */
+
+
 public class Post_View extends JFrame {
 
+	private JPanel postsPanel;
 	private JButton Comment;
 	private JButton Like;
 
-	public Post_View(){
+	public Post_View(User theUser, String displayPlace){ //Receives the user for whom to display posts,
+		//String displayPlace refers to where the posts will be displayed(User_Timeline, Home_Page, Group_Timeline)
+		//refered to by their name
+		if(displayPlace == User_Timeline){
+			
+		}
+		
+		
+		
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
+	
 }//end Post_View

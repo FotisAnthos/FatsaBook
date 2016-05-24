@@ -215,5 +215,17 @@ public class User {
 		return apost;
 		
 	}
+	public void postsToBeDisplayed(User auser){
+		if(auser.isFriend(auser)){
+			
+			
+			
+			
+			
+			
+			
+		}
+		// TODO return
+	}
 	
 }

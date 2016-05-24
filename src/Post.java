@@ -1,7 +1,8 @@
+import java.sql.Timestamp;
 import java.util.*;
 import javax.swing.*;
 
-public class Post {
+public class Post implements Comparable {
 
 	private Date date;
 	private String postText;
@@ -117,6 +118,18 @@ public class Post {
 
 	public static int getNo_ofPosts() {
 		return No_ofPosts;
+	}
+
+
+	
+
+
+	@Override
+	public int compareTo(Object o) {
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		Date thisnow = new Date(ts.getTime());
+		if( )
+		
 	}
 
 	
