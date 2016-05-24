@@ -49,26 +49,12 @@ public class User {
 
 
 	public void addFriend(User newFriend) {
-//		if(this.getMail().equals(newFriend.getMail())) {
-//			System.out.println("The user is the same!");
-//			return;
-//		}
-//		else {
-//			if(isFriend(newFriend)) {
-//				System.out.println("Users are already friends!");
-//				return;
-//			}
-//		}
-
 		friends.add(newFriend);
 		newFriend.friends.add(this);
 		JOptionPane.showMessageDialog(null,"You are now friends!","Message",JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public void removeFriend(User afriend){
-//		if(friends.remove(afriend))
-//			return true;
-//		return false;
 		friends.remove(afriend);
 		afriend.friends.remove(this);
 	}

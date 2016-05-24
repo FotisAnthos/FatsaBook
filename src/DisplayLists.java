@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
@@ -28,7 +29,9 @@ import javax.swing.event.ListSelectionListener;
 public class DisplayLists extends JPanel implements ListSelectionListener {
 	private JList list;
 	private DefaultListModel listmodel;
+	private static JFrame frame;
 	private JButton timelinebutton;
+	private JButton back;
 	private User user;
 	private ArrayList<User> users;
 	private ArrayList<Group> groups;
@@ -61,10 +64,14 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 	timelinebutton = new JButton("Go to Timeline");
 	 	timelinebutton.addActionListener(new TimelineListener());
 	 	
+	 	back = new JButton("Back");
+        back.addActionListener(new BackListener());
+	 	
 	 	JPanel buttonPane = new JPanel();
 	 	buttonPane.setLayout(new BoxLayout(buttonPane,
                 BoxLayout.LINE_AXIS));
 	 	buttonPane.add(timelinebutton);
+	 	buttonPane.add(back);
 	 	buttonPane.add(Box.createHorizontalStrut(5));
 	 	buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
 	 	buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -74,8 +81,8 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 	
 	 	if(groups==null){
 			listmodel.clear();
-			for(User user: u){
-				listmodel.addElement(user);
+			for(User user1: u){
+				listmodel.addElement(user1);
 			}
 		}
 		else if(users==null){
@@ -106,6 +113,13 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			else if(users==null)
 				new Group_Timeline(DataBase.groups.get(index));
 		}
+	}
+	
+	class BackListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			frame.setVisible(false);
+		}
+			
 	}
 	
 	
@@ -140,7 +154,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	
 	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g) {
         //Create and set up the window.
-        JFrame frame = new JFrame("List");
+        frame = new JFrame("List");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         //Create and set up the content pane.
@@ -151,5 +165,19 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
         //Display the window.
         frame.pack();
         frame.setVisible(true);
+    }
+	
+	public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting() == false) {
+ 
+            if (list.getSelectedIndex() == -1) {
+            //No selection, disable fire button.
+                timelinebutton.setEnabled(false);
+ 
+            } else {
+            //Selection, enable the fire button.
+            	timelinebutton.setEnabled(true);
+            }
+        }
     }
 }//end Display_Lists

@@ -41,3 +41,8 @@
 /User_Timeline$NextPostsListener.class
 /User_Timeline$AddFriendListener.class
 /User_Timeline$DeleteFriendListener.class
+/User_Timeline$backListener.class
+/User_Timeline$BackListener.class
+/CreateUserScreen$CreationKitActionListener$BackListener.class
+/CreateUserScreen$BackListener.class
+/DisplayLists$BackListener.class

@@ -84,9 +84,8 @@ public class Home_Page extends JFrame{
 			 DisplayLists.createAndShowGUI(u,null ,u.getGroups() );
 			 
 			 for(Group group: u.getGroups()){
-				 DL.addObject(group);
+				 DL1.addObject(group);
 			 }
-			// 	u.printEnrolledGroups();
 
 		 	}
 		
@@ -99,9 +98,8 @@ public class Home_Page extends JFrame{
 			 DisplayLists.createAndShowGUI(u,u.getFriends() ,null );
 				 
 			 	for(User user : u.getFriends()){
-			 		DL.addObject(user);
+			 		DL2.addObject(user);
 			 	}
-			 	u.printFriendList();
 
 		 	}
 		
@@ -110,7 +108,7 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	new User_Timeline(u,null);
+			 	new User_Timeline(u,u);
 
 		 	}
 		

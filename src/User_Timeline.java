@@ -20,36 +20,47 @@ import javax.swing.SwingConstants;
  */
 public class User_Timeline extends JFrame {
 
+	private JButton back;
 	private  JButton addfriend;
 	private  JButton deletefriend;
 	private JButton common_Friends;
 	private JButton nextPosts;
 	public DisplayLists m_Display_Lists;
 	private User u,friend;
+	private JFrame frame;
 
 	public User_Timeline(User u,User friend){
 		
 		this.friend = friend;
 		this.u=u;
 		
-		 JFrame frame = new JFrame("Timeline");
+		 frame = new JFrame("Timeline");
 	        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        
 	        addfriend = new JButton("Add friend");
 	        deletefriend = new JButton("Delete friend");
 	        
+	        if(!u.equals(friend)){
 	        	if(u.isFriend(friend))
 		        	addfriend.setEnabled(false);
 		        else if(!u.isFriend(friend))
 		        	deletefriend.setEnabled(false);
+	        }
+	        else{
+	        	addfriend.setVisible(false);
+	        	deletefriend.setVisible(false);
+	        }
+	        
 		        	
-	        	addfriend.addActionListener(new AddFriendListener());
-	        	deletefriend.addActionListener(new DeleteFriendListener());
+	        addfriend.addActionListener(new AddFriendListener());
+	        deletefriend.addActionListener(new DeleteFriendListener());
 	        
 	        common_Friends = new JButton("See friends");
 	        common_Friends.addActionListener(new CommonFriendsListener());
 	        nextPosts = new JButton("See more posts");
 	        nextPosts.addActionListener(new NextPostsListener());
+	        back = new JButton("Back");
+	        back.addActionListener(new BackListener());
 	        
 	 
 	        JPanel newContentPane = new JPanel();
@@ -62,6 +73,7 @@ public class User_Timeline extends JFrame {
 		rightPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		rightPane.add(new JSeparator(SwingConstants.VERTICAL));
 		rightPane.add(Box.createVerticalStrut(5));
+		
 		
 		if(friend!=null){
 			rightPane.add(addfriend);
@@ -76,6 +88,7 @@ public class User_Timeline extends JFrame {
 		
 		frame.add(newContentPane,BorderLayout.CENTER);
 		frame.add(rightPane, BorderLayout.EAST);
+		frame.add(back, BorderLayout.PAGE_END);
 		
 		
 		frame.pack();
@@ -86,8 +99,8 @@ public class User_Timeline extends JFrame {
 	class AddFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 	        	u.addFriend(friend);
-	        	addfriend.setEnabled(true);
-	        	deletefriend.setEnabled(false);
+	        	addfriend.setEnabled(false);
+	        	deletefriend.setEnabled(true);
 		}
 			
 	}
@@ -95,8 +108,15 @@ public class User_Timeline extends JFrame {
 	class DeleteFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 	        	u.removeFriend(friend);
-	        	addfriend.repaint();
-	        	deletefriend.repaint();
+	        	addfriend.setEnabled(true);
+	        	deletefriend.setEnabled(false);
+		}
+			
+	}
+	
+	class BackListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			frame.setVisible(false);
 		}
 			
 	}
