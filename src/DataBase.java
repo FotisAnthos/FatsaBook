@@ -17,9 +17,7 @@ public final class DataBase {
 	public Post m_Post;
 
 	
-	public DataBase() {
-		
-		
+	public DataBase() {		
 //		this.users = null;
 //		this.groups = null;
 //		this.posts = null;
@@ -28,14 +26,13 @@ public final class DataBase {
 		
 	}
 	
-	public static User findUser(String name,String password) {
-		User temp = new User(" ", " ", " ");
+	public static User findUser(String mail) {
 		for(User u: users) {
-			if(name==u.getName() && password==u.getPassword()){
-				temp = u;
+			if(mail.equals(u.getName())){
+				return u;
 			}
 		}
-		return temp;
+		return null;		
 	}
 
 	public static void createUser(String name, String mail, String password) {
