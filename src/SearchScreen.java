@@ -64,7 +64,7 @@ public class SearchScreen extends JFrame{
 			 	else if(groupsearch.isSelected()){
 			 		for(Group g :DataBase.groups){
 			 			if(search.getText().equals(g.getName()))
-			 				new Group_Timeline();
+			 				new Group_Timeline(g);
 			 		}
 			 	}
 			}
