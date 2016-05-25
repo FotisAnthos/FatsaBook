@@ -37,8 +37,8 @@ public final class DataBase {
 
 	public static void createUser(String name, String mail, String password) {
 		if(!isUser(mail)){
-		User u = new User(name, mail, password);
-		users.add(u);
+			User u = new User(name, mail, password);
+			users.add(u);
 		}
 	}
 		
@@ -210,19 +210,21 @@ public final class DataBase {
 		DataBase.posts = posts;
 	}
 
-	public User getM_User() {
-		return m_User;
-	}
+	
 
-	public void setM_User(User m_User) {
-		this.m_User = m_User;
-	}
-
-	public Post getM_Post() {
-		return m_Post;
-	}
-
-	public void setM_Post(Post m_Post) {
-		this.m_Post = m_Post;
+	public static User checkUserLogin(String mail, String password) {
+		
+		for(User u: users){
+			if(mail.equals(u.getMail()) && password.equals(password)){
+				return u;
+			}
+		}
+		
+		return null;
 	}
 }
+
+
+
+
+

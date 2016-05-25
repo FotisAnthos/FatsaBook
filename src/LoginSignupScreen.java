@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class LoginSignupScreen extends JFrame {
 	
-	private JTextField username;
+	private JTextField mail;
 	private JPasswordField password;
 	
 	private JButton Sign_in;
@@ -29,8 +29,8 @@ public class LoginSignupScreen extends JFrame {
 		
 		
 		//Input Fields - username & password
-		username = new JTextField(10);
-		contentPane.add(username);
+		mail = new JTextField(10);
+		contentPane.add(mail);
         label2 = new JLabel("Password:");
 		contentPane.add(label2);
 		password = new JPasswordField(4);//4 is the minimum amount of password characters
@@ -68,10 +68,10 @@ public class LoginSignupScreen extends JFrame {
 		@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e)
 		{	
-			if(DataBase.checkUserPassword(username.getText(),password.getText()))
+			if(DataBase.checkUserPassword(mail.getText(),password.getText()))
 			{
 				User u ;
-				u = DataBase.findUser(username.getText(),password.getText());
+				u = DataBase.findUser(mail.getText());
 				new Home_Page(u);
 				
 			}	

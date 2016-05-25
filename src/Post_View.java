@@ -4,9 +4,9 @@ import javax.swing.*;
 
 
 
-public class Post_View extends JFrame {
+public class Post_View extends JPanel {
 
-	private JPanel postsPanel;
+	private JPanel postPanel;
 	private JButton Comment;
 	private JButton Like;
 	private int posts_displayed;
