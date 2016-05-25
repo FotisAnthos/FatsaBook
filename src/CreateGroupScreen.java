@@ -1,8 +1,15 @@
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 /*
  * Επιτρέπει τη δημιουργία νέας ομάδας με την εισαγωγή του ονόματος της ομάδας
@@ -12,13 +19,15 @@ import java.awt.event.ActionListener;
 
 public class CreateGroupScreen extends JFrame {
 
-	private JFrame mainFrame;
+	private JPanel contentPane;
 	
+	private JFrame frame;
+
 	private JTextField name;
 	private JTextField info;
 
 	private JButton GECK;
-	private ButtonGroup group;
+	private ButtonGroup buttongroup;
 	private JRadioButton opengroup;
 	private JRadioButton privategroup;
 	public Group m_Group;
@@ -26,13 +35,10 @@ public class CreateGroupScreen extends JFrame {
 
 	public CreateGroupScreen() {
 		
-		mainFrame = new JFrame("Create Group Screen");
-		mainFrame.setSize(400, 400);
-		mainFrame.setLayout(new GridLayout(3, 1));
 
-		JPanel contentPane = new JPanel();
-		name = new JTextField(15);
-		info = new JTextField(20);
+		contentPane = new JPanel();
+		name = new JTextField("Group name",15);
+		info = new JTextField("Write some info...",20);
 		contentPane.add(name);
 		contentPane.add(info);
 
@@ -45,51 +51,42 @@ public class CreateGroupScreen extends JFrame {
 		opengroup = new JRadioButton("Open Group", true);
 		privategroup = new JRadioButton("Private Group", false);
 
-		group = new ButtonGroup();
-		group.add(opengroup);
-		group.add(privategroup);
+		buttongroup = new ButtonGroup();
+		buttongroup.add(opengroup);
+		buttongroup.add(privategroup);
 
 		contentPane.add(opengroup);
 		contentPane.add(privategroup);
+		
+		GridLayout grid = new GridLayout(3, 2);
+		contentPane.setLayout(grid);
+		
 
-		mainFrame.add(contentPane);
-		this.setSize(getPreferredSize());
+		this.add(contentPane);
+		this.getContentPane().setSize(900, 900);
 		pack();
-		mainFrame.setVisible(true);
+		this.setVisible(true);
 
 
 	}
-	class GECKActionListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			if( !DataBase.isGroup(name.getText())) {	//TODO change syso to popup window
-				if(group.getSelection() == opengroup )
-				{
-					if(!DataBase.createGroup(name.getText(), info.getText(), true)) System.out.println("Error-Create Group Failed!");
+	class GECKActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if(!DataBase.isGroup(name.getText())) {	//TODO change syso to popup window
+				
+				String groupname = name.getText();
+				String groupinfo = info.getText();
+				
+				if(buttongroup.getSelection() == opengroup ) {
+					if(!(DataBase.createGroup(groupname, groupinfo, true))) 
+						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
 				}
-				else if(group.getSelection() == privategroup )
-				{
-					if(!DataBase.createGroup(name.getText(), info.getText(), false)) System.out.println("Error-Create Group Failed!");
+				else {
+					if(!(DataBase.createGroup(name.getText(), info.getText(), false)))
+						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
 				}
-				else System.out.println("Error-Create Group Failed!");
-
 			}
+			else
+				JOptionPane.showMessageDialog(frame, "Error-Group already exists!");
 		}
-	}
-}
-
-class GECKActionListener implements ActionListener {
-
-	public GECKActionListener(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-
-	public void actionPerformed(ActionEvent e){
-
 	}
 }
