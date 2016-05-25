@@ -1,16 +1,7 @@
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import java.awt.event.*;
 
+import javax.swing.*;
 
 public class CreateGroupScreen extends JFrame {
 
@@ -30,18 +21,15 @@ public class CreateGroupScreen extends JFrame {
 
 	public CreateGroupScreen() {
 		
-
 		contentPane = new JPanel();
 		name = new JTextField("Group name",15);
 		info = new JTextField("Write some info...",20);
 		contentPane.add(name);
 		contentPane.add(info);
 
-
 		GECK = new JButton("Create Group");
 		contentPane.add(GECK);
 		GECK.addActionListener(new GECKActionListener());
-
 
 		opengroup = new JRadioButton("Open Group", true);
 		privategroup = new JRadioButton("Private Group", false);
@@ -53,16 +41,10 @@ public class CreateGroupScreen extends JFrame {
 		contentPane.add(opengroup);
 		contentPane.add(privategroup);
 		
-		GridLayout grid = new GridLayout(3, 2);
-		contentPane.setLayout(grid);
-		
-
 		this.add(contentPane);
 		this.getContentPane().setSize(900, 900);
 		pack();
 		this.setVisible(true);
-
-
 	}
 	class GECKActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
