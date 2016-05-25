@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.*;
 
 import javax.swing.*;
@@ -21,6 +23,8 @@ public class CreateGroupScreen extends JFrame {
 
 	public CreateGroupScreen() {
 		
+		super("Create Group Screen");
+		
 		contentPane = new JPanel();
 		name = new JTextField("Group name",15);
 		info = new JTextField("Write some info...",20);
@@ -32,7 +36,9 @@ public class CreateGroupScreen extends JFrame {
 		GECK.addActionListener(new GECKActionListener());
 
 		opengroup = new JRadioButton("Open Group", true);
+		opengroup.setBackground(Color.cyan);
 		privategroup = new JRadioButton("Private Group", false);
+		privategroup.setBackground(Color.cyan);
 
 		buttongroup = new ButtonGroup();
 		buttongroup.add(opengroup);
@@ -41,9 +47,13 @@ public class CreateGroupScreen extends JFrame {
 		contentPane.add(opengroup);
 		contentPane.add(privategroup);
 		
-		this.add(contentPane);
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER,50,50));
+		
+		contentPane.setBackground(Color.cyan);
+		this.setContentPane(contentPane);
 		this.getContentPane().setSize(900, 900);
 		pack();
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
 	class GECKActionListener implements ActionListener {

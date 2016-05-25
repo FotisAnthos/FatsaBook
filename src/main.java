@@ -7,6 +7,7 @@ public class main {
 	public static void main(String[] args) {
 		
 		new CreateGroupScreen();
+		new CreateUserScreen();
 		//new LoginSignupScreen();
 		
 
