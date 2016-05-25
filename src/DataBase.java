@@ -28,48 +28,34 @@ public final class DataBase {
 		
 	}
 	
-	public static User findUser(String name,String password){
+	public static User findUser(String name,String password) {
 		User temp = new User(" ", " ", " ");
-		for(User u: users){
+		for(User u: users) {
 			if(name==u.getName() && password==u.getPassword()){
 				temp = u;
 			}
 		}
 		return temp;
 	}
-	
 
-	
-
-	public static void createUser(String name, String mail, String password)
-	{
+	public static void createUser(String name, String mail, String password) {
 		if(!isUser(mail)){
 		User u = new User(name, mail, password);
 		users.add(u);
-		
 		}
 	}
 		
-				
-
-	
-	
-	public static void deleteUser(User auser)
-	{
-
+	public static void deleteUser(User auser) {
 		String input = JOptionPane.showInputDialog("Enter password to delete user");
 
 		if(auser.isPasswordCorrect(input)) users.remove(auser); 
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-
-	
-	
-
-	public static  boolean createGroup(String name, String info, boolean is_open) { //if group is to be open b==true else b==false
-		if(!isGroup(name)){
-			if(is_open){
+	public static  boolean createGroup(String name, String info, boolean is_open) {
+		//if group is to be open b==true else b==false
+		if(!isGroup(name)) {
+			if(is_open) {
 				Group agroup = new OpenGroup(name, info);
 				groups.add(agroup);
 			}
@@ -79,8 +65,6 @@ public final class DataBase {
 			}
 			return true; //Group Created
 		}
-			
-		
 		return false; //Group not Created		
 	}
 	
@@ -91,18 +75,11 @@ public final class DataBase {
 			groups.remove(agroup);
 			
 		}
-		
-		
-		
-		
 		return false;		
 	}
-
-
-
+	
 	//TODO save --find better way
-	public static boolean save()
-	{
+	public static boolean save() {
 		
 		try {
 			FileOutputStream fileOut = new FileOutputStream(".users.txt");
@@ -110,13 +87,11 @@ public final class DataBase {
 			out.writeObject(users);
 			out.close();
 			fileOut.close();		
-		}
-		catch(IOException i) {
+		}catch(IOException i) {
 			i.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Users could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
 			return false;
-		}
-		finally {
+		}finally {
 			System.out.println("Users saved...");
 		}
 		try {
@@ -125,13 +100,11 @@ public final class DataBase {
 			out.writeObject(groups);
 			out.close();
 			fileOut.close();		
-		}
-		catch(IOException i) {
+		}catch(IOException i) {
 			i.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Groups could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
 			return false;
-		}
-		finally {
+		}finally {
 			System.out.println("Groups saved...");
 		}
 		return true;
@@ -139,37 +112,21 @@ public final class DataBase {
 		
 	}
 
-	
-	
-	
+	public static boolean retrieve() {
 
-
-
-	
-	
-	public static boolean retrieve()
-	{
-		
-
-		
 		return true;
-
 	}
 
 
 	public ArrayList<Group> getgroups() {
 		// TODO Retrieve groups from savefiles
 		return groups;
-
 	}
 
 	//TODO complete getUserInstance
-	public static User getUserInstance(String username)
-	{
-		for(User u : users)
-		{
-			if(u.getName().equals(username))
-			{
+	public static User getUserInstance(String username) {
+		for(User u : users) {
+			if(u.getName().equals(username)) {
 				return u;
 			}
 		}
@@ -177,12 +134,9 @@ public final class DataBase {
 		return null;
 	}
 
-	public static Group getGroupInstance(String groupname)
-	{
-		for(Group g : groups)
-		{
-			if(g.getName().equals(groupname))
-			{
+	public static Group getGroupInstance(String groupname) {
+		for(Group g : groups) {
+			if(g.getName().equals(groupname)) {
 				return g;
 			}
 		}
@@ -194,30 +148,22 @@ public final class DataBase {
 	//TODO check checkUser ** static?
 
 	public static Group getPost(int r) {
-		for(Group gr : groups)
-		{
-			if(gr.getName().equals(r))
-			{
+		for(Group gr : groups) {
+			if(gr.getName().equals(r)) {
 				return gr;
 			}
 		}
 		return null;
-		
 	}
 
-
-
-	public static boolean checkUserPassword(String name,String password)
-
-	{
-		for(User u : users)
-		{
-			if(u.getName().equals(name))
-			{
+	public static boolean checkUserPassword(String name,String password) {
+		for(User u : users) {
+			if(u.getName().equals(name)) {
 //				while(true)
 //				{
 //				String input = JOptionPane.showInputDialog("Enter Input:");
-				if(u.isPasswordCorrect(password)) return true;
+				if(u.isPasswordCorrect(password)) 
+					return true;
 //				}
 			}
 		}	
@@ -225,96 +171,61 @@ public final class DataBase {
 		return false;
 	}
 
-	public static boolean isUser(String mail)
-	{
-		for(User u : users)
-		{
-			if(u.getMail().equals(mail))
-			{
+	public static boolean isUser(String mail) {
+		for(User u : users) {
+			if(u.getMail().equals(mail)) {
 				return true;
 			}			
 		}
 		return false;
 	}
-	
-	
-	
 
-	public static boolean isGroup(String g)
-	{
-		for(Group gr : groups)
-		{
-			if(gr.getName().equals(g))
-			{
+	public static boolean isGroup(String g) {
+		for(Group gr : groups) {
+			if(gr.getName().equals(g)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-
-
 	public static ArrayList<User> getUsers() {
 		return users;
 	}
-
-
 
 	public static void setUsers(ArrayList<User> users) {
 		DataBase.users = users;
 	}
 
-
-
 	public static ArrayList<Group> getGroups() {
 		return groups;
 	}
-
-
 
 	public static void setGroups(ArrayList<Group> groups) {
 		DataBase.groups = groups;
 	}
 
-
-
 	public static ArrayList<Post> getPosts() {
 		return posts;
 	}
-
-
 
 	public static void setPosts(ArrayList<Post> posts) {
 		DataBase.posts = posts;
 	}
 
-
-
 	public User getM_User() {
 		return m_User;
 	}
-
-
 
 	public void setM_User(User m_User) {
 		this.m_User = m_User;
 	}
 
-
-
 	public Post getM_Post() {
 		return m_Post;
 	}
 
-
-
 	public void setM_Post(Post m_Post) {
 		this.m_Post = m_Post;
 	}
-	
-	
-	
-	
-	
-
 }
