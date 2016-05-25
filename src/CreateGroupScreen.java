@@ -11,11 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-/*
- * Επιτρέπει τη δημιουργία νέας ομάδας με την εισαγωγή του ονόματος της ομάδας
- * και την επιλογή δημόσιας ή ιδιωτικής δημιουργείται η νέα ομάδα και ο χρήστης
- * παραπέμπεται στο χρονολόγιο της ομάδας που δημιούργησε. (Group_Timeline)
- */
 
 public class CreateGroupScreen extends JFrame {
 
