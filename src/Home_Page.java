@@ -1,24 +1,39 @@
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 public class Home_Page extends JFrame{
-	
 	
 	private JButton search;
 	private JButton groups;
 	private JButton friends;
 	private JButton timeline;
 	private JButton nextposts;
+	private User u;
+	
+	
+	private JPanel mainpanel;
 	
 	
 	public Home_Page(User activeUser) //receives the active user
 	{
+		super("My HomePage");
 		
-		JPanel mainpanel = new JPanel();
+		u= activeUser;
+		
+		 mainpanel = new JPanel();
+		mainpanel.setLayout(new BoxLayout(mainpanel,
+                BoxLayout.LINE_AXIS));
 		//Buttons
 		search = new JButton("Search");//Opens a new Search Screen
 		groups = new JButton("Groups");//Opens a Screen with a list of groups the user is enlisted to
@@ -37,6 +52,12 @@ public class Home_Page extends JFrame{
 		timeline.addActionListener(new timelineActionListener());
 		nextposts.addActionListener(new nextpostsActionListener());
 		
+//		 JComponent newContentPane = new Post_View(activeUser);
+//		 newContentPane.setOpaque(true); //content panes must be opaque
+//	     this.setContentPane(newContentPane);
+		
+		
+		
 		
 		
 		this.setContentPane(mainpanel);
@@ -45,6 +66,8 @@ public class Home_Page extends JFrame{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		pack();
 		this.setVisible(true);
+		
+		
 	}
 	
 	
@@ -54,7 +77,7 @@ public class Home_Page extends JFrame{
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO 
-			 	new SearchScreen();
+			 	new SearchScreen(u);
 		 	}
 		
 	}
@@ -62,7 +85,12 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO
+			 DisplayLists DL1 = new DisplayLists(u,null ,u.getGroups());
+			 DisplayLists.createAndShowGUI(u,null ,u.getGroups() );
+			 
+			 for(Group group: u.getGroups()){
+				 DL1.addObject(group);
+			 }
 
 		 	}
 		
@@ -71,7 +99,12 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO
+			 DisplayLists DL2 = new DisplayLists(u,u.getFriends() , null);
+			 DisplayLists.createAndShowGUI(u,u.getFriends() ,null );
+				 
+			 	for(User user : u.getFriends()){
+			 		DL2.addObject(user);
+			 	}
 
 		 	}
 		
@@ -80,7 +113,7 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO
+			 	new User_Timeline(u,u);
 
 		 	}
 		

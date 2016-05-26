@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -19,11 +20,13 @@ public class SearchScreen extends JFrame{
 	public User m_User;
 	private JRadioButton usersearch;
 	private JRadioButton groupsearch;
+	private User user;
 	
 	
-	public SearchScreen()
+	public SearchScreen(User user)
 	{
 		super("Search Screen");
+		this.user=user;
 		JPanel contentPane = new JPanel();
 		
 		usersearch = new JRadioButton("Users Search", true);
@@ -58,13 +61,13 @@ public class SearchScreen extends JFrame{
 			 	if(usersearch.isSelected()){
 			 		for(User u :DataBase.users){
 			 			if(search.getText().equals(u.getName()))
-			 				new User_Timeline();
+			 				new User_Timeline(user,u);
 			 		}
 			 	}
 			 	else if(groupsearch.isSelected()){
 			 		for(Group g :DataBase.groups){
 			 			if(search.getText().equals(g.getName()))
-			 				new Group_Timeline();
+			 				new Group_Timeline(g,user);
 			 		}
 			 	}
 			}

@@ -12,10 +12,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class CreateUserScreen extends JFrame {
+	
 	private JTextField username;
 	private JTextField mail;
 	
 	private JPasswordField password;
+	private JFrame frame;
+	private JPanel contentPane;
 	
 	private JButton CreationKit;
 	private JLabel pass,user,email;
@@ -24,9 +27,11 @@ public class CreateUserScreen extends JFrame {
 	
 	public CreateUserScreen()
 	{
-		super("Create User Screen");
 		
-		JPanel contentPane = new JPanel();
+		frame= new JFrame("Create User Screen");
+		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		contentPane = new JPanel();
 		
 		user= new JLabel("Username:");
 		contentPane.add(user);
@@ -50,12 +55,10 @@ public class CreateUserScreen extends JFrame {
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
 		
 		this.setContentPane(contentPane);
+		frame.add(contentPane);
 		contentPane.setBackground(Color.cyan);
-        
-
-	    this.setSize(1000,500);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setVisible(true);
+	    frame.pack();
+		frame.setVisible(true);
 		
 	}
 	
@@ -71,31 +74,7 @@ public class CreateUserScreen extends JFrame {
 			 	//TODO add createUser
 			 DataBase.createUser(username.getText(), mail.getText(), password.getText());
 			 JOptionPane.showMessageDialog(null,"Sign up completed","Message",JOptionPane.PLAIN_MESSAGE);
+			 frame.setVisible(false);
+		 	}
 	}
-	
-
 }
-}
-
-/**
- * @author Flotis
- * @version 1.0
- * @updated 17-Ìáú-2016 6:39:10 ìì
- */
-class CreationKitActionListener implements ActionListener {
-
-	public CreationKitActionListener(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param e
-	 */
-	public void actionPerformed(ActionEvent e){
-
-	}
-}//end CreationKitActionListener

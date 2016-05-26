@@ -1,7 +1,8 @@
+import java.sql.Timestamp;
 import java.util.*;
 import javax.swing.*;
 
-public class Post {
+public class Post implements Comparable<Post> {
 
 	private Date date;
 	private String postText;
@@ -18,14 +19,16 @@ public class Post {
 
 	
 
-	public Post(Date date, String post, User user) {
+	public Post(String postText, User creator) {
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		Date date = new Date(ts.getTime());
 		this.date = date;
-		this.postText = post;
-		this.user = user;
+		
+		this.postText = postText;
+		this.user = creator;
 		this.replies = null;
 		this.Likes = null;
 		No_ofPosts++;
-		
 	}
 	
 
@@ -38,7 +41,7 @@ public class Post {
 		Likes = likes;
 		this.owner = owner;
 		this.post_id = post_id;
-	}//To be used only from DataBase class
+	}//To be used only from DataBase class when loading saved files
 
 
 	public void printPost () {
@@ -60,14 +63,11 @@ public class Post {
 	public String printAllReplies() {
 		String repl = "\n";
 		String mark = "  -> ";
-
 		Post temp = this.reply;
-
 		while (temp != null){
 			repl += mark + temp.toString() + "\n";
 			temp = temp.reply;
 		}
-
 		return repl;
 	}
 	*/
@@ -118,12 +118,23 @@ public class Post {
 	public static int getNo_ofPosts() {
 		return No_ofPosts;
 	}
-
 	
 
-	
+	public String getPostText() {
+		return postText;
+	}
 
-	
+
+	public void setPostText(String postText) {
+		this.postText = postText;
+	}
+
+
+	@Override //TODO check again, may create some problem in sorting //Override for implementation Comparable
+	public int compareTo(Post apost) {
+		 return (date.compareTo(apost.getDate()));
+	}
+
 
 
 

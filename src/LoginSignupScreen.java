@@ -7,8 +7,10 @@ import javax.swing.*;
 
 public class LoginSignupScreen extends JFrame {
 	
+	private JPanel contentPane;
 	private JTextField username;
 	private JPasswordField password;
+	private JFrame frame;
 	
 	private JButton Sign_in;
 	private JButton Sign_up;
@@ -23,7 +25,9 @@ public class LoginSignupScreen extends JFrame {
 	public LoginSignupScreen(){
 		super("Login & Signup Screen");
 		
-		JPanel contentPane = new JPanel();	
+		frame = new JFrame();
+		
+		contentPane = new JPanel();	
 		label = new JLabel("E-mail:");
 		contentPane.add(label);	
 		
@@ -53,12 +57,13 @@ public class LoginSignupScreen extends JFrame {
 		Sign_up.addActionListener(new SignupActionListener());
 		
 		contentPane.setBackground(Color.cyan);
+		frame.add(contentPane);
         
 
-	    this.setSize(1000,500);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
-		this.setContentPane(contentPane);
+	    frame.setSize(1000,500);
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setContentPane(contentPane);
 	}
 
 	
@@ -73,7 +78,7 @@ public class LoginSignupScreen extends JFrame {
 				User u ;
 				u = DataBase.findUser(username.getText(),password.getText());
 				new Home_Page(u);
-				
+				frame.setVisible(false);
 			}	
 
 		}
@@ -96,44 +101,3 @@ public class LoginSignupScreen extends JFrame {
 
 
 }
-
-class SigninActionListener implements ActionListener {
-
-	public SigninActionListener(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param e
-	 */
-	public void actionPerformed(ActionEvent e){
-
-	}
-}//end SigninActionListener
-
-/**
- * @author Flotis
- * @version 1.0
- * @updated 17-Ìáú-2016 6:39:10 ìì
- */
-class SignupActionListener implements ActionListener {
-
-	public SignupActionListener(){
-		CreateUserScreen();
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param e
-	 */
-	public void actionPerformed(ActionEvent e){
-
-	}
-}//end SignupActionListener
