@@ -118,6 +118,26 @@ public class Post implements Comparable<Post> {
 	public static int getNo_ofPosts() {
 		return No_ofPosts;
 	}
+<<<<<<< HEAD
+	
+
+	public String getPostText() {
+		return postText;
+	}
+
+
+	public void setPostText(String postText) {
+		this.postText = postText;
+	}
+
+
+	@Override //TODO check again, may create some problem in sorting //Override for implementation Comparable
+	public int compareTo(Post apost) {
+		 return (date.compareTo(apost.getDate()));
+	}
+
+=======
+>>>>>>> refs/remotes/origin/master
 	
 
 	public String getPostText() {

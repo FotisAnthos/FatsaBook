@@ -1,11 +1,15 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+<<<<<<< HEAD
+
+=======
 /**
  * @author Flotis
  * @version 1.0
  * @created 17-Ìבת-2016 7:18:16 לל
  */
+>>>>>>> refs/remotes/origin/master
 public class Group_Timeline extends JFrame {
 
 	private JButton back;
