@@ -1,2 +1,53 @@
+<<<<<<< HEAD
 /Display_Lists$listener.class
 /Display_Lists.class
+=======
+/Display_Lists$listener.class
+/Display_Lists.class
+/Home_Page$SearchActionListener.class
+/Home_Page$friendsActionListener.class
+/Home_Page$groupsActionListener.class
+/Home_Page.class
+/Class Model.pdf
+/Group_Timeline.class
+/Post_View.class
+/User_Timeline.class
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/Lydia11
+/nextpostsActionListener.class
+/timelineActionListener.class
+/GECKActionListener.class
+/CreationKitActionListener.class
+/SigninActionListener.class
+/SignupActionListener.class
+<<<<<<< HEAD
+=======
+=======
+/Home_Page$nextpostsActionListener.class
+/Home_Page$timelineActionListener.class
+>>>>>>> refs/remotes/origin/master
+>>>>>>> origin/Lydia11
+/MainPage$SearchActionListener.class
+/MainPage$friendsActionListener.class
+/MainPage$groupsActionListener.class
+/MainPage$nextpostsActionListener.class
+/MainPage$timelineActionListener.class
+/MainPage.class
+/DisplayLists$listener.class
+/DisplayLists.class
+/DisplayLists$TimelineListener.class
+/DisplayLists$TimelineListener$listener.class
+/AddDeleteFriendListener.class
+/User_Timeline$AddDeleteFriendListener.class
+/User_Timeline$CommonFriendsListener.class
+/User_Timeline$NextPostsListener.class
+/User_Timeline$AddFriendListener.class
+/User_Timeline$DeleteFriendListener.class
+/User_Timeline$backListener.class
+/User_Timeline$BackListener.class
+/CreateUserScreen$CreationKitActionListener$BackListener.class
+/CreateUserScreen$BackListener.class
+/DisplayLists$BackListener.class
+>>>>>>> refs/remotes/origin/master
