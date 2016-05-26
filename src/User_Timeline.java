@@ -38,9 +38,10 @@ public class User_Timeline extends JFrame {
 		 frame = new JFrame(friend.getName()+ "'s Timeline");
 	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        
-//	        JComponent component = new Post_View(u,friend);
-//			component.setOpaque(true); //content panes must be opaque
-//		    frame.setContentPane(component);
+	        JComponent component = new Post_View(u,friend);
+			component.setOpaque(true); //content panes must be opaque
+		    frame.setContentPane(component);
+//		    frame.add(component, BorderLayout.NORTH);
 	        
 	        addfriend = new JButton("Add friend");
 	        deletefriend = new JButton("Delete friend");

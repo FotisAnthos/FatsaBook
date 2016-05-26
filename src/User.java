@@ -196,14 +196,11 @@ public class User {
 		return groups;
 	}
 
-	public Post createPost(String aString) {
-		Timestamp ts = new Timestamp(System.currentTimeMillis());
-		Date date = new Date(ts.getTime());
-
-		Post apost = new Post(date, aString, this);
-		personalPosts.add(apost);
-		return apost;
-		
+	public ArrayList<Post> getPersonalPosts() {
+		return personalPosts;
 	}
 	
+	public void addPost(Post apost){
+		personalPosts.add(apost);
+	}
 }
