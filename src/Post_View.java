@@ -21,7 +21,7 @@ public class Post_View extends JPanel {
 		posts_displayed = 0;
 		
 		
-		aPostView(postToBeDisplayedUser(anotherUser));
+		//aPostView(postToBeDisplayedUser(anotherUser));
 		
 		
 		
@@ -30,9 +30,9 @@ public class Post_View extends JPanel {
 		posts_displayed = 0;
 		this.activeUser = activeUser;
 		int i;
-		for(i=0; i<5;i++){
-			aPostView(postToBeDisplayedGroup(agroup));			
-		}
+		//for(i=0; i<5;i++){
+		//	aPostView(postToBeDisplayedGroup(agroup));			
+		//}
 		
 	
 		
@@ -45,13 +45,15 @@ public class Post_View extends JPanel {
 	
 	
 	
-	public JPanel aPostView(Post apost){
+	
+	
+	public JPanel aPostView(){
 		JPanel apanel = new JPanel();
 		JButton likebutton = new JButton("Like!");
         JButton commentbutton = new JButton("Comment");
-        
+        Post apost = new Post("Lalala", activeUser);
 		JTextField postTextfield = new JTextField();
-		postTextfield.setText(apost.getPostText());
+		postTextfield.setText(apost.getPostText());//TODO used for check
         
         
         ButtonGroup actions = new ButtonGroup();

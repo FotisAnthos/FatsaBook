@@ -15,6 +15,7 @@ public class Home_Page extends JFrame{
 	private JButton nextposts;
 	private User activeuser;
 	private JPanel mainpanel;
+	private Post_View postview;
 	
 	public Home_Page(User activeuser) //receives the active user
 	{
@@ -28,6 +29,8 @@ public class Home_Page extends JFrame{
 		timeline = new JButton("Timeline");//Opens a Screen with the user's posts
 		nextposts = new JButton("More Posts");//Displays more posts from groups and friends to the MainPage
 		
+		postview = new Post_View(activeuser);
+		
 		mainpanel.add(search);
 		mainpanel.add(groups);
 		mainpanel.add(friends);
@@ -39,7 +42,7 @@ public class Home_Page extends JFrame{
 		timeline.addActionListener(new timelineActionListener());
 		nextposts.addActionListener(new nextpostsActionListener());
 		
-		
+		mainpanel.add(postview.aPostView());
 		
 		
 		
@@ -90,6 +93,7 @@ public class Home_Page extends JFrame{
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO
+			 	
 
 		 	}
 		
