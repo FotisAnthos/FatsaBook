@@ -5,10 +5,14 @@ public class main {
 	
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
+			
+=======
 		
 		new LoginSignupScreen();
+>>>>>>> master
 		
-
+		new LoginSignupScreen();
 	}
 	
 	

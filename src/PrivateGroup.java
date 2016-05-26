@@ -10,7 +10,7 @@ public class PrivateGroup extends Group{
 
 	public PrivateGroup(String name, String info) {
 		super(name, info);
-
+		
 		members = new ArrayList<User>();
 		posts = new ArrayList<Post>();
 	}
