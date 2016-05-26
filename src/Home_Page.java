@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -26,6 +27,8 @@ public class Home_Page extends JFrame{
 	
 	public Home_Page(User activeUser) //receives the active user
 	{
+		super("My HomePage");
+		
 		u= activeUser;
 		
 		 mainpanel = new JPanel();
@@ -49,7 +52,9 @@ public class Home_Page extends JFrame{
 		timeline.addActionListener(new timelineActionListener());
 		nextposts.addActionListener(new nextpostsActionListener());
 		
-		
+//		 JComponent newContentPane = new Post_View(activeUser);
+//		 newContentPane.setOpaque(true); //content panes must be opaque
+//	     this.setContentPane(newContentPane);
 		
 		
 		

@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -34,8 +35,12 @@ public class User_Timeline extends JFrame {
 		this.friend = friend;
 		this.u=u;
 		
-		 frame = new JFrame("Timeline");
-	        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		 frame = new JFrame(friend.getName()+ "'s Timeline");
+	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	        
+//	        JComponent component = new Post_View(u,friend);
+//			component.setOpaque(true); //content panes must be opaque
+//		    frame.setContentPane(component);
 	        
 	        addfriend = new JButton("Add friend");
 	        deletefriend = new JButton("Delete friend");

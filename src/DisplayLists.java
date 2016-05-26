@@ -111,7 +111,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 				new User_Timeline(user,DataBase.users.get(index));
 			}
 			else if(users==null)
-				new Group_Timeline(DataBase.groups.get(index));
+				new Group_Timeline(DataBase.groups.get(index),user);
 		}
 	}
 	

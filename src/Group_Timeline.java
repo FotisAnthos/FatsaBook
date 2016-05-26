@@ -8,18 +8,24 @@ import javax.swing.JFrame;
  */
 public class Group_Timeline extends JFrame {
 
+	private JButton back;
+	private  JButton addgroup;
+	private  JButton deletegroup;
 	private JButton Members_List;
 	private JButton nextPosts;
-	public SearchScreen m_SearchScreen;
+	private JFrame frame;
 	public DisplayLists m_Display_Lists;
 	public Group m_Group;
 
-	public Group_Timeline(Group g){
-
+	public Group_Timeline(Group g,User u){
+		frame = new JFrame(g.getName());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        back = new JButton("Back");
+        addgroup = new JButton("Add group");
+        deletegroup = new JButton("Delete group");
+        
+        
 	}
 
-	
-	public void Group_Timeline(Group agroup){
-
-	}
 }//end Group_Timeline

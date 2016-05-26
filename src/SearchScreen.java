@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -61,12 +62,16 @@ public class SearchScreen extends JFrame{
 			 		for(User u :DataBase.users){
 			 			if(search.getText().equals(u.getName()))
 			 				new User_Timeline(user,u);
+			 			else
+			 				JOptionPane.showMessageDialog(null,"No users found","Message",JOptionPane.PLAIN_MESSAGE);
 			 		}
 			 	}
 			 	else if(groupsearch.isSelected()){
 			 		for(Group g :DataBase.groups){
 			 			if(search.getText().equals(g.getName()))
-			 				new Group_Timeline(g);
+			 				new Group_Timeline(g,user);
+			 			else
+			 				JOptionPane.showMessageDialog(null,"No groups found","Message",JOptionPane.PLAIN_MESSAGE);
 			 		}
 			 	}
 			}

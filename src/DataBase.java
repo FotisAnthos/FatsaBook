@@ -20,11 +20,9 @@ public final class DataBase {
 	public DataBase() {
 		
 		
-//		this.users = null;
-//		this.groups = null;
-//		this.posts = null;
-		
-		
+		DataBase.users = null;
+		DataBase.groups = null;
+		DataBase.posts = null;	
 		
 	}
 	
@@ -83,9 +81,8 @@ public final class DataBase {
 			}
 			return true; //Group Created
 		}
-			
-		
-		return false; //Group not Created		
+		else
+			return false; //Group not Created		
 	}
 	
 	public static boolean deleteGroup(String name){
@@ -105,7 +102,7 @@ public final class DataBase {
 
 
 	//TODO save --find better way
-	public static boolean save()
+	public static void save()
 	{
 		
 		try {
@@ -118,7 +115,7 @@ public final class DataBase {
 		catch(IOException i) {
 			i.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Users could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
-			return false;
+//			return false;
 		}
 		finally {
 			System.out.println("Users saved...");
@@ -133,12 +130,12 @@ public final class DataBase {
 		catch(IOException i) {
 			i.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Groups could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
-			return false;
+//			return false;
 		}
 		finally {
 			System.out.println("Groups saved...");
 		}
-		return true;
+//		return true;
 		
 		
 	}
