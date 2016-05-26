@@ -1,5 +1,7 @@
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -7,7 +9,7 @@ import javax.swing.JOptionPane;
 public final class DataBase {
 	// TODO double check users & groups about static
 	//TODO failsafe saving of all new staff if someone is to close the program 
-	
+
 
 	protected static  ArrayList<User> users = new ArrayList<User>();
 	protected static ArrayList<Group> groups = new ArrayList<Group>();
@@ -16,42 +18,39 @@ public final class DataBase {
 	public User m_User;
 	public Post m_Post;
 
-	
-	public DataBase() {
-		
-		
-//		this.users = null;
-//		this.groups = null;
-//		this.posts = null;
-		
-		
-		
+
+	public DataBase() {		
+		//		this.users = null;
+		//		this.groups = null;
+		//		this.posts = null;
+
+
+
 	}
-	
-	public static User findUser(String name,String password) {
-		User temp = new User(" ", " ", " ");
+
+	public static User findUser(String mail) {
 		for(User u: users) {
-			if(name==u.getName() && password==u.getPassword()){
-				temp = u;
+			if(mail.equals(u.getName())){
+				return u;
 			}
 		}
-		return temp;
+		return null;		
 	}
 
 	public static void createUser(String name, String mail, String password) {
 		if(!isUser(mail)){
-		User u = new User(name, mail, password);
-		users.add(u);
+			User u = new User(name, mail, password);
+			users.add(u);
 		}
 	}
-		
+
 	public static void deleteUser(User auser) {
 		String input = JOptionPane.showInputDialog("Enter password to delete user");
 
 		if(auser.isPasswordCorrect(input)) users.remove(auser); 
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
-	
+
 	public static  boolean createGroup(String name, String info, boolean is_open) {
 		//if group is to be open b==true else b==false
 		if(!isGroup(name)) {
@@ -67,20 +66,20 @@ public final class DataBase {
 		}
 		return false; //Group not Created		
 	}
-	
+
 	public static boolean deleteGroup(String name){
 		if(isGroup(name)){
 			//TODO show confirmation panel
 			Group agroup = getGroupInstance(name);
 			groups.remove(agroup);
-			
+
 		}
 		return false;		
 	}
-	
+
 	//TODO save --find better way
 	public static boolean save() {
-		
+
 		try {
 			FileOutputStream fileOut = new FileOutputStream(".users.txt");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -108,8 +107,8 @@ public final class DataBase {
 			System.out.println("Groups saved...");
 		}
 		return true;
-		
-		
+
+
 	}
 
 	public static boolean retrieve() {
@@ -144,8 +143,8 @@ public final class DataBase {
 
 		return null;
 	}
-	
-	//TODO check checkUser ** static?
+
+
 
 	public static Group getPost(int r) {
 		for(Group gr : groups) {
@@ -159,12 +158,12 @@ public final class DataBase {
 	public static boolean checkUserPassword(String name,String password) {
 		for(User u : users) {
 			if(u.getName().equals(name)) {
-//				while(true)
-//				{
-//				String input = JOptionPane.showInputDialog("Enter Input:");
+				//				while(true)
+				//				{
+				//				String input = JOptionPane.showInputDialog("Enter Input:");
 				if(u.isPasswordCorrect(password)) 
 					return true;
-//				}
+				//				}
 			}
 		}	
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
@@ -212,20 +211,35 @@ public final class DataBase {
 	public static void setPosts(ArrayList<Post> posts) {
 		DataBase.posts = posts;
 	}
+	public void createPost(User creator, User anotherUser, Group agroup, String PostText){
+		Post apost = new Post(PostText, creator);
+		if(anotherUser!=null || agroup!=null){
+			if(anotherUser!=null && DataBase.isUser(anotherUser.getMail())){
+				anotherUser.addPost(apost);
+			}
+			else if(agroup!=null && DataBase.isGroup(agroup.getName())){
+				agroup.addPost(apost);
+			}
+		}
 
-	public User getM_User() {
-		return m_User;
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 
-	public void setM_User(User m_User) {
-		this.m_User = m_User;
-	}
-
-	public Post getM_Post() {
-		return m_Post;
-	}
-
-	public void setM_Post(Post m_Post) {
-		this.m_Post = m_Post;
-	}
 }
+
+
+
+
+

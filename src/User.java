@@ -1,5 +1,6 @@
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -195,15 +196,18 @@ public class User {
 	public ArrayList<Group> getGroups() {
 		return groups;
 	}
+	
 
-	public Post createPost(String aString) {
-		Timestamp ts = new Timestamp(System.currentTimeMillis());
-		Date date = new Date(ts.getTime());
-
-		Post apost = new Post(date, aString, this);
-		personalPosts.add(apost);
-		return apost;
-		
+	public ArrayList<Post> getPersonalPosts() {
+		return personalPosts;
 	}
+
+	public void addPost(Post apost){
+		personalPosts.add(apost);
+	}
+
+	
+	
+	
 	
 }
