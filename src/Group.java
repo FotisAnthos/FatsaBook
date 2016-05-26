@@ -1,11 +1,11 @@
+import java.util.ArrayList;
+
 public abstract class Group {
 
 	private String name;
 	private String info;
 	private static int No_ofGroups;
-	public DataBase m_DataBase;
-	public User m_User;
-	public Post m_Post;
+	private ArrayList<Post> groupPosts;
 
 	public Group(String name, String info) {
 		this.name = name;
@@ -43,6 +43,14 @@ public abstract class Group {
 	public abstract void addReplyToPost(Post post, Post reply);
 	public abstract void printWall();
 	public abstract boolean canAddPost(User user);
+
+	public ArrayList<Post> getGroupPosts() {
+		return groupPosts;
+	}
+
+	public void setGroupPosts(ArrayList<Post> groupPosts) {
+		this.groupPosts = groupPosts;
+	}
 
 	
 

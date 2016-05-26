@@ -1,4 +1,6 @@
 import javax.swing.*;
+
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,13 +14,13 @@ public class Home_Page extends JFrame{
 	private JButton timeline;
 	private JButton nextposts;
 	private User activeuser;
-	
+	private JPanel mainpanel;
 	
 	public Home_Page(User activeuser) //receives the active user
 	{
 		this.activeuser = activeuser;
 		
-		JPanel mainpanel = new JPanel();
+		mainpanel = new JPanel();
 		//Buttons
 		search = new JButton("Search");//Opens a new Search Screen
 		groups = new JButton("Groups");//Opens a Screen with a list of groups the user is enlisted to
@@ -41,9 +43,8 @@ public class Home_Page extends JFrame{
 		
 		
 		
-		
+		this.setSize(1000,500);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		pack();
 		this.setContentPane(mainpanel);
 		this.setVisible(true);
 	}
