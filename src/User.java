@@ -212,17 +212,11 @@ public class User {
 		return personalPosts;
 	}
 
-
-
-	public Post createPost(String aString) {
-		Timestamp ts = new Timestamp(System.currentTimeMillis());
-		Date date = new Date(ts.getTime());
-
-		Post apost = new Post(date, aString, this);
+	public void addPost(Post apost){
 		personalPosts.add(apost);
-		return apost;
-		
 	}
+
+	
 	
 	
 	

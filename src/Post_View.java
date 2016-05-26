@@ -1,3 +1,4 @@
+import java.awt.FlowLayout;
 import java.util.Collections;
 
 import javax.swing.*;
@@ -46,6 +47,17 @@ public class Post_View extends JPanel {
 	
 	public JPanel aPostView(){
 		JPanel apanel = new JPanel();
+		JButton likebutton = new JButton("Like!");
+        JButton commentbutton = new JButton("Comment");
+		
+        ButtonGroup actions = new ButtonGroup();
+        actions.add(likebutton);
+        actions.add(commentbutton);
+        
+        setLayout(new FlowLayout());
+        
+        
+        
 		
 		
 		
@@ -53,10 +65,7 @@ public class Post_View extends JPanel {
 		
 		
 		
-		
-		
-		
-		
+        this.setSize(getPreferredSize());
 		return apanel;
 	}
 	

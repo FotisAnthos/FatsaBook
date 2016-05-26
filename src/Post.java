@@ -19,14 +19,16 @@ public class Post implements Comparable<Post> {
 
 	
 
-	public Post(Date date, String post, User user) {
+	public Post(String postText, User creator) {
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		Date date = new Date(ts.getTime());
 		this.date = date;
-		this.postText = post;
-		this.user = user;
+		
+		this.postText = postText;
+		this.user = creator;
 		this.replies = null;
 		this.Likes = null;
 		No_ofPosts++;
-		
 	}
 	
 
@@ -39,7 +41,7 @@ public class Post implements Comparable<Post> {
 		Likes = likes;
 		this.owner = owner;
 		this.post_id = post_id;
-	}//To be used only from DataBase class
+	}//To be used only from DataBase class when loading saved files
 
 
 	public void printPost () {
