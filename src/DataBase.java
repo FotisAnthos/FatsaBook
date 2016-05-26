@@ -142,7 +142,7 @@ public final class DataBase {
 		return null;
 	}
 	
-	//TODO check checkUser ** static?
+	
 
 	public static Group getPost(int r) {
 		for(Group gr : groups) {
@@ -211,17 +211,6 @@ public final class DataBase {
 	}
 
 	
-
-	public static User checkUserLogin(String mail, String password) {
-		
-		for(User u: users){
-			if(mail.equals(u.getMail()) && password.equals(password)){
-				return u;
-			}
-		}
-		
-		return null;
-	}
 }
 
 

@@ -10,20 +10,18 @@ public class LoginSignupScreen extends JFrame {
 	private JTextField mail;
 	private JPasswordField password;
 	
+	private JPanel contentPane;
 	private JButton Sign_in;
 	private JButton Sign_up;
 	private JLabel label,label2;
-	public CreateUserScreen m_CreateUserScreen;
-	public Home_Page m_MainPage;
-	public User m_User;
-	public Home_Page m_Home_Page;
+	
 	
 	
 	
 	public LoginSignupScreen(){
 		super("Login & Signup Screen");
 		
-		JPanel contentPane = new JPanel();	
+		contentPane = new JPanel();	
 		label = new JLabel("E-mail:");
 		contentPane.add(label);	
 		
@@ -65,14 +63,16 @@ public class LoginSignupScreen extends JFrame {
 	class SigninActionListener implements ActionListener
 	 {
 
-		@SuppressWarnings("deprecation")
+		
 		public void actionPerformed(ActionEvent e)
 		{	
-			if(DataBase.checkUserPassword(mail.getText(),password.getText()))
+			//if(DataBase.checkUserPassword(mail.getText(), password.getPassword().toString()))//password.getPassword().toString() is probably wrong
+			if(true)
 			{
 				User u ;
 				u = DataBase.findUser(mail.getText());
 				new Home_Page(u);
+				
 				
 			}	
 
@@ -97,43 +97,4 @@ public class LoginSignupScreen extends JFrame {
 
 }
 
-class SigninActionListener implements ActionListener {
 
-	public SigninActionListener(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param e
-	 */
-	public void actionPerformed(ActionEvent e){
-
-	}
-}//end SigninActionListener
-
-/**
- * @author Flotis
- * @version 1.0
- * @updated 17-Ìáú-2016 6:39:10 ìì
- */
-class SignupActionListener implements ActionListener {
-
-	public SignupActionListener(){
-		CreateUserScreen();
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param e
-	 */
-	public void actionPerformed(ActionEvent e){
-
-	}
-}//end SignupActionListener
