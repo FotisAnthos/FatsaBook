@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.awt.FlowLayout;
 import java.util.Collections;
 
@@ -22,6 +23,70 @@ public class Post_View extends JPanel {
 		
 		
 		//aPostView(postToBeDisplayedUser(anotherUser));
+=======
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Collections;
+
+import javax.swing.*;
+
+
+
+public class Post_View extends JPanel {
+
+	private JPanel postPanel;
+	private JPanel contentPane;
+	private JPanel createpost;
+	private JButton Post1;
+	private JButton Post2;
+	private JButton Post3;
+	private JTextField postfield;
+	private JButton Comment;
+	private JButton Like;
+	private int posts_displayed;
+	private User activeUser;
+	private User anotherUser;
+	
+	
+	public Post_View(User activeUser, User anotherUser){//Used for displaying posts on User_Timeline
+		this.activeUser = activeUser;
+		this.anotherUser = anotherUser;
+		
+		contentPane = new JPanel();
+		
+		createpost = new JPanel();
+		Post1 = new JButton("Post");
+		Post1.addActionListener(new PostListener1());
+		postfield = new JTextField(20);
+		
+		createpost.add(postfield, BorderLayout.NORTH);
+		createpost.add(Post1, BorderLayout.CENTER);
+		
+		contentPane.add(createpost, BorderLayout.NORTH);
+		
+		if(anotherUser.getPersonalPosts().size()>=1){
+//			Collections.sort(anotherUser.getPersonalPosts());
+			for(Post post: anotherUser.getPersonalPosts()){
+				postPanel.add(aPostView(post));
+			}
+			contentPane.add(postPanel);
+		}
+		
+		
+//		postPanel=aPostView(postToBeDisplayedUser(anotherUser));
+		
+
+
+		this.activeUser = activeUser;
+		posts_displayed = 0;
+		
+		add(contentPane);
+		
+		
+
+>>>>>>> refs/remotes/origin/Lydia11
 		
 		
 		
@@ -40,13 +105,19 @@ public class Post_View extends JPanel {
 
 	}
 	public Post_View(User activeUser){ ////Used for displaying posts on Home_Page
+<<<<<<< HEAD
 		
+=======
+		Post apost = new Post("Lalala", activeUser);
+//		aPostView();
+>>>>>>> refs/remotes/origin/Lydia11
 	}
 	
 	
 	
 	
 	
+<<<<<<< HEAD
 	public JPanel aPostView(){
 		JPanel apanel = new JPanel();
 		JButton likebutton = new JButton("Like!");
@@ -57,6 +128,18 @@ public class Post_View extends JPanel {
         
         
         ButtonGroup actions = new ButtonGroup();
+=======
+	public JPanel aPostView(Post aPost){
+		JPanel apanel = new JPanel();
+		JLabel alabel = new JLabel(aPost.getPostText());
+		JButton likebutton = new JButton("Like!");
+        JButton commentbutton = new JButton("Comment");
+        
+//		postTextfield.setText(apost.getPostText());//TODO used for check
+        
+        
+        JPanel actions = new JPanel();
+>>>>>>> refs/remotes/origin/Lydia11
         actions.add(likebutton);
         actions.add(commentbutton);
         
@@ -65,7 +148,12 @@ public class Post_View extends JPanel {
         
         
 		
+<<<<<<< HEAD
 		
+=======
+		apanel.add(alabel,BorderLayout.NORTH);
+		apanel.add(actions, BorderLayout.CENTER);
+>>>>>>> refs/remotes/origin/Lydia11
 		
 		
 		
@@ -76,6 +164,7 @@ public class Post_View extends JPanel {
 	}
 	
 	
+<<<<<<< HEAD
 	public Post postToBeDisplayedUser(User auser){
 		if(auser.isFriend(auser)){									 
 			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
@@ -83,6 +172,20 @@ public class Post_View extends JPanel {
 		}
 		return null;
 	}
+=======
+//	public int postToBeDisplayedUser(User activeUser,User anotherUser){
+//		int count;
+//		if(activeUser.isFriend(anotherUser)){
+//			Collections.sort(anotherUser.getPersonalPosts());
+//		}
+//		
+//		if(auser.isFriend(auser)){									 
+//			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
+//			return auser.getPersonalPosts().get(posts_displayed++);	
+//		}
+//		return null;
+//	}
+>>>>>>> refs/remotes/origin/Lydia11
 	
 	public Post postToBeDisplayedGroup(Group agroup){ 
 		if(agroup.isMember(activeUser)){							 
@@ -91,4 +194,15 @@ public class Post_View extends JPanel {
 		}
 		return null;
 	}
+<<<<<<< HEAD
+=======
+	
+	class PostListener1 implements ActionListener
+	 {
+		public void actionPerformed(ActionEvent e)
+		{	
+			DataBase.createPost(activeUser, anotherUser, null, postfield.toString());
+		}
+	 }
+>>>>>>> refs/remotes/origin/Lydia11
 }

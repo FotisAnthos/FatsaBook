@@ -32,9 +32,13 @@ public class Home_Page extends JFrame{
 		
 		u= activeUser;
 		
+		JComponent newContentPane = new Post_View(activeUser);
+		newContentPane.setOpaque(true); //content panes must be opaque
+	    this.setContentPane(newContentPane);
+		
 		 mainpanel = new JPanel();
-		mainpanel.setLayout(new BoxLayout(mainpanel,
-                BoxLayout.LINE_AXIS));
+		mainpanel.setLayout(new BoxLayout(mainpanel,BoxLayout.LINE_AXIS));
+		
 		//Buttons
 		search = new JButton("Search");//Opens a new Search Screen
 		groups = new JButton("Groups");//Opens a Screen with a list of groups the user is enlisted to
@@ -61,7 +65,8 @@ public class Home_Page extends JFrame{
 		
 		
 		
-		this.setContentPane(mainpanel);
+		this.add(mainpanel);
+		this.pack();
 		
 		this.setSize(getPreferredSize());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

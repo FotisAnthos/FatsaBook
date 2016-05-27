@@ -200,14 +200,20 @@ public class User {
 
 	public ArrayList<Post> getPersonalPosts() {
 		return personalPosts;
+<<<<<<< HEAD
 	}
 
 	public void addPost(Post apost){
 		personalPosts.add(apost);
+=======
+>>>>>>> refs/remotes/origin/Lydia11
 	}
 
 	
 	
 	
 	
+	public void addPost(Post apost){
+		personalPosts.add(apost);
+	}
 }

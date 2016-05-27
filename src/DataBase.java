@@ -235,6 +235,25 @@ public final class DataBase {
 
 
 
+<<<<<<< HEAD
+=======
+	public static void createPost(User creator, User anotherUser, Group agroup, String PostText){
+		Post apost = new Post(PostText, creator);
+		
+		if(anotherUser!=null){
+			anotherUser.addPost(apost);
+		}
+		else if(agroup!=null){
+			agroup.addPost(apost);
+		}
+//		if(anotherUser!=null || agroup!=null){
+//			if(anotherUser!=null && DataBase.isUser(anotherUser.getMail())){
+//				anotherUser.addPost(apost);
+//			}
+//		}
+//		else if(agroup!=null && DataBase.isGroup(agroup.getName()))
+//				agroup.addPost(apost);
+>>>>>>> refs/remotes/origin/Lydia11
 	}
 
 }
