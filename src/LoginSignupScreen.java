@@ -7,16 +7,16 @@ import javax.swing.*;
 
 public class LoginSignupScreen extends JFrame {
 	
-<<<<<<< HEAD
+
 	private JTextField mail;
-=======
+
 	private JPanel contentPane;
 	private JTextField username;
->>>>>>> refs/remotes/origin/master
+
 	private JPasswordField password;
 	private JFrame frame;
 	
-	private JPanel contentPane;
+	
 	private JButton Sign_in;
 	private JButton Sign_up;
 	private JLabel label,label2;
@@ -26,12 +26,8 @@ public class LoginSignupScreen extends JFrame {
 	
 	public LoginSignupScreen(){
 		super("Login & Signup Screen");
-		
-<<<<<<< HEAD
-=======
+
 		frame = new JFrame();
-		
->>>>>>> refs/remotes/origin/master
 		contentPane = new JPanel();	
 		label = new JLabel("E-mail:");
 		contentPane.add(label);	
@@ -84,12 +80,9 @@ public class LoginSignupScreen extends JFrame {
 				User u ;
 				u = DataBase.findUser(mail.getText());
 				new Home_Page(u);
-<<<<<<< HEAD
-				
-				
-=======
+
 				frame.setVisible(false);
->>>>>>> refs/remotes/origin/master
+
 			}	
 
 		}
@@ -112,8 +105,4 @@ public class LoginSignupScreen extends JFrame {
 
 
 }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> refs/remotes/origin/master

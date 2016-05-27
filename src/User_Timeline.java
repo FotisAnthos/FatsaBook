@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import Home_Page.SearchActionListener;
-import Home_Page.friendsActionListener;
-import Home_Page.groupsActionListener;
-import Home_Page.nextpostsActionListener;
-import Home_Page.timelineActionListener;
-=======
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -27,54 +13,26 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
->>>>>>> refs/remotes/origin/master
 
-/**
- * @author Flotis
- * @version 1.0		
- * @created 17-Ìבת-2016 7:18:18 לל
- */
+
+
 public class User_Timeline extends JFrame {
 
-<<<<<<< HEAD
-	private JButton search;
-	private JButton groups;
-	private JButton common_friends;
-	private JPanel mainpanel;
-	
-	private JButton nextposts;
-	
 
-	public User_Timeline(User auser){
-		mainpanel = new JPanel();
-		search = new JButton("Search");//Opens a new Search Screen
-		groups = new JButton("Groups");//Opens a Screen with a list of groups the user is enlisted to
-		common_friends = new JButton("Common Friends");//Opens a Screen with a list of Users the user is friends with
-		nextposts = new JButton("More Posts");//Displays more posts from groups and friends to the MainPage
-		mainpanel.add(search);
-		mainpanel.add(groups);
-		mainpanel.add(common_friends);
-		;
-		mainpanel.add(nextposts);
-		search.addActionListener(new SearchActionListener());
-		groups.addActionListener(new groupsActionListener());
-		common_friends.addActionListener(new friendsActionListener());
-		nextposts.addActionListener(new nextpostsActionListener());
-=======
 	private JButton back;
 	private  JButton addfriend;
 	private  JButton deletefriend;
 	private JButton common_Friends;
 	private JButton nextPosts;
 	public DisplayLists m_Display_Lists;
-	private User u,friend;
+	private User activeUser,friend;
 	private JFrame frame;
->>>>>>> refs/remotes/origin/master
 
-	public User_Timeline(User u,User friend){
+
+	public User_Timeline(User activeuser,User friend){
 		
 		this.friend = friend;
-		this.u=u;
+		this.activeUser=activeuser;
 		
 		 frame = new JFrame(friend.getName()+ "'s Timeline");
 	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -86,10 +44,10 @@ public class User_Timeline extends JFrame {
 	        addfriend = new JButton("Add friend");
 	        deletefriend = new JButton("Delete friend");
 	        
-	        if(!u.equals(friend)){
-	        	if(u.isFriend(friend))
+	        if(!activeuser.equals(friend)){
+	        	if(activeuser.isFriend(friend))
 		        	addfriend.setEnabled(false);
-		        else if(!u.isFriend(friend))
+		        else if(!activeuser.isFriend(friend))
 		        	deletefriend.setEnabled(false);
 	        }
 	        else{
@@ -144,7 +102,7 @@ public class User_Timeline extends JFrame {
 	
 	class AddFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	u.addFriend(friend);
+	        	activeUser.addFriend(friend);
 	        	addfriend.setEnabled(false);
 	        	deletefriend.setEnabled(true);
 		}
@@ -153,7 +111,7 @@ public class User_Timeline extends JFrame {
 	
 	class DeleteFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	u.removeFriend(friend);
+	        	activeUser.removeFriend(friend);
 	        	addfriend.setEnabled(true);
 	        	deletefriend.setEnabled(false);
 		}
@@ -183,7 +141,7 @@ public class User_Timeline extends JFrame {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	new SearchScreen();
+			 	new SearchScreen(activeUser);
 		 	}
 		
 	}
@@ -192,40 +150,11 @@ public class User_Timeline extends JFrame {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 //TODO
-			 new Display_Lists();
-		 	}
-		
-	}
-<<<<<<< HEAD
-	class friendsActionListener implements ActionListener
-	{
-		 public void actionPerformed(ActionEvent e)
-		 	{
-			 //TODO
-			 new Display_Lists();
-		 	}
-		
-	}
-	class timelineActionListener implements ActionListener
-	{
-		 public void actionPerformed(ActionEvent e)
-		 	{
-			 	new User_Timeline(activeuser);
-		 	}
-		
-	}
-	class nextpostsActionListener implements ActionListener
-	{
-		 public void actionPerformed(ActionEvent e)
-		 	{
-			 	//TODO
-
+			 new DisplayLists(activeUser, activeUser.getFriends(), activeUser.getGroups());
 		 	}
 		
 	}
 
-	
-}//end User_Timeline
-=======
+
 }
->>>>>>> refs/remotes/origin/master
+
