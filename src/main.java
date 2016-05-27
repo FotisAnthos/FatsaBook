@@ -5,11 +5,6 @@ public class main {
 	
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-
-		
-=======
->>>>>>> refs/remotes/origin/Lydia11
 		new LoginSignupScreen();
 	}
 	

@@ -72,9 +72,10 @@ public class CreateUserScreen extends JFrame {
 		public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO add createUser
-			 DataBase.createUser(username.getText(), mail.getText(), password.getText());
+			 if(DataBase.createUser(username.getText(), mail.getText(), password.getText())){
 			 JOptionPane.showMessageDialog(null,"Sign up completed","Message",JOptionPane.PLAIN_MESSAGE);
 			 frame.setVisible(false);
+			 }
 		 	}
 	}
 }

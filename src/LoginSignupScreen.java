@@ -75,7 +75,7 @@ public class LoginSignupScreen extends JFrame {
 		public void actionPerformed(ActionEvent e)
 		{	
 			//if(DataBase.checkUserPassword(mail.getText(), password.getPassword().toString()))//password.getPassword().toString() is probably wrong
-			if(true)
+			if(true)//TODO change this
 			{
 				User u ;
 				u = DataBase.findUser(mail.getText());

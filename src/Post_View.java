@@ -1,29 +1,4 @@
-<<<<<<< HEAD
-import java.awt.FlowLayout;
-import java.util.Collections;
 
-import javax.swing.*;
-
-
-
-public class Post_View extends JPanel {
-
-	private JPanel postPanel;
-	private JButton Comment;
-	private JButton Like;
-	private int posts_displayed;
-	private User activeUser;
-	
-	
-	public Post_View(User activeUser, User anotherUser){//Used for displaying posts on User_Timeline
-		JPanel contentPane = new JPanel();
-		
-		this.activeUser = activeUser;
-		posts_displayed = 0;
-		
-		
-		//aPostView(postToBeDisplayedUser(anotherUser));
-=======
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -86,7 +61,7 @@ public class Post_View extends JPanel {
 		
 		
 
->>>>>>> refs/remotes/origin/Lydia11
+
 		
 		
 		
@@ -105,30 +80,17 @@ public class Post_View extends JPanel {
 
 	}
 	public Post_View(User activeUser){ ////Used for displaying posts on Home_Page
-<<<<<<< HEAD
-		
-=======
+
 		Post apost = new Post("Lalala", activeUser);
 //		aPostView();
->>>>>>> refs/remotes/origin/Lydia11
+
 	}
 	
 	
 	
 	
 	
-<<<<<<< HEAD
-	public JPanel aPostView(){
-		JPanel apanel = new JPanel();
-		JButton likebutton = new JButton("Like!");
-        JButton commentbutton = new JButton("Comment");
-        Post apost = new Post("Lalala", activeUser);
-		JTextField postTextfield = new JTextField();
-		postTextfield.setText(apost.getPostText());//TODO used for check
-        
-        
-        ButtonGroup actions = new ButtonGroup();
-=======
+
 	public JPanel aPostView(Post aPost){
 		JPanel apanel = new JPanel();
 		JLabel alabel = new JLabel(aPost.getPostText());
@@ -139,7 +101,7 @@ public class Post_View extends JPanel {
         
         
         JPanel actions = new JPanel();
->>>>>>> refs/remotes/origin/Lydia11
+
         actions.add(likebutton);
         actions.add(commentbutton);
         
@@ -148,12 +110,9 @@ public class Post_View extends JPanel {
         
         
 		
-<<<<<<< HEAD
-		
-=======
 		apanel.add(alabel,BorderLayout.NORTH);
 		apanel.add(actions, BorderLayout.CENTER);
->>>>>>> refs/remotes/origin/Lydia11
+
 		
 		
 		
@@ -164,28 +123,20 @@ public class Post_View extends JPanel {
 	}
 	
 	
-<<<<<<< HEAD
-	public Post postToBeDisplayedUser(User auser){
-		if(auser.isFriend(auser)){									 
-			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
-			return auser.getPersonalPosts().get(posts_displayed++);	
+
+	public int postToBeDisplayedUser(User activeUser,User anotherUser){
+		int count;
+		if(activeUser.isFriend(anotherUser)){
+			Collections.sort(anotherUser.getPersonalPosts());
 		}
+	
+		if(auser.isFriend(auser)){									 
+		Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
+			return auser.getPersonalPosts().get(posts_displayed++);	
+	}
 		return null;
 	}
-=======
-//	public int postToBeDisplayedUser(User activeUser,User anotherUser){
-//		int count;
-//		if(activeUser.isFriend(anotherUser)){
-//			Collections.sort(anotherUser.getPersonalPosts());
-//		}
-//		
-//		if(auser.isFriend(auser)){									 
-//			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
-//			return auser.getPersonalPosts().get(posts_displayed++);	
-//		}
-//		return null;
-//	}
->>>>>>> refs/remotes/origin/Lydia11
+
 	
 	public Post postToBeDisplayedGroup(Group agroup){ 
 		if(agroup.isMember(activeUser)){							 
@@ -194,8 +145,7 @@ public class Post_View extends JPanel {
 		}
 		return null;
 	}
-<<<<<<< HEAD
-=======
+
 	
 	class PostListener1 implements ActionListener
 	 {
@@ -204,5 +154,5 @@ public class Post_View extends JPanel {
 			DataBase.createPost(activeUser, anotherUser, null, postfield.toString());
 		}
 	 }
->>>>>>> refs/remotes/origin/Lydia11
+
 }
