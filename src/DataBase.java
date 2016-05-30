@@ -37,7 +37,7 @@ public final class DataBase {
 		return null;		
 	}
 
-	public static boolean createUser(String name, String mail, String password) {
+	public static boolean createUser(String name, String mail, char[] password) {
 		if(!isUser(mail)){
 			User u = new User(name, mail, password);
 			users.add(u);
@@ -47,8 +47,7 @@ public final class DataBase {
 	}
 
 	public static void deleteUser(User auser) {
-		String input = JOptionPane.showInputDialog("Enter password to delete user");
-
+		char[] input = JOptionPane.showInputDialog("Enter password to delete user").toCharArray();
 		if(auser.isPasswordCorrect(input)) users.remove(auser); 
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -157,7 +156,7 @@ public final class DataBase {
 		return null;
 	}
 
-	public static boolean checkUserPassword(String name,String password) {
+	public static boolean checkUserPassword(String name,char[] password) {
 		for(User u : users) {
 			if(u.getName().equals(name)) {
 				//				while(true)
