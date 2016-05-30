@@ -20,7 +20,7 @@ public class Home_Page extends JFrame{
 	private JButton friends;
 	private JButton timeline;
 	private JButton nextposts;
-	private User u;
+	private User activeuser;
 	
 	
 	private JPanel mainpanel;
@@ -30,7 +30,7 @@ public class Home_Page extends JFrame{
 	{
 		super("My HomePage");
 		
-		u= activeUser;
+		activeuser= activeUser;
 		
 		JComponent newContentPane = new Post_View(activeUser);
 		newContentPane.setOpaque(true); //content panes must be opaque
@@ -83,7 +83,7 @@ public class Home_Page extends JFrame{
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO 
-			 	new SearchScreen(u);
+			 	new SearchScreen(activeuser);
 		 	}
 		
 	}
@@ -91,10 +91,10 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists DL1 = new DisplayLists(u,null ,u.getGroups());
-			 DisplayLists.createAndShowGUI(u,null ,u.getGroups() );
+			 DisplayLists DL1 = new DisplayLists(activeuser,null ,activeuser.getGroups());
+			 DisplayLists.createAndShowGUI(activeuser,null ,activeuser.getGroups() );
 			 
-			 for(Group group: u.getGroups()){
+			 for(Group group: activeuser.getGroups()){
 				 DL1.addObject(group);
 			 }
 
@@ -105,10 +105,10 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists DL2 = new DisplayLists(u,u.getFriends() , null);
-			 DisplayLists.createAndShowGUI(u,u.getFriends() ,null );
+			 DisplayLists DL2 = new DisplayLists(activeuser,activeuser.getFriends() , null);
+			 DisplayLists.createAndShowGUI(activeuser,activeuser.getFriends() ,null );
 				 
-			 	for(User user : u.getFriends()){
+			 	for(User user : activeuser.getFriends()){
 			 		DL2.addObject(user);
 			 	}
 
@@ -119,8 +119,7 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 	new User_Timeline(u,u);
-
+			 new User_Timeline(activeuser, activeuser);// Because the activeUser wants to go to his Timeline
 		 	}
 		
 	}
