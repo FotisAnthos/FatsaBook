@@ -30,23 +30,24 @@ public final class DataBase {
 
 	public static User findUser(String mail) {
 		for(User u: users) {
-			if(mail.equals(u.getName())){
+			if(mail.equals(u.getMail())){
 				return u;
 			}
 		}
 		return null;		
 	}
 
-	public static void createUser(String name, String mail, String password) {
+	public static boolean createUser(String name, String mail, char[] password) {
 		if(!isUser(mail)){
 			User u = new User(name, mail, password);
 			users.add(u);
+			return true;
 		}
+		return false;
 	}
 
 	public static void deleteUser(User auser) {
-		String input = JOptionPane.showInputDialog("Enter password to delete user");
-
+		char[] input = JOptionPane.showInputDialog("Enter password to delete user").toCharArray();
 		if(auser.isPasswordCorrect(input)) users.remove(auser); 
 		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -155,9 +156,9 @@ public final class DataBase {
 		return null;
 	}
 
-	public static boolean checkUserPassword(String name,String password) {
+	public static boolean checkUserPassword(String mail,char[] password) {
 		for(User u : users) {
-			if(u.getName().equals(name)) {
+			if(u.getMail().equals(mail)) {
 				//				while(true)
 				//				{
 				//				String input = JOptionPane.showInputDialog("Enter Input:");
@@ -211,7 +212,8 @@ public final class DataBase {
 	public static void setPosts(ArrayList<Post> posts) {
 		DataBase.posts = posts;
 	}
-	public void createPost(User creator, User anotherUser, Group agroup, String PostText){
+	
+	public static void createPost(User creator, User anotherUser, Group agroup, String PostText){
 		Post apost = new Post(PostText, creator);
 		if(anotherUser!=null || agroup!=null){
 			if(anotherUser!=null && DataBase.isUser(anotherUser.getMail())){
@@ -221,6 +223,7 @@ public final class DataBase {
 				agroup.addPost(apost);
 			}
 		}
+
 
 
 

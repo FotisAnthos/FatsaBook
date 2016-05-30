@@ -5,12 +5,8 @@ public abstract class Group {
 	private String name;
 	private String info;
 	private static int No_ofGroups;
-<<<<<<< HEAD
 	private ArrayList<Post> groupPosts;
-=======
-	public User m_User;
-	public Post m_Post;
->>>>>>> refs/remotes/origin/master
+
 
 	public Group(String name, String info) {
 		this.name = name;
@@ -57,6 +53,5 @@ public abstract class Group {
 		this.groupPosts = groupPosts;
 	}
 
-	
 
 }

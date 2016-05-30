@@ -76,8 +76,4 @@ public class CreateGroupScreen extends JFrame {
 				JOptionPane.showMessageDialog(frame, "Error-Group already exists!");
 		}
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
