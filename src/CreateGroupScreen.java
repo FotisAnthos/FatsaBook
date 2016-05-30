@@ -18,8 +18,6 @@ public class CreateGroupScreen extends JFrame {
 	private ButtonGroup buttongroup;
 	private JRadioButton opengroup;
 	private JRadioButton privategroup;
-	public Group m_Group;
-	public DataBase m_DataBase;
 
 	public CreateGroupScreen() {
 		
@@ -66,10 +64,14 @@ public class CreateGroupScreen extends JFrame {
 				if(buttongroup.getSelection() == opengroup ) {
 					if(!(DataBase.createGroup(groupname, groupinfo, true))) 
 						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
+					else
+			        	DataBase.save();
 				}
 				else {
 					if(!(DataBase.createGroup(name.getText(), info.getText(), false)))
 						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
+					else
+			        	DataBase.save();
 				}
 			}
 			else

@@ -152,6 +152,7 @@ public class Post_View extends JPanel {
 		public void actionPerformed(ActionEvent e)
 		{	
 			DataBase.createPost(activeUser, anotherUser, null, postfield.toString());
+			DataBase.save();
 		}
 	}
 
