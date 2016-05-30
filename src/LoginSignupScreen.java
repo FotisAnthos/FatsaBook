@@ -80,7 +80,6 @@ public class LoginSignupScreen extends JFrame {
 				User u ;
 				u = DataBase.findUser(mail.getText());
 				new Home_Page(u);
-
 				frame.setVisible(false);
 			}	
 

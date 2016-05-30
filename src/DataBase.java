@@ -220,22 +220,8 @@ public final class DataBase {
 				agroup.addPost(apost);
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
+
 
 }
 

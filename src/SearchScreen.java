@@ -12,65 +12,67 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class SearchScreen extends JFrame{
-	
+
 	private JTextField search;
 	private JButton Search;
-	public Group m_Group;
-	public User_Timeline m_User_Timeline;
-	public User m_User;
+
 	private JRadioButton usersearch;
 	private JRadioButton groupsearch;
-	private User user;
-	
-	
-	public SearchScreen(User user)
+
+	private User activeuser;
+
+
+	public SearchScreen(User activeuser)
 	{
 		super("Search Screen");
-		this.user=user;
+		this.activeuser=activeuser;
 		JPanel contentPane = new JPanel();
-		
+
 		usersearch = new JRadioButton("Users Search", true);
-        groupsearch = new JRadioButton("Group Search", false);
- 
-        ButtonGroup group = new ButtonGroup();
-        group.add(usersearch);
-        group.add(groupsearch);
- 
-        setLayout(new FlowLayout());
-        
-        search = new JTextField(10);
-        contentPane.add(search);
-        Search = new JButton("Search");
+		groupsearch = new JRadioButton("Group Search", false);
+
+		ButtonGroup group = new ButtonGroup();
+		group.add(usersearch);
+		group.add(groupsearch);
+
+		setLayout(new FlowLayout());
+
+		search = new JTextField(10);
+		contentPane.add(search);
+		Search = new JButton("Search");
 		contentPane.add(Search);
 		Search.addActionListener(new SearchActionListener());
- 
-        contentPane.add(usersearch);
-        contentPane.add(groupsearch);
-        
-        this.setContentPane(contentPane);
-        
-        this.setSize(getPreferredSize());
-        pack();
-        this.setVisible(true);
-	
+
+		contentPane.add(usersearch);
+		contentPane.add(groupsearch);
+
+		this.setContentPane(contentPane);
+
+		this.setSize(getPreferredSize());
+		pack();
+		this.setVisible(true);
+
 	}
 	class SearchActionListener implements ActionListener
-	 {
-		 public void actionPerformed(ActionEvent e)
-		 	{
-			 	if(usersearch.isSelected()){
-			 		for(User u :DataBase.users){
-			 			if(search.getText().equals(u.getName()))
-			 				new User_Timeline(user,u);
-			 		}
-			 	}
-			 	else if(groupsearch.isSelected()){
-			 		for(Group g :DataBase.groups){
-			 			if(search.getText().equals(g.getName()))
-			 				new Group_Timeline(g,user);
-			 		}
-			 	}
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			if(usersearch.isSelected()){
+				User anotherUser = DataBase.findUser(search.getText());
+				if(anotherUser != null){
+					new User_Timeline(activeuser, anotherUser);
+				}
+				else JOptionPane.showMessageDialog(null, "User could not be found, try another mail","Warning", JOptionPane.PLAIN_MESSAGE);
 			}
-	 }
 
+			else if(groupsearch.isSelected()){
+				Group agroup = DataBase.getGroupInstance(search.getText());
+				if(agroup != null){
+					new Group_Timeline(agroup, activeuser);
+				}
+				else JOptionPane.showMessageDialog(null, "Group could not be found, try another group name", "Warning", JOptionPane.PLAIN_MESSAGE);
+			}
+		}
+	}
 }
+
