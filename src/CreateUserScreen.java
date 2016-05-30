@@ -68,11 +68,10 @@ public class CreateUserScreen extends JFrame {
 	
 	class CreationKitActionListener implements ActionListener
 	{
-		 @SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e)
 		 	{
 			 	//TODO add createUser
-			 if(DataBase.createUser(username.getText(), mail.getText(), password.getText())){
+			 if(DataBase.createUser(username.getText(), mail.getText(), password.getPassword())){
 			 JOptionPane.showMessageDialog(null,"Sign up completed","Message",JOptionPane.PLAIN_MESSAGE);
 			 frame.setVisible(false);
 			 }
