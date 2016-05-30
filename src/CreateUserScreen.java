@@ -70,7 +70,7 @@ public class CreateUserScreen extends JFrame {
 	{
 		public void actionPerformed(ActionEvent e)
 		 	{
-			 	//TODO add createUser
+			 //TODO add createUser
 			 if(DataBase.createUser(username.getText(), mail.getText(), password.getPassword())){
 			 JOptionPane.showMessageDialog(null,"Sign up completed","Message",JOptionPane.PLAIN_MESSAGE);
 			 frame.setVisible(false);

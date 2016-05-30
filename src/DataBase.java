@@ -30,7 +30,7 @@ public final class DataBase {
 
 	public static User findUser(String mail) {
 		for(User u: users) {
-			if(mail.equals(u.getName())){
+			if(mail.equals(u.getMail())){
 				return u;
 			}
 		}
