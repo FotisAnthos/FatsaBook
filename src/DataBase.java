@@ -94,6 +94,7 @@ public final class DataBase {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(".groups.txt");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.reset();
 			out.writeObject(groups);
 			out.close();
 			fileOut.close();		
@@ -110,7 +111,41 @@ public final class DataBase {
 	}
 
 	public static boolean retrieve() {
-
+		ArrayList<User> users = null;
+		ArrayList<Group> groups = null;
+		try
+	      {
+	         FileInputStream fileIn = new FileInputStream(".users.txt");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         users = (ArrayList) in.readObject();
+	         in.close();
+	         fileIn.close();
+	         DataBase.users = users;
+	      }catch(IOException i)
+	      {
+	         i.printStackTrace();
+	      }catch(ClassNotFoundException c)
+	      {
+	         System.out.println("Users not found");
+	         c.printStackTrace();
+	      }
+		
+		try
+	      {
+	         FileInputStream fileIn = new FileInputStream(".groups.txt");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         groups = (ArrayList) in.readObject();
+	         in.close();
+	         fileIn.close();
+	         DataBase.groups = groups;
+	      }catch(IOException i)
+	      {
+	         i.printStackTrace();
+	      }catch(ClassNotFoundException c)
+	      {
+	         System.out.println("Groups not found");
+	         c.printStackTrace();
+	      }
 		return true;
 	}
 
@@ -220,21 +255,6 @@ public final class DataBase {
 				agroup.addPost(apost);
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 
 }

@@ -22,8 +22,6 @@ public class CreateUserScreen extends JFrame {
 	
 	private JButton CreationKit;
 	private JLabel pass,user,email;
-	public DataBase m_DataBase;
-	public LoginSignupScreen m_LoginSignupScreen;
 	
 	public CreateUserScreen()
 	{
@@ -72,9 +70,14 @@ public class CreateUserScreen extends JFrame {
 		 	{
 			 //TODO add createUser
 			 if(DataBase.createUser(username.getText(), mail.getText(), password.getPassword())){
-			 JOptionPane.showMessageDialog(null,"Sign up completed","Message",JOptionPane.PLAIN_MESSAGE);
-			 frame.setVisible(false);
+				 DataBase.save();
+				 JOptionPane.showMessageDialog(null,"Sign up completed","Message",JOptionPane.PLAIN_MESSAGE);
+				 frame.setVisible(false);
 			 }
+			 else if(DataBase.isUser(mail.getText()))
+				 JOptionPane.showMessageDialog(null,"User already exists","Message",JOptionPane.PLAIN_MESSAGE);
+			 else
+				 JOptionPane.showMessageDialog(null,"Can't create new user","Message",JOptionPane.PLAIN_MESSAGE);
 		 	}
 	}
 }
