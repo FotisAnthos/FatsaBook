@@ -156,9 +156,9 @@ public final class DataBase {
 		return null;
 	}
 
-	public static boolean checkUserPassword(String name,char[] password) {
+	public static boolean checkUserPassword(String mail,char[] password) {
 		for(User u : users) {
-			if(u.getName().equals(name)) {
+			if(u.getMail().equals(mail)) {
 				//				while(true)
 				//				{
 				//				String input = JOptionPane.showInputDialog("Enter Input:");
