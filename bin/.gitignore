@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+/Display_Lists$listener.class
+/Display_Lists.class
+=======
 /Display_Lists$listener.class
 /Display_Lists.class
 /Home_Page$SearchActionListener.class
@@ -46,4 +50,10 @@
 /CreateUserScreen$CreationKitActionListener$BackListener.class
 /CreateUserScreen$BackListener.class
 /DisplayLists$BackListener.class
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
+=======
 /Post_View$PostListener1.class
+>>>>>>> refs/remotes/origin/Lydia11
+/User_Timeline$SearchActionListener.class
+/User_Timeline$groupsActionListener.class

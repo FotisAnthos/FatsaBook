@@ -5,36 +5,37 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class LoginSignupScreen extends JFrame {
 	
+
+	private JTextField mail;
+
 	private JPanel contentPane;
-	private JTextField username;
+
 	private JPasswordField password;
 	private JFrame frame;
+	
 	
 	private JButton Sign_in;
 	private JButton Sign_up;
 	private JLabel label,label2;
-	public CreateUserScreen m_CreateUserScreen;
-	public Home_Page m_MainPage;
-	public User m_User;
-	public Home_Page m_Home_Page;
+	
 	
 	
 	
 	public LoginSignupScreen(){
 		super("Login & Signup Screen");
-		
+
 		frame = new JFrame();
-		
 		contentPane = new JPanel();	
 		label = new JLabel("E-mail:");
 		contentPane.add(label);	
 		
 		
 		//Input Fields - username & password
-		username = new JTextField(10);
-		contentPane.add(username);
+		mail = new JTextField(10);
+		contentPane.add(mail);
         label2 = new JLabel("Password:");
 		contentPane.add(label2);
 		password = new JPasswordField(4);//4 is the minimum amount of password characters
@@ -70,14 +71,16 @@ public class LoginSignupScreen extends JFrame {
 	class SigninActionListener implements ActionListener
 	 {
 
-		@SuppressWarnings("deprecation")
+		
 		public void actionPerformed(ActionEvent e)
 		{	
-			if(DataBase.checkUserPassword(username.getText(),password.getText()))
+			//if(DataBase.checkUserPassword(mail.getText(), password.getPassword().toString()))//password.getPassword().toString() is probably wrong
+			if(DataBase.checkUserPassword(mail.getText(), password.getPassword()))
 			{
 				User u ;
-				u = DataBase.findUser(username.getText(),password.getText());
+				u = DataBase.findUser(mail.getText());
 				new Home_Page(u);
+
 				frame.setVisible(false);
 			}	
 
@@ -101,3 +104,4 @@ public class LoginSignupScreen extends JFrame {
 
 
 }
+

@@ -1,4 +1,6 @@
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class OpenGroup extends Group {
@@ -84,6 +86,7 @@ public class OpenGroup extends Group {
 			return true;
 		return false;
 	}
+	
 	
 	
 	

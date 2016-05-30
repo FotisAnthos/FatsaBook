@@ -14,12 +14,10 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 
-/**
- * @author Flotis
- * @version 1.0		
- * @created 17-Ìבת-2016 7:18:18 לל
- */
+
+
 public class User_Timeline extends JFrame {
+
 
 	private JButton back;
 	private  JButton addfriend;
@@ -27,18 +25,19 @@ public class User_Timeline extends JFrame {
 	private JButton common_Friends;
 	private JButton nextPosts;
 	public DisplayLists m_Display_Lists;
-	private User u,friend;
+	private User activeUser,friend;
 	private JFrame frame;
 
-	public User_Timeline(User u,User friend){
+
+	public User_Timeline(User activeuser,User friend){
 		
 		this.friend = friend;
-		this.u=u;
+		this.activeUser=activeuser;
 		
 		 frame = new JFrame(friend.getName()+ "'s Timeline");
 	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        
-	        JComponent component = new Post_View(u,friend);
+	        JComponent component = new Post_View(friend);
 			component.setOpaque(true); //content panes must be opaque
 		    frame.setContentPane(component);
 //		    frame.add(component, BorderLayout.NORTH);
@@ -46,10 +45,10 @@ public class User_Timeline extends JFrame {
 	        addfriend = new JButton("Add friend");
 	        deletefriend = new JButton("Delete friend");
 	        
-	        if(!u.equals(friend)){
-	        	if(u.isFriend(friend))
+	        if(!activeuser.equals(friend)){
+	        	if(activeuser.isFriend(friend))
 		        	addfriend.setEnabled(false);
-		        else if(!u.isFriend(friend))
+		        else if(!activeuser.isFriend(friend))
 		        	deletefriend.setEnabled(false);
 	        }
 	        else{
@@ -104,7 +103,7 @@ public class User_Timeline extends JFrame {
 	
 	class AddFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	u.addFriend(friend);
+	        	activeUser.addFriend(friend);
 	        	addfriend.setEnabled(false);
 	        	deletefriend.setEnabled(true);
 		}
@@ -113,7 +112,7 @@ public class User_Timeline extends JFrame {
 	
 	class DeleteFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	u.removeFriend(friend);
+	        	activeUser.removeFriend(friend);
 	        	addfriend.setEnabled(true);
 	        	deletefriend.setEnabled(false);
 		}
@@ -138,8 +137,25 @@ public class User_Timeline extends JFrame {
 			
 		}
 	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
+	
+	class SearchActionListener implements ActionListener
+	{
+		 public void actionPerformed(ActionEvent e)
+		 	{
+			 	new SearchScreen(activeUser);
+		 	}
+		
 	}
+	class groupsActionListener implements ActionListener
+	{
+		 public void actionPerformed(ActionEvent e)
+		 	{
+			 //TODO
+			 new DisplayLists(activeUser, activeUser.getFriends(), activeUser.getGroups());
+		 	}
+		
+	}
+
+
 }
+

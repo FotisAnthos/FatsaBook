@@ -1,5 +1,7 @@
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -17,10 +19,10 @@ public class User {
 
 	private String name;
 	private String mail;
-	private String password;
+	private char[] password;
 	public User_Timeline m_User_Timeline;
 	//TODO check password
-	public User(String name, String mail, String cs) 
+	public User(String name, String mail, char[] cs) 
 	{
 		this.name = name;
 		this.mail = mail;
@@ -33,9 +35,13 @@ public class User {
 	
 	
 
-	public boolean isPasswordCorrect(String passkey)
+	public boolean isPasswordCorrect(char[] password)
 	{
-		return(passkey.equals(password));
+		if(password == null) {
+			JOptionPane.showMessageDialog(null,"Password Incorrect!","Message",JOptionPane.PLAIN_MESSAGE);
+			return false;
+		}
+		return(Arrays.equals(password, this.password));
 	}
 	
 	public boolean isFriend(User other) {
@@ -184,9 +190,6 @@ public class User {
 		this.mail = mail;
 	}
 	
-	public String getPassword(){
-		return password;
-	}
 
 	public ArrayList<User> getFriends() {
 		return friends;
@@ -195,10 +198,12 @@ public class User {
 	public ArrayList<Group> getGroups() {
 		return groups;
 	}
+	
 
 	public ArrayList<Post> getPersonalPosts() {
 		return personalPosts;
 	}
+
 	
 	public void addPost(Post apost){
 		personalPosts.add(apost);

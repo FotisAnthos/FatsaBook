@@ -118,6 +118,7 @@ public class Post implements Comparable<Post> {
 	public static int getNo_ofPosts() {
 		return No_ofPosts;
 	}
+
 	
 
 	public String getPostText() {
@@ -134,8 +135,6 @@ public class Post implements Comparable<Post> {
 	public int compareTo(Post apost) {
 		 return (date.compareTo(apost.getDate()));
 	}
-
-
 
 
 }
