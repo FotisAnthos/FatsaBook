@@ -32,24 +32,19 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	private static JFrame frame;
 	private JButton timelinebutton;
 	private JButton back;
+	private JButton createGroupButton;
 	private User user;
 	private ArrayList<User> users;
 	private ArrayList<Group> groups;
-	/**
-	 * @author Flotis
-	 * @version 1.0
-	 * @created 17-Ìבת-2016 7:18:09 לל
-	 */
+	
+	
 	public DisplayLists(User user,ArrayList<User> u,ArrayList<Group> g){
 		super( new BorderLayout());
 		
 		this.user = user;
 		users = u;
 		groups = g;
-		
-		
 
-		
 		listmodel = new DefaultListModel();
 
 
@@ -67,11 +62,15 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 	back = new JButton("Back");
         back.addActionListener(new BackListener());
 	 	
+        createGroupButton = new JButton("Create New Group");
+        createGroupButton.addActionListener(new createGroupListener());
+        
 	 	JPanel buttonPane = new JPanel();
 	 	buttonPane.setLayout(new BoxLayout(buttonPane,
                 BoxLayout.LINE_AXIS));
 	 	buttonPane.add(timelinebutton);
 	 	buttonPane.add(back);
+	 	buttonPane.add(createGroupButton);
 	 	buttonPane.add(Box.createHorizontalStrut(5));
 	 	buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
 	 	buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -122,35 +121,14 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			
 	}
 	
-	
-	class listener implements ActionListener {
-
-		public listener(){
-
-		}
-
-		public void finalize() throws Throwable {
-
-		}
-		/**
-		 * 
-		 * @param e
-		 */
+	class createGroupListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-
+			new CreateGroupScreen();
 		}
-	}//end listener
-
-	public CreateGroupScreen m_CreateGroupScreen;
-
-
-	public void finalize() throws Throwable {
-		super.finalize();
 	}
-	/**
-	 * 
-	 * @param objects
-	 */
+	
+	
+
 	
 	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g) {
         //Create and set up the window.
