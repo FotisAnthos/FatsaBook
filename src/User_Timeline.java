@@ -105,6 +105,7 @@ public class User_Timeline extends JFrame {
 		public void actionPerformed(ActionEvent e){
 	        	activeUser.addFriend(friend);
 	        	addfriend.setEnabled(false);
+	        	DataBase.save();
 	        	deletefriend.setEnabled(true);
 		}
 			
@@ -114,6 +115,7 @@ public class User_Timeline extends JFrame {
 		public void actionPerformed(ActionEvent e){
 	        	activeUser.removeFriend(friend);
 	        	addfriend.setEnabled(true);
+	        	DataBase.save();
 	        	deletefriend.setEnabled(false);
 		}
 			

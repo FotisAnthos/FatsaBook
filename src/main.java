@@ -5,8 +5,12 @@ public class main {
 	
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
 		char[] c = {'1'};
 		DataBase.createUser("Test", "test", c);
+=======
+		DataBase.retrieve();
+>>>>>>> refs/remotes/origin/master
 		new LoginSignupScreen();
 	}
 	

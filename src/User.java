@@ -1,13 +1,11 @@
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 
-public class User {
+public class User implements Serializable{
 	
 	private ArrayList<User> friends = new ArrayList<User>();
 	private ArrayList<Group> groups;
