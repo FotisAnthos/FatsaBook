@@ -70,13 +70,12 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
                 BoxLayout.LINE_AXIS));
 	 	buttonPane.add(timelinebutton);
 	 	buttonPane.add(back);
-	 	buttonPane.add(createGroupButton);
+
 	 	buttonPane.add(Box.createHorizontalStrut(5));
 	 	buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
 	 	buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
-	 	add(listScrollPane, BorderLayout.CENTER);
-	 	add(buttonPane, BorderLayout.PAGE_END);
+
 	 	
 	 	if(groups==null){
 			listmodel.clear();
@@ -89,12 +88,16 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			for(Group group: g){
 				 listmodel.addElement(group);
 			 }
+		 	buttonPane.add(createGroupButton);
 		}
 	 	
 	 	if (list.getSelectedIndex() == -1) {
             //No selection, disable timelinebutton button.
                 timelinebutton.setEnabled(false);
 		}
+	 	
+	 	add(listScrollPane, BorderLayout.CENTER);
+	 	add(buttonPane, BorderLayout.PAGE_END);
 
 	}
 	

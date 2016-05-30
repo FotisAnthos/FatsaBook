@@ -10,9 +10,11 @@ import javax.swing.*;
 
 
 public class Post_View extends JPanel {
+	
+	private Post aPost;
+	JPanel frame;
 
 	private JPanel postPanel;
-	private JPanel contentPane;
 	private JPanel createpost;
 	private JButton Post1;
 	private JButton Post2;
@@ -23,62 +25,66 @@ public class Post_View extends JPanel {
 	private int posts_displayed;
 	private User activeUser;
 	private User anotherUser;
+	private Group aGroup;
 
 
 	public Post_View(User activeUser, User anotherUser){//Used for displaying posts on User_Timeline
 		this.activeUser = activeUser;
 		this.anotherUser = anotherUser;
 
-		contentPane = new JPanel();
+		postPanel = new JPanel();
 
 		createpost = new JPanel();
 		Post1 = new JButton("Post");
-		Post1.addActionListener(new PostListener1());
 		postfield = new JTextField(20);
+		Post1.addActionListener(new PostListener1());
+
 
 		createpost.add(postfield, BorderLayout.NORTH);
 		createpost.add(Post1, BorderLayout.CENTER);
 
-		contentPane.add(createpost, BorderLayout.NORTH);
+//		frame.add(createpost);
+		add(createpost,BorderLayout.NORTH);
 
 		if(anotherUser.getPersonalPosts().size()>=1){
 			//			Collections.sort(anotherUser.getPersonalPosts());
 			for(Post post: anotherUser.getPersonalPosts()){
 				postPanel.add(aPostView(post));
 			}
-			contentPane.add(postPanel);
 		}
-
-
-		//		postPanel=aPostView(postToBeDisplayedUser(anotherUser));
-
-
-
-		this.activeUser = activeUser;
-		posts_displayed = 0;
-
-		add(contentPane);
-
-
-
-
-
-
+		
+//		frame.add(postPanel);
+		add(postPanel,BorderLayout.CENTER);
 
 	}
-	public Post_View(User activeUser, Group agroup){ //Used for displaying posts on Group_Timeline
-		posts_displayed = 0;
+	
+	
+	public Post_View(User activeUser, Group agroup){ //Used for displaying posts on Group_Timeline\
 		this.activeUser = activeUser;
-		int i;
-		//for(i=0; i<5;i++){
-		//	aPostView(postToBeDisplayedGroup(agroup));			
-		//}
+		this.aGroup = agroup;
+		
+		postPanel = new JPanel();
 
+		createpost = new JPanel();
+		Post1 = new JButton("Post");
+		postfield = new JTextField(20);
+		Post2.addActionListener(new PostListener2());
 
+		createpost.add(postfield, BorderLayout.NORTH);
+		createpost.add(Post1, BorderLayout.CENTER);
 
+		add(createpost,BorderLayout.NORTH);
 
-
+		if(aGroup.getGroupPosts().size()>=1){
+			//			Collections.sort(anotherUser.getPersonalPosts());
+			for(Post post: aGroup.getGroupPosts()){
+				postPanel.add(aPostView(post));
+			}
+		}
+		
+		add(postPanel,BorderLayout.CENTER);
 	}
+	
 	public Post_View(User activeUser){ ////Used for displaying posts on Home_Page
 
 		Post apost = new Post("Lalala", activeUser);
@@ -92,10 +98,14 @@ public class Post_View extends JPanel {
 
 
 	public JPanel aPostView(Post aPost){
+		this.aPost = aPost;
 		JPanel apanel = new JPanel();
 		JLabel alabel = new JLabel(aPost.getPostText());
+//		JLabel likeslabel = new JLabel(aPost.NumberOfLikes() + " ");
 		JButton likebutton = new JButton("Like!");
 		JButton commentbutton = new JButton("Comment");
+		likebutton.addActionListener(new likeButtonListener());
+		commentbutton.addActionListener(new commentButtonListener());
 
 		//		postTextfield.setText(apost.getPostText());//TODO used for check
 
@@ -105,17 +115,9 @@ public class Post_View extends JPanel {
 		actions.add(likebutton);
 		actions.add(commentbutton);
 
-		setLayout(new FlowLayout());
-
-
-
-
 		apanel.add(alabel,BorderLayout.NORTH);
+//		apanel.add(likeslabel);
 		apanel.add(actions, BorderLayout.CENTER);
-
-
-
-
 
 
 		this.setSize(getPreferredSize());
@@ -151,8 +153,42 @@ public class Post_View extends JPanel {
 	{
 		public void actionPerformed(ActionEvent e)
 		{	
-			DataBase.createPost(activeUser, anotherUser, null, postfield.toString());
-			DataBase.save();
+			DataBase.createPost(activeUser, anotherUser, null, postfield.getText());
+//			DataBase.save();
+		}
+	}
+	
+	class PostListener2 implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{	
+			DataBase.createPost(activeUser, anotherUser, null, postfield.getText());
+//			DataBase.save();
+		}
+	}
+	
+	class PostListener3 implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{	
+			DataBase.createPost(activeUser, anotherUser, null, postfield.getText());
+//			DataBase.save();
+		}
+	}
+	
+	class likeButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{	
+			aPost.addLike(activeUser);
+		}
+	}
+	
+	class commentButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{	
+			
 		}
 	}
 
