@@ -54,6 +54,7 @@ public class CreateGroupScreen extends JFrame {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
+	
 	class GECKActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(!DataBase.isGroup(name.getText())) {	//TODO change syso to popup window
@@ -62,7 +63,7 @@ public class CreateGroupScreen extends JFrame {
 				String groupinfo = info.getText();
 				
 				if(buttongroup.getSelection() == opengroup ) {
-					if(!(DataBase.createGroup(groupname, groupinfo, true))) 
+					if(!DataBase.createGroup(groupname, groupinfo, true)) 
 						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
 					else
 			        	DataBase.save();

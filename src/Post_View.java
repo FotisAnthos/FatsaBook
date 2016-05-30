@@ -43,7 +43,6 @@ public class Post_View extends JPanel {
 		createpost.add(postfield, BorderLayout.NORTH);
 		createpost.add(Post1, BorderLayout.CENTER);
 
-//		frame.add(createpost);
 		add(createpost,BorderLayout.NORTH);
 
 		if(anotherUser.getPersonalPosts().size()>=1){
@@ -53,7 +52,6 @@ public class Post_View extends JPanel {
 			}
 		}
 		
-//		frame.add(postPanel);
 		add(postPanel,BorderLayout.CENTER);
 
 	}
@@ -66,17 +64,16 @@ public class Post_View extends JPanel {
 		postPanel = new JPanel();
 
 		createpost = new JPanel();
-		Post1 = new JButton("Post");
+		Post2 = new JButton("Post");
 		postfield = new JTextField(20);
 		Post2.addActionListener(new PostListener2());
 
 		createpost.add(postfield, BorderLayout.NORTH);
-		createpost.add(Post1, BorderLayout.CENTER);
+		createpost.add(Post2, BorderLayout.CENTER);
 
 		add(createpost,BorderLayout.NORTH);
 
 		if(aGroup.getGroupPosts().size()>=1){
-			//			Collections.sort(anotherUser.getPersonalPosts());
 			for(Post post: aGroup.getGroupPosts()){
 				postPanel.add(aPostView(post));
 			}

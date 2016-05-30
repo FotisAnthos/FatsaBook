@@ -64,7 +64,6 @@ public class SearchScreen extends JFrame{
 				}
 				else JOptionPane.showMessageDialog(null, "User could not be found, try another mail","Warning", JOptionPane.PLAIN_MESSAGE);
 			}
-
 			else if(groupsearch.isSelected()){
 				Group agroup = DataBase.getGroupInstance(search.getText());
 				if(agroup != null){

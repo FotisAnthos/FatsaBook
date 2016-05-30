@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
 public class User implements Serializable{
 	
 	private ArrayList<User> friends = new ArrayList<User>();
-	private ArrayList<Group> groups;
+	private ArrayList<Group> groups = new ArrayList<Group>();
 	
-	private ArrayList<Post> personalPosts;
+	private ArrayList<Post> personalPosts = new ArrayList<Post>();
 
 	
 	
@@ -25,10 +25,6 @@ public class User implements Serializable{
 		this.name = name;
 		this.mail = mail;
 		this.password = cs;
-		
-		friends = new ArrayList<User>();
-		groups = new ArrayList<Group>();
-		personalPosts = new ArrayList<Post>();
 	}
 	
 	
@@ -63,17 +59,12 @@ public class User implements Serializable{
 		afriend.friends.remove(this);
 	}
 	
-	public void enrollInGroup(Group agroup) {
-
-		if(agroup.isMember(this))
-			System.out.println(name+" is already a member in the group "+agroup.getName());
-		else {
-			agroup.addMember(this);
-		}
-	}
 	public boolean deleteFromGroup(Group agroup){
-		if(agroup.removeMember(this))
+		if(agroup.removeMember(this)){
+			groups.remove(agroup);
 			return true;
+		}
+
 		return false;
 		
 	}

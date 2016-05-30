@@ -6,6 +6,8 @@ public class main {
 
 	public static void main(String[] args) {
 		DataBase.retrieve();
+		
+		DataBase.createGroup("lalala", "lalala", true); //just to check
 		new LoginSignupScreen();
 	}
 	

@@ -11,6 +11,8 @@ public abstract class Group {
 	public Group(String name, String info) {
 		this.name = name;
 		this.info = info;
+		
+		groupPosts = new ArrayList<Post>();
 	}
 
 	//overrides toString()

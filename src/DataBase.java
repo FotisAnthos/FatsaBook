@@ -13,15 +13,11 @@ public final class DataBase {
 
 	protected static  ArrayList<User> users = new ArrayList<User>();
 	protected static ArrayList<Group> groups = new ArrayList<Group>();
-//	protected static ArrayList<Post> posts = new ArrayList<Post>();
 
 
 	public DataBase() {		
 		//		this.users = null;
 		//		this.groups = null;
-		//		this.posts = null;
-
-
 
 	}
 
@@ -152,15 +148,6 @@ public final class DataBase {
 	}
 
 	//TODO complete getUserInstance
-	public static User getUserInstance(String username) {
-		for(User u : users) {
-			if(u.getName().equals(username)) {
-				return u;
-			}
-		}
-		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
-		return null;
-	}
 
 	public static Group getGroupInstance(String groupname) {
 		for(Group g : groups) {
