@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class LoginSignupScreen extends JFrame {
 	
 
 	private JTextField mail;
 
 	private JPanel contentPane;
-	private JTextField username;
 
 	private JPasswordField password;
 	private JFrame frame;
@@ -75,7 +75,7 @@ public class LoginSignupScreen extends JFrame {
 		public void actionPerformed(ActionEvent e)
 		{	
 			//if(DataBase.checkUserPassword(mail.getText(), password.getPassword().toString()))//password.getPassword().toString() is probably wrong
-			if(DataBase.checkUserPassword(mail.getText(), password.getPassword()))//TODO change this
+			if(DataBase.checkUserPassword(mail.getText(), password.getPassword()))
 			{
 				User u ;
 				u = DataBase.findUser(mail.getText());

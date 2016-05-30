@@ -15,9 +15,6 @@ public final class DataBase {
 	protected static ArrayList<Group> groups = new ArrayList<Group>();
 	protected static ArrayList<Post> posts = new ArrayList<Post>();
 
-	public User m_User;
-	public Post m_Post;
-
 
 	public DataBase() {		
 		//		this.users = null;
