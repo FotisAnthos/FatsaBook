@@ -13,9 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-
-
-
 public class User_Timeline extends JFrame {
 
 

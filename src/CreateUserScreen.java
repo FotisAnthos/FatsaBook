@@ -74,8 +74,10 @@ public class CreateUserScreen extends JFrame {
 				 JOptionPane.showMessageDialog(null,"Sign up completed","Message",JOptionPane.PLAIN_MESSAGE);
 				 frame.setVisible(false);
 			 }
-			 else if(DataBase.isUser(mail.getText()))
+			 else if(DataBase.isUser(mail.getText())){
 				 JOptionPane.showMessageDialog(null,"User already exists","Message",JOptionPane.PLAIN_MESSAGE);
+				 frame.setVisible(false);
+			 }
 			 else
 				 JOptionPane.showMessageDialog(null,"Can't create new user","Message",JOptionPane.PLAIN_MESSAGE);
 		 	}

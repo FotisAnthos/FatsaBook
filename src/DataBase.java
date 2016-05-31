@@ -7,8 +7,7 @@ import javax.swing.JOptionPane;
 
 //from this class we recover data from the save files
 public final class DataBase {
-	// TODO double check users & groups about static
-	//TODO failsafe saving of all new staff if someone is to close the program 
+
 
 
 	protected static  ArrayList<User> users = new ArrayList<User>();
@@ -155,8 +154,6 @@ public final class DataBase {
 				return g;
 			}
 		}
-		JOptionPane.showMessageDialog(null,"Group not found!","Message",JOptionPane.WARNING_MESSAGE);
-
 		return null;
 	}
 

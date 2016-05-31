@@ -31,13 +31,14 @@ public class Group_Timeline extends JFrame {
 		this.u= u;
 		this.g=g;
 		
-		frame = new JFrame(g.getName() + "Timeline");
+		frame = new JFrame(g.getName() + " Timeline");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         back = new JButton("Back");
         addgroup = new JButton("Add group");
         deletegroup = new JButton("Delete group");
         nextPosts = new JButton("See more posts");
+        Members_List = new JButton("Members");
         
         if(g.isMember(u))
         	addgroup.setEnabled(false);
@@ -48,6 +49,7 @@ public class Group_Timeline extends JFrame {
         deletegroup.addActionListener(new deletegroupListener());
         back.addActionListener(new BackListener());
         nextPosts.addActionListener(new NextPostsListener());
+        Members_List.addActionListener(new MembersListener());
         
         JPanel newContentPane = new Post_View(u,g);
         newContentPane.setOpaque(true); //content panes must be opaque
@@ -68,6 +70,8 @@ public class Group_Timeline extends JFrame {
 		}
 			
 		rightPane.add(nextPosts);
+		rightPane.add(Box.createRigidArea(new Dimension(0,20)));
+		rightPane.add(Members_List);
 		rightPane.add(Box.createRigidArea(new Dimension(0,20)));
 		rightPane.add(back);
 		
@@ -107,6 +111,13 @@ public class Group_Timeline extends JFrame {
 	
 	class NextPostsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			
+		}
+	}
+	
+	class MembersListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			DisplayLists.createAndShowGUI(u,g.members ,null);
 			
 		}
 	}

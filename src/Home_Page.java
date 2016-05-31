@@ -91,12 +91,8 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists DL1 = new DisplayLists(activeuser,null ,activeuser.getGroups());
+
 			 DisplayLists.createAndShowGUI(activeuser,null ,activeuser.getGroups() );
-			 
-			 for(Group group: activeuser.getGroups()){
-				 DL1.addObject(group);
-			 }
 
 		 	}
 		
@@ -105,12 +101,8 @@ public class Home_Page extends JFrame{
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists DL2 = new DisplayLists(activeuser,activeuser.getFriends() , null);
 			 DisplayLists.createAndShowGUI(activeuser,activeuser.getFriends() ,null );
 				 
-			 	for(User user : activeuser.getFriends()){
-			 		DL2.addObject(user);
-			 	}
 
 		 	}
 		

@@ -1,25 +1,27 @@
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class OpenGroup extends Group {
+public class OpenGroup extends Group implements Serializable{
 
-	private ArrayList<User> members;
-	private ArrayList<Post> posts; //use Stack
 	private static int No_ofOpenGroups;
 
 	public OpenGroup(String name, String info) {
 		super(name, info);
-
-		members = new ArrayList<User>();
-		posts = new ArrayList<Post>();
+		
+//		posts= new ArrayList<Post>();
+//		members= new ArrayList<User>();
+//		admins= new ArrayList<User>();
 	}
 
 	//returns true if the current user is member of this group
 	public boolean isMember(User user) {
-		if(members.contains(user))
-			return true;
+		for(User m : members){
+			if(m.equals(user))
+				return true;
+		}
 		return false;
 	}
 
@@ -34,28 +36,12 @@ public class OpenGroup extends Group {
 		user.addToGroup(this);
 	}
 
-	public void printMembers() {
-		System.out.println("********************************");
-		System.out.println("Members of group "+this.getName());
-		System.out.println("********************************");
-
-		int counter = 1;
-		for(User member : members) {
-			System.out.println(counter+": "+member.getName());
-			counter++;
-		}
-	}
 
 	//returns true if the current user can add a post in this group
 	public boolean canAddPost(User user) {
 		if(isMember(user))
 			return true;
-		else {
-			for(User friend : user.getFriends()) {
-				if(friend.getGroups().contains(this))
-					return true;
-			}
-		}
+
 		return false;
 	}
 
@@ -86,48 +72,6 @@ public class OpenGroup extends Group {
 			return true;
 		return false;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//-------------------------------------------------------------------------------------
-	/*public class PostsStack<Post> extends ArrayList<Post> {
-
-	    public void push(Post p) {
-	        add(p);
-	    }
-
-	    public Post pop() {
-	        return remove(size() - 1);
-	    }
-
-	    public boolean empty() {
-	        return size() == 0;
-	    }
-
-	    public Post peek() {
-	        return get(size() - 1);
-	    }
-	}
-
-	
-*/
 }
 
 
