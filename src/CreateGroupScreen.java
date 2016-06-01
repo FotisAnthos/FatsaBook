@@ -23,6 +23,7 @@ public class CreateGroupScreen extends JFrame {
 		
 		super("Create Group Screen");
 		
+		frame = new JFrame();
 		contentPane = new JPanel();
 		name = new JTextField("Group name",15);
 		info = new JTextField("Write some info...",20);
@@ -48,30 +49,36 @@ public class CreateGroupScreen extends JFrame {
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER,50,50));
 		
 		contentPane.setBackground(Color.cyan);
-		this.setContentPane(contentPane);
-		this.getContentPane().setSize(900, 900);
-		pack();
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setVisible(true);
+		frame.setContentPane(contentPane);
+		frame.getContentPane().setSize(900, 900);
+		frame.pack();
+		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		frame.setVisible(true);
 	}
+	
 	class GECKActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(!DataBase.isGroup(name.getText())) {	//TODO change syso to popup window
+			if(!DataBase.isGroup(name.getText())) {	
 				
 				String groupname = name.getText();
 				String groupinfo = info.getText();
 				
 				if(buttongroup.getSelection() == opengroup ) {
-					if(!(DataBase.createGroup(groupname, groupinfo, true))) 
+					if(!DataBase.createGroup(groupname, groupinfo, true)) 
 						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
-					else
+					else{
 			        	DataBase.save();
+			        	frame.setVisible(false);
+					}
+
 				}
 				else {
 					if(!(DataBase.createGroup(name.getText(), info.getText(), false)))
 						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
-					else
+					else{
 			        	DataBase.save();
+			        	frame.setVisible(false);
+					}
 				}
 			}
 			else

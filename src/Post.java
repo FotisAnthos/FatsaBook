@@ -9,7 +9,7 @@ public class Post implements Comparable<Post> {
 	private User user;//the creator
 	
 	private ArrayList<Integer> replies; //replies -> String(?) -> postID
-	private ArrayList<String> Likes; //likes -> String -> user.mail
+	private ArrayList<User> Likes; //likes -> String -> user.mail
 	private static int No_ofPosts;
 	/**
 	 * the creator
@@ -71,7 +71,7 @@ public class Post implements Comparable<Post> {
 		return repl;
 	}
 	*/
-	public boolean addLike(String auser)
+	public boolean addLike(User auser)
 	{
 		if(!Likes.add(auser)) 
 			{
