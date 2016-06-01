@@ -19,13 +19,6 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- * @author Flotis
- * @version 1.0
- * @updated 17-Ìבת-2016 7:18:09 לל
- * 
- * 
- */
 public class DisplayLists extends JPanel implements ListSelectionListener {
 	private JList list;
 	private DefaultListModel listmodel;
@@ -44,7 +37,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 		this.user = user;
 		users = u;
 		groups = g;
-
+		
 		listmodel = new DefaultListModel();
 
 
@@ -70,44 +63,50 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
                 BoxLayout.LINE_AXIS));
 	 	buttonPane.add(timelinebutton);
 	 	buttonPane.add(back);
-	 	buttonPane.add(createGroupButton);
+
 	 	buttonPane.add(Box.createHorizontalStrut(5));
 	 	buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
 	 	buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
-	 	add(listScrollPane, BorderLayout.CENTER);
-	 	add(buttonPane, BorderLayout.PAGE_END);
+
 	 	
 	 	if(groups==null){
 			listmodel.clear();
-			for(User user1: u){
+			for(User user1: users){
 				listmodel.addElement(user1);
 			}
 		}
 		else if(users==null){
 			listmodel.clear();
-			for(Group group: g){
+			for(Group group: groups){
 				 listmodel.addElement(group);
 			 }
+		 	buttonPane.add(createGroupButton);
 		}
 	 	
 	 	if (list.getSelectedIndex() == -1) {
             //No selection, disable timelinebutton button.
                 timelinebutton.setEnabled(false);
 		}
+	 	
+	 	add(listScrollPane, BorderLayout.CENTER);
+	 	add(buttonPane, BorderLayout.PAGE_END);
 
 	}
 	
-	public void addObject(Object object){
-		listmodel.addElement(object);
-	}
+//	public void addObject(Object object){
+//		listmodel.addElement(object);
+//	}
 	
 	class TimelineListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			int index = list.getSelectedIndex();
 			
-			if(groups==null){
+			if(groups==null && !user.equals(list.getSelectedValue())){
 				new User_Timeline(user,user.getFriends().get(index));
+			}
+			else if(groups==null && user.equals(list.getSelectedValue())){
+				new User_Timeline(user,user);
 			}
 			else if(users==null)
 				new Group_Timeline(user.getGroups().get(index),user);
@@ -126,9 +125,6 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			new CreateGroupScreen();
 		}
 	}
-	
-	
-
 	
 	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g) {
         //Create and set up the window.

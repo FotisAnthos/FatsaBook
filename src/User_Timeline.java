@@ -13,9 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-
-
-
 public class User_Timeline extends JFrame {
 
 
@@ -37,13 +34,9 @@ public class User_Timeline extends JFrame {
 		 frame = new JFrame(friend.getName()+ "'s Timeline");
 	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        
-	        JComponent component = new Post_View(friend);
-			component.setOpaque(true); //content panes must be opaque
-		    frame.setContentPane(component);
-//		    frame.add(component, BorderLayout.NORTH);
 	        
-	        addfriend = new JButton("Add friend");
-	        deletefriend = new JButton("Delete friend");
+	     addfriend = new JButton("Add friend");
+	     deletefriend = new JButton("Delete friend");
 	        
 	        if(!activeuser.equals(friend)){
 	        	if(activeuser.isFriend(friend))
@@ -68,9 +61,9 @@ public class User_Timeline extends JFrame {
 	        back.addActionListener(new BackListener());
 	        
 	 
-	        JPanel newContentPane = new JPanel();
-//	        newContentPane.setOpaque(true); //content panes must be opaque
-//	        frame.setContentPane(newContentPane);
+	        JPanel newContentPane = new Post_View(activeUser,friend);
+	        newContentPane.setOpaque(true); //content panes must be opaque
+	        frame.setContentPane(newContentPane);
 		
 		JPanel rightPane = new JPanel();
 		rightPane.setLayout(new BoxLayout(rightPane,
@@ -90,10 +83,10 @@ public class User_Timeline extends JFrame {
 		rightPane.add(common_Friends);
 		rightPane.add(Box.createRigidArea(new Dimension(0,20)));
 		rightPane.add(nextPosts);
+		rightPane.add(Box.createRigidArea(new Dimension(0,20)));
+		rightPane.add(back);
 		
-		frame.add(newContentPane,BorderLayout.CENTER);
 		frame.add(rightPane, BorderLayout.EAST);
-		frame.add(back, BorderLayout.PAGE_END);
 		
 		
 		frame.pack();

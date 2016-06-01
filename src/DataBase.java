@@ -7,21 +7,16 @@ import javax.swing.JOptionPane;
 
 //from this class we recover data from the save files
 public final class DataBase {
-	// TODO double check users & groups about static
-	//TODO failsafe saving of all new staff if someone is to close the program 
+
 
 
 	protected static  ArrayList<User> users = new ArrayList<User>();
 	protected static ArrayList<Group> groups = new ArrayList<Group>();
-	protected static ArrayList<Post> posts = new ArrayList<Post>();
 
 
 	public DataBase() {		
 		//		this.users = null;
 		//		this.groups = null;
-		//		this.posts = null;
-
-
 
 	}
 
@@ -88,13 +83,11 @@ public final class DataBase {
 			i.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Users could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
 			return false;
-		}finally {
-			System.out.println("Users saved...");
 		}
+		
 		try {
 			FileOutputStream fileOut = new FileOutputStream(".groups.txt");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.reset();
 			out.writeObject(groups);
 			out.close();
 			fileOut.close();		
@@ -102,8 +95,6 @@ public final class DataBase {
 			i.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Groups could not be saved to file", "Warning", JOptionPane.WARNING_MESSAGE);
 			return false;
-		}finally {
-			System.out.println("Groups saved...");
 		}
 		return true;
 
@@ -156,15 +147,6 @@ public final class DataBase {
 	}
 
 	//TODO complete getUserInstance
-	public static User getUserInstance(String username) {
-		for(User u : users) {
-			if(u.getName().equals(username)) {
-				return u;
-			}
-		}
-		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.WARNING_MESSAGE);
-		return null;
-	}
 
 	public static Group getGroupInstance(String groupname) {
 		for(Group g : groups) {
@@ -172,8 +154,6 @@ public final class DataBase {
 				return g;
 			}
 		}
-		JOptionPane.showMessageDialog(null,"Group not found!","Message",JOptionPane.WARNING_MESSAGE);
-
 		return null;
 	}
 
@@ -237,21 +217,21 @@ public final class DataBase {
 		DataBase.groups = groups;
 	}
 
-	public static ArrayList<Post> getPosts() {
-		return posts;
-	}
-
-	public static void setPosts(ArrayList<Post> posts) {
-		DataBase.posts = posts;
-	}
+//	public static ArrayList<Post> getPosts() {
+//		return posts;
+//	}
+//
+//	public static void setPosts(ArrayList<Post> posts) {
+//		DataBase.posts = posts;
+//	}
 	
 	public static void createPost(User creator, User anotherUser, Group agroup, String PostText){
 		Post apost = new Post(PostText, creator);
 		if(anotherUser!=null || agroup!=null){
-			if(anotherUser!=null && DataBase.isUser(anotherUser.getMail())){
+			if(anotherUser!=null){
 				anotherUser.addPost(apost);
 			}
-			else if(agroup!=null && DataBase.isGroup(agroup.getName())){
+			else if(agroup!=null ){
 				agroup.addPost(apost);
 			}
 		}
