@@ -9,6 +9,7 @@ public class Post_View {
 	private User activeUser;
 	private int posts_displayed;
 	private String displayPlace;
+	private Post apost;
 	/**
 	 * Creates new form PostView
 	 */
@@ -37,7 +38,8 @@ public class Post_View {
         jScrollPane1.setViewportView(postText);
 
         likeButton.setText("Like!");
-
+        likeButton.addActionListener(new likeButtonListener());
+        
         commentButton.setText("Comment");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
@@ -94,7 +96,10 @@ public class Post_View {
 		return null;
 	}
 	
+	
+	
 	public void displayPost(Post apost){//Post apost will be defined by postToBeDisplayedUser/postToBeDisplayedGroup/postToBeDisplayedHomePage
+		this.apost = apost;
 		//String header contains how the panel will be named
 		String s = "";
 		if(apost.getAnotherUser() != null){
@@ -126,7 +131,7 @@ public class Post_View {
 	{
 		public void actionPerformed(ActionEvent e)
 		{	
-			
+			apost.addLike(activeUser);
 		}
 	}
 	
@@ -134,7 +139,7 @@ public class Post_View {
 	{
 		public void actionPerformed(ActionEvent e)
 		{	
-			
+			DataBase.createReply(activeUser, apost);
 		}
 	}
 

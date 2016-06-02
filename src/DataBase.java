@@ -75,7 +75,7 @@ public final class DataBase {
 		return false;		
 	}
 
-	//TODO save --find better way
+	
 	public static boolean save() {
 
 		try {
@@ -147,11 +147,10 @@ public final class DataBase {
 
 
 	public ArrayList<Group> getgroups() {
-		// TODO Retrieve groups from savefiles
 		return groups;
 	}
 
-	//TODO complete getUserInstance
+	
 
 	public static Group getGroupInstance(String groupname) {
 		for(Group g : groups) {
@@ -287,6 +286,10 @@ public final class DataBase {
     f.pack();
     f.setVisible(true);
 }
+	
+	public static void createReply(User activeUser, Post apost){
+		//TODO
+	}
 
 
 }
