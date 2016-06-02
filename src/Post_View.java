@@ -97,10 +97,13 @@ public class Post_View extends JPanel {
 	public JPanel aPostView(Post aPost){
 		this.aPost = aPost;
 		JPanel apanel = new JPanel();
-		JLabel alabel = new JLabel(aPost.getPostText());
+		JTextField text = new JTextField(aPost.getPostText());
+		JScrollPane scroll = new JScrollPane(text);
+		
 //		JLabel likeslabel = new JLabel(aPost.NumberOfLikes() + " ");
 		JButton likebutton = new JButton("Like!");
 		JButton commentbutton = new JButton("Comment");
+		
 		likebutton.addActionListener(new likeButtonListener());
 		commentbutton.addActionListener(new commentButtonListener());
 
@@ -112,7 +115,7 @@ public class Post_View extends JPanel {
 		actions.add(likebutton);
 		actions.add(commentbutton);
 
-		apanel.add(alabel,BorderLayout.NORTH);
+		apanel.add(scroll, BorderLayout.NORTH);
 //		apanel.add(likeslabel);
 		apanel.add(actions, BorderLayout.CENTER);
 
@@ -123,15 +126,11 @@ public class Post_View extends JPanel {
 
 
 
-	public int postToBeDisplayedUser(User activeUser,User anotherUser){
-		int count;
-		if(activeUser.isFriend(anotherUser)){
-			Collections.sort(anotherUser.getPersonalPosts());
-		}
-
-		if(activeUser.isFriend(anotherUser)){									 
-			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
-			return auser.getPersonalPosts().get(posts_displayed++);	
+	public Post postToBeDisplayedUser(User activeUser,User anotherUser){
+		
+		if(activeUser.isFriend(anotherUser)){								 
+			Collections.sort(anotherUser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
+			return anotherUser.getPersonalPosts().get(posts_displayed++);	
 		}
 		return null;
 	}
