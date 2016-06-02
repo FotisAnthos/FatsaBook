@@ -4,22 +4,26 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class OpenGroup extends Group implements Serializable{
+public class OpenGroup extends Group {
 
 	private static int No_ofOpenGroups;
 
 	public OpenGroup(String name, String info) {
-		super(name, info);
-		
-//		posts= new ArrayList<Post>();
-//		members= new ArrayList<User>();
-//		admins= new ArrayList<User>();
+		super(name,info);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getInfo() {
+		return info;
 	}
 
 	//returns true if the current user is member of this group
 	public boolean isMember(User user) {
 		for(User m : members){
-			if(m.equals(user))
+			if(m.getMail().equals(user.getMail()) && m.getName().equals(user.getName()))
 				return true;
 		}
 		return false;

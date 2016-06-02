@@ -48,7 +48,11 @@ public class Post implements Comparable<Post> {
 	
 
 	public Post(Date date, String postText, User user, ArrayList<Integer> replies, ArrayList<User> likes, User owner,
+<<<<<<< HEAD
 			int post_id) {//Used when retrieving from save files
+=======
+			int post_id) {
+>>>>>>> refs/remotes/origin/master
 		this.date = date;
 		this.postText = postText;
 		this.user = user;
@@ -88,11 +92,17 @@ public class Post implements Comparable<Post> {
 	*/
 	public boolean addLike(User auser)
 	{
+<<<<<<< HEAD
 		if(!Likes.add(auser))
 			{
 				System.out.printf("Like couldn't be added!!: ", auser, "\n");
+=======
+		for(User like : Likes){
+			if(like.equals(auser))
+>>>>>>> refs/remotes/origin/master
 				return false;
-			}
+		}
+		Likes.add(auser);
 		return true;
 	}
 	

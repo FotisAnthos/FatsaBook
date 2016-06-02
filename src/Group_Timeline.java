@@ -84,10 +84,12 @@ public class Group_Timeline extends JFrame {
 	
 	class addgroupListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			if(!g.isMember(u))
 				g.addMember(u);
-				addgroup.setEnabled(false);
-				deletegroup.setEnabled(true);
-	        	DataBase.save();
+			
+			addgroup.setEnabled(false);
+			deletegroup.setEnabled(true);
+	        DataBase.save();
 		}
 			
 	}

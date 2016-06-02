@@ -84,6 +84,7 @@ public class Post_View extends javax.swing.JFrame {
 
 	}
 
+<<<<<<< HEAD
 	// Variables declaration - do not modify                     
 	private javax.swing.JButton LikeButton;
 	private javax.swing.JButton NewCommentButton;
@@ -99,6 +100,22 @@ public class Post_View extends javax.swing.JFrame {
 		}
 		return null;
 	}
+=======
+
+
+	public int postToBeDisplayedUser(User activeUser,User anotherUser){
+		int count;
+		if(activeUser.isFriend(anotherUser)){
+			Collections.sort(anotherUser.getPersonalPosts());
+		}
+
+//		if(activeUser.isFriend(anotherUser)){									 
+//			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
+//			return auser.getPersonalPosts().get(posts_displayed++);	
+//		}
+//		return null;
+//	}
+>>>>>>> refs/remotes/origin/master
 
 	public Post postToBeDisplayedGroup(Group agroup){ 
 		if(agroup.isMember(activeUser)){							 
