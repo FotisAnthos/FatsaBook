@@ -1,18 +1,18 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Group{
+public abstract class Group implements Serializable{
 
-	private String name;
-	private String info;
+	protected String name;
+	protected String info;
 	protected ArrayList<Post> posts = new ArrayList<Post>();
 	protected ArrayList<User> members = new ArrayList<User>();
 	protected ArrayList<User> admins = new ArrayList<User>();
 
 
-	public Group(String name, String info) {
-		this.name = name;
-		this.info = info;	
+	public Group(String name,String info) {
+			this.name = name;
+			this.info = info;
 	}
 
 	//overrides toString()
@@ -22,7 +22,7 @@ public abstract class Group{
 
 
 	//getters and setters
-	public String getName() {
+	public String getName(){
 		return name;
 	}
 
@@ -30,9 +30,7 @@ public abstract class Group{
 		this.name = name;
 	}
 
-	public String getInfo() {
-		return info;
-	}
+	public abstract String getInfo();
 
 	public void setInfo(String info) {
 		this.info = info;
