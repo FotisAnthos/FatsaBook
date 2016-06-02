@@ -2,23 +2,29 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class PrivateGroup extends Group implements Serializable{
+public class PrivateGroup extends Group {
 
 
 	private static int No_ofPrivateGroups;
 
 	public PrivateGroup(String name, String info) {
-		super(name, info);
-		
-//		posts= new ArrayList<Post>();
-//		members= new ArrayList<User>();
-//		admins= new ArrayList<User>();
+		super(name,info);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getInfo() {
+		return info;
 	}
 
 	//returns true if the current user is member of this group
 	public boolean isMember(User user) {
-		if(members.contains(user))
-			return true;
+		for(User m : members){
+			if(m.getMail().equals(user.getMail()) && m.getName().equals(user.getName()))
+				return true;
+		}
 		return false;
 	}
 
@@ -28,10 +34,10 @@ public class PrivateGroup extends Group implements Serializable{
 			System.out.println(user.getName()+" is already a member!");
 			return;
 		}
-
-		members.add(user);
-		user.addToGroup(this);
-
+		else{
+			members.add(user);
+			user.addToGroup(this);
+		}
 	}
 
 

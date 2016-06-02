@@ -32,7 +32,7 @@ public class Post implements Comparable<Post> {
 	}
 	
 
-	public Post(Date date, String postText, User user, ArrayList<Integer> replies, ArrayList<String> likes, User owner,
+	public Post(Date date, String postText, User user, ArrayList<Integer> replies, ArrayList<User> likes, User owner,
 			int post_id) {
 		this.date = date;
 		this.postText = postText;
@@ -73,11 +73,11 @@ public class Post implements Comparable<Post> {
 	*/
 	public boolean addLike(User auser)
 	{
-		if(!Likes.add(auser)) 
-			{
-				System.out.printf("Like couldn't be added!!: ", auser, "\n");
+		for(User like : Likes){
+			if(like.equals(auser))
 				return false;
-			}
+		}
+		Likes.add(auser);
 		return true;
 	}
 	

@@ -129,12 +129,12 @@ public class Post_View extends JPanel {
 			Collections.sort(anotherUser.getPersonalPosts());
 		}
 
-		if(activeUser.isFriend(anotherUser)){									 
-			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
-			return auser.getPersonalPosts().get(posts_displayed++);	
-		}
-		return null;
-	}
+//		if(activeUser.isFriend(anotherUser)){									 
+//			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
+//			return auser.getPersonalPosts().get(posts_displayed++);	
+//		}
+//		return null;
+//	}
 
 
 	public Post postToBeDisplayedGroup(Group agroup){ 

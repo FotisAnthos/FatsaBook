@@ -15,8 +15,8 @@ public final class DataBase {
 
 
 	public DataBase() {		
-		//		this.users = null;
-		//		this.groups = null;
+				this.users = null;
+				this.groups = null;
 
 	}
 
@@ -111,7 +111,7 @@ public final class DataBase {
 	         users = (ArrayList) in.readObject();
 	         in.close();
 	         fileIn.close();
-	         DataBase.users = users;
+	         DataBase.users.addAll(users);
 	      }catch(IOException i)
 	      {
 	         i.printStackTrace();
@@ -128,7 +128,7 @@ public final class DataBase {
 	         groups = (ArrayList) in.readObject();
 	         in.close();
 	         fileIn.close();
-	         DataBase.groups = groups;
+	         DataBase.groups.addAll(groups);
 	      }catch(IOException i)
 	      {
 	         i.printStackTrace();
