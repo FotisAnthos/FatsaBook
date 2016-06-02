@@ -1,15 +1,17 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Home_Page.SearchActionListener;
-import Home_Page.groupsActionListener;
+import javax.swing.JFrame;
 
-public class User_Timeline extends javax.swing.JFrame {
+
+
+public class User_Timeline extends JFrame {
 	private User activeUser, friend;
 	/**
 	 * Creates new form UserTimeline
 	 */
 	public User_Timeline(User activeuser,User friend) {
+		super(friend.getName()+ "'s Timeline");
 		this.friend = friend;
 		this.activeUser=activeuser;
 
@@ -17,7 +19,7 @@ public class User_Timeline extends javax.swing.JFrame {
 
 
 
-
+		this.setVisible(true);
 	}
 
 	/**
@@ -54,7 +56,7 @@ public class User_Timeline extends javax.swing.JFrame {
         morePostsButton.addActionListener(new NextPostsListener());
 
         postToTimelineButton.setText("Post to Timeline");
-        postToTimelineButton.addActionListener(postToTimelineActionListener());
+        postToTimelineButton.addActionListener(new postToTimelineActionListener());
 
         BackButton.setText("Back to Home Page");
 
@@ -99,7 +101,9 @@ public class User_Timeline extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                           
                                                
-       //Listeners
+       
+
+		//Listeners
 		class SearchButtonActionPerformed implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e)
@@ -110,7 +114,7 @@ public class User_Timeline extends javax.swing.JFrame {
 		
 		class postToTimelineActionListener implements ActionListener{
 			public void actionPerformed(ActionEvent e){
-				
+				DataBase.PostCreationGUI(activeUser, friend, null);
 			}
 		}
                                              
@@ -171,7 +175,7 @@ public class User_Timeline extends javax.swing.JFrame {
 	private javax.swing.JButton postToTimelineButton;
 	private javax.swing.JButton BackButton;
 	// End of variables declaration                   
-}
+
 
 
 /*class AddFriendListener implements ActionListener{
@@ -195,7 +199,7 @@ class DeleteFriendListener implements ActionListener{
 }*/
 
 
-
+}
 
 
 

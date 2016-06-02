@@ -1,9 +1,13 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 //from this class we recover data from the save files
 public final class DataBase {
@@ -226,16 +230,72 @@ public final class DataBase {
 //	}
 	
 	public static void createPost(User creator, User anotherUser, Group agroup, String PostText){
-		Post apost = new Post(PostText, creator);
+		
 		if(anotherUser!=null || agroup!=null){
 			if(anotherUser!=null){
+				Post apost = new Post(PostText, creator, anotherUser);
 				anotherUser.addPost(apost);
 			}
 			else if(agroup!=null ){
+				Post apost = new Post(PostText, creator, agroup);
 				agroup.addPost(apost);
 			}
 		}
+		else JOptionPane.showMessageDialog(null,"Post could not be created!!","Message",JOptionPane.PLAIN_MESSAGE);
 	}
+	
+	public static void PostCreationGUI(final User activeUser, final User anotherUser, final Group agroup){
+		final JFrame f = new JFrame();
+		javax.swing.JLabel CreatePostLabel;
+	    javax.swing.JScrollPane jScrollPane1;
+	    javax.swing.JButton postButton;
+	    final java.awt.TextArea postTextField;
+	jScrollPane1 = new javax.swing.JScrollPane();
+    CreatePostLabel = new javax.swing.JLabel();
+    postButton = new javax.swing.JButton();
+    postTextField = new java.awt.TextArea();
+
+    
+
+    CreatePostLabel.setText("Create Post");
+
+    postButton.setText("Post");
+    postButton.addActionListener(new ActionListener(){
+    	public void actionPerformed(ActionEvent e)
+		{	
+			createPost(activeUser, anotherUser, agroup, postTextField.getText());
+			f.setVisible(false);
+		}
+    });
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(f.getContentPane());
+    f.getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap(47, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(postTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(CreatePostLabel)
+                    .addGap(111, 111, 111)))
+            .addContainerGap(53, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(CreatePostLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+            .addComponent(postTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(postButton)
+            .addContainerGap(66, Short.MAX_VALUE))
+    );
+
+    f.pack();
+    f.setVisible(true);
+}
 
 
 }
