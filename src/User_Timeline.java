@@ -23,7 +23,8 @@ public class User_Timeline extends JFrame {
 	private JButton nextPosts;
 	public DisplayLists m_Display_Lists;
 	private User activeUser,friend;
-	private JFrame frame;
+	protected JFrame frame;
+	
 
 
 	public User_Timeline(User activeuser,User friend){
@@ -48,8 +49,7 @@ public class User_Timeline extends JFrame {
 	        	addfriend.setVisible(false);
 	        	deletefriend.setVisible(false);
 	        }
-	        
-		        	
+	          	
 	        addfriend.addActionListener(new AddFriendListener());
 	        deletefriend.addActionListener(new DeleteFriendListener());
 	        
@@ -92,6 +92,10 @@ public class User_Timeline extends JFrame {
 		frame.pack();
 		frame.setVisible(true);
 		
+	}
+	
+	public void repaintWindow() {
+	    this.frame.repaint();
 	}
 	
 	class AddFriendListener implements ActionListener{

@@ -1,20 +1,24 @@
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 
 public class Post_View extends JPanel {
 	
 	private Post aPost;
-	JPanel frame;
 
 	private JPanel postPanel;
+	private JPanel groupallPanel;
 	private JPanel createpost;
 	private JButton Post1;
 	private JButton Post2;
@@ -22,19 +26,24 @@ public class Post_View extends JPanel {
 	private JTextField postfield;
 	private JButton Comment;
 	private JButton Like;
-	private int posts_displayed;
 	private User activeUser;
 	private User anotherUser;
 	private Group aGroup;
-
-
+	
+	
 	public Post_View(User activeUser, User anotherUser){//Used for displaying posts on User_Timeline
+		
+		int i;
 		this.activeUser = activeUser;
 		this.anotherUser = anotherUser;
 
 		postPanel = new JPanel();
+		postPanel.setLayout(new BoxLayout(postPanel,BoxLayout.Y_AXIS));
 
 		createpost = new JPanel();
+		groupallPanel = new JPanel();
+		groupallPanel.setLayout(new BoxLayout(groupallPanel,BoxLayout.Y_AXIS));
+		
 		Post1 = new JButton("Post");
 		postfield = new JTextField(20);
 		Post1.addActionListener(new PostListener1());
@@ -43,16 +52,14 @@ public class Post_View extends JPanel {
 		createpost.add(postfield, BorderLayout.NORTH);
 		createpost.add(Post1, BorderLayout.CENTER);
 
-		add(createpost,BorderLayout.NORTH);
-
 		if(anotherUser.getPersonalPosts().size()>=1){
-			//			Collections.sort(anotherUser.getPersonalPosts());
-			for(Post post: anotherUser.getPersonalPosts()){
-				postPanel.add(aPostView(post));
+			for(i=anotherUser.getPersonalPosts().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
+				postPanel.add(aPostView(anotherUser.getPersonalPosts().get(i-1)));
 			}
 		}
-		
-		add(postPanel,BorderLayout.CENTER);
+		groupallPanel.add(createpost);
+		groupallPanel.add(postPanel);
+		add(groupallPanel);
 
 	}
 	
@@ -123,11 +130,11 @@ public class Post_View extends JPanel {
 
 
 
-	public int postToBeDisplayedUser(User activeUser,User anotherUser){
-		int count;
-		if(activeUser.isFriend(anotherUser)){
-			Collections.sort(anotherUser.getPersonalPosts());
-		}
+//	public int postToBeDisplayedUser(User activeUser,User anotherUser){
+//		int count;
+//		if(activeUser.isFriend(anotherUser)){
+//			Collections.sort(anotherUser.getPersonalPosts());
+//		}
 
 //		if(activeUser.isFriend(anotherUser)){									 
 //			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
