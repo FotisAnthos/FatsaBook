@@ -10,7 +10,7 @@ public class User_Timeline extends JFrame {
 	/**
 	 * Creates new form UserTimeline
 	 */
-	public User_Timeline(User activeuser,User friend) {
+	public User_Timeline(User activeuser, User friend) {
 		super(friend.getName()+ "'s Timeline");
 		this.friend = friend;
 		this.activeUser=activeuser;
@@ -39,7 +39,7 @@ public class User_Timeline extends JFrame {
 		postToTimelineButton = new javax.swing.JButton();
 		BackButton = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
 		SearchButton.setText("Search");
 		SearchButton.addActionListener(new SearchActionListener());
@@ -64,6 +64,7 @@ public class User_Timeline extends JFrame {
 		postToTimelineButton.addActionListener(new postToTimelineActionListener());
 
 		BackButton.setText("Back to Home Page");
+		BackButton.addActionListener(new BackListener());
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -115,12 +116,12 @@ public class User_Timeline extends JFrame {
 				activeUser.addFriend(friend);
 				DataBase.save();
 				isFriendsButton.setText("Delete Friend");
-				
+
 			}
 			else if(isFriendsButton.getText().equals("Delete Friend")){
-			activeUser.removeFriend(friend);
-			DataBase.save();
-			isFriendsButton.setText("Add Friend");
+				activeUser.removeFriend(friend);
+				DataBase.save();
+				isFriendsButton.setText("Add Friend");
 			}
 
 		}
