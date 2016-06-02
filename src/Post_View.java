@@ -28,52 +28,51 @@ public class Post_View {
 	private void initComponents(String header) {//String header contains how the panel will be named
 		panel = new JPanel();
 		panel.setName(header);
-        jScrollPane1 = new javax.swing.JScrollPane();
-        postText = new javax.swing.JTextArea();
-        likeButton = new javax.swing.JButton();
-        commentButton = new javax.swing.JButton();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		postText = new javax.swing.JTextArea();
+		likeButton = new javax.swing.JButton();
+		commentButton = new javax.swing.JButton();
 
-        postText.setColumns(20);
-        postText.setRows(5);
-        jScrollPane1.setViewportView(postText);
+		postText.setColumns(20);
+		postText.setRows(5);
+		jScrollPane1.setViewportView(postText);
 
-        likeButton.setText("Like!");
-        likeButton.addActionListener(new likeButtonListener());
-        
-        commentButton.setText("Comment");
+		likeButton.setText("Like!");
+		likeButton.addActionListener(new likeButtonListener());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(likeButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(commentButton)
-                .addGap(0, 307, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(likeButton)
-                    .addComponent(commentButton)))
-        );
-    }// </editor-fold>                        
+		commentButton.setText("Comment");
+
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
+		panel.setLayout(layout);
+		layout.setHorizontalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addComponent(jScrollPane1)
+				.addGroup(layout.createSequentialGroup()
+						.addComponent(likeButton)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(commentButton)
+						.addGap(0, 307, Short.MAX_VALUE))
+				);
+		layout.setVerticalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+						.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(likeButton)
+								.addComponent(commentButton)))
+				);
+	}// </editor-fold>                        
 
 
-    // Variables declaration - do not modify   
+	// Variables declaration - do not modify   
 	private javax.swing.JPanel panel;
-    private javax.swing.JButton commentButton;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea postText;
-    private javax.swing.JButton likeButton;
-    // End of variables declaration   
-	private Object String;
-    
+	private javax.swing.JButton commentButton;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTextArea postText;
+	private javax.swing.JButton likeButton;
+	// End of variables declaration   
+
 	public Post postToBeDisplayedUser(User activeUser,User anotherUser){
 
 		if(activeUser.isFriend(anotherUser)){								 
@@ -91,42 +90,55 @@ public class Post_View {
 		}
 		return null;
 	}
-	
+
 	public Post postToBeDisplayedHomePage(User activeUser){
 		return null;
 	}
-	
-	
-	
+
+
+
 	public void displayPost(Post apost){//Post apost will be defined by postToBeDisplayedUser/postToBeDisplayedGroup/postToBeDisplayedHomePage
 		this.apost = apost;
 		//String header contains how the panel will be named
 		String s = "";
+		if(apost == null) return;
 		if(apost.getAnotherUser() != null){
 			s = (apost.getCreator().toString() + " to " + apost.getAnotherUser().getName()+"'s Timeline");
 		}
-		else if(apost.getAnotherUser() != null){
+		else if(apost.getAgroup() != null){
 			s = (apost.getCreator().toString() + " to " + apost.getAgroup().getName());	
 		}
 		else {
-			
-			JOptionPane.showMessageDialog(null,"","Warning",JOptionPane.WARNING_MESSAGE);
+
+			JOptionPane.showMessageDialog(null,"Post_View.displayPost","Warning",JOptionPane.WARNING_MESSAGE);
 		}
-			
+
 		initComponents(s);
 		postText.setText(apost.getPostText());
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
 	}
-	
-	
-	
+
+	public JPanel display(User TimelineUser, Group GroupTimeline){
+		switch(displayPlace){
+		case "Home_Page":  		displayPost(postToBeDisplayedHomePage(activeUser));
+						   		break;
+		case "User_Timeline": 	displayPost(postToBeDisplayedUser(activeUser, TimelineUser));
+								break;
+		case "Group_Timeline": 	displayPost(postToBeDisplayedGroup(GroupTimeline));
+								break;					
+		}
+		return panel;
+}
+
+
+
 	class likeButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -134,7 +146,7 @@ public class Post_View {
 			apost.addLike(activeUser);
 		}
 	}
-	
+
 	class commentButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)

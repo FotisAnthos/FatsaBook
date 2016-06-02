@@ -18,12 +18,14 @@ public class Group_Timeline extends JFrame {
 	private javax.swing.JButton memberStatusButton;
 	private javax.swing.JButton membersButton;
 	private javax.swing.JButton morepostsButton;
+	private Post_View GroupTimelineView_Post;
 
 
 	public Group_Timeline(Group g, User u){	
 		super(g.getName()+ "'s Timeline");
 		this.activeUser = u;
 		this.group = g;
+		GroupTimelineView_Post = new Post_View(null, "Group_Timeline");
 
 
 		initComponents();
@@ -149,12 +151,19 @@ public class Group_Timeline extends JFrame {
 	class NextPostsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			//TODO
+			post(5);
 		}
 	}
 
 	class MembersListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			DisplayLists.createAndShowGUI(activeUser, group.members ,null);			
+		}
+	}
+	public void post(int numberOfPosts){//the number of posts to be displayed
+		int i;
+		for(i=0; i<numberOfPosts; i++){
+		this.add(GroupTimelineView_Post.display(null, group));
 		}
 	}
 
