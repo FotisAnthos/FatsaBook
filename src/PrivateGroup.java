@@ -52,17 +52,17 @@ public class PrivateGroup extends Group {
 
 	//adds a post in the selected group
 	public void addPost(Post post) {
-		if(canAddPost(post.getUser())) //only if the user can add a post
+		if(canAddPost(post.getCreator())) //only if the user can add a post
 			posts.add(post);
 		else
-			System.out.println("User " + post.getUser() + " cannot post on Private Group " + super.getName());
+			System.out.println("User " + post.getCreator() + " cannot post on Private Group " + super.getName());
 	}
 
 	public void addReplyToPost(Post post, Post reply) {
-		if(canAddPost(reply.getUser())) //only if the user can add a reply
+		if(canAddPost(reply.getCreator())) //only if the user can add a reply
 			post.setReply(reply);
 		else
-			System.out.println("User " + reply.getUser() + " cannot post on Private Group " + super.getName());
+			System.out.println("User " + reply.getCreator() + " cannot post on Private Group " + super.getName());
 
 	}
 

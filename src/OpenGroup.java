@@ -51,18 +51,18 @@ public class OpenGroup extends Group {
 
 	//adds a post in the selected group
 	public void addPost(Post post) {
-		if(canAddPost(post.getUser())) //only if the user can add a post
+		if(canAddPost(post.getCreator())) //only if the user can add a post
 			posts.add(post);
 		else
-			System.out.println("User " + post.getUser() + "is not a member nor his friends.");
+			System.out.println("User " + post.getCreator() + "is not a member nor his friends.");
 	}
 
 	//adds a reply to a selected post
 	public void addReplyToPost(Post post, Post reply) {
-		if(canAddPost(reply.getUser())) //only if the user can add a reply
+		if(canAddPost(reply.getCreator())) //only if the user can add a reply
 			post.setReply(reply);
 		else
-			System.out.println("User " + reply.getUser() + "is not a member nor his friends.");
+			System.out.println("User " + reply.getCreator() + "is not a member nor his friends.");
 	}
 
 	public void printWall() {

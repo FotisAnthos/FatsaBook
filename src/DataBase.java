@@ -16,6 +16,7 @@ public final class DataBase {
 
 	protected static  ArrayList<User> users = new ArrayList<User>();
 	protected static ArrayList<Group> groups = new ArrayList<Group>();
+	private static User activeuser;
 
 
 	public DataBase() {		
