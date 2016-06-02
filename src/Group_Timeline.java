@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 
 
+
 public class Group_Timeline extends JFrame {
 
 	private User activeUser;
@@ -55,6 +56,7 @@ public class Group_Timeline extends JFrame {
 		membersButton.addActionListener(new MembersListener());
 
 		morepostsButton.setText("More posts");
+		morepostsButton.addActionListener(new NextPostsListener());
 
 		memberStatusButton.setText("become Member");
 		if(group.isMember(activeUser)) memberStatusButton.setText("Remove Group");
@@ -62,6 +64,7 @@ public class Group_Timeline extends JFrame {
 		memberStatusButton.addActionListener(new memberStatusActionListener());
 
 		newPostButton.setText("Post to group");
+		newPostButton.addActionListener(new newPostButton());
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -128,13 +131,19 @@ public class Group_Timeline extends JFrame {
 			new SearchScreen(activeUser);
 		}
 	}
-
+	
+	class newPostButton implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			DataBase.PostCreationGUI(activeUser, null, group);
+		}
+	}
 
 
 	class BackListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			getContentPane().setVisible(false);
-		}		
+			setVisible(false);
+		}
+
 	}
 
 	class NextPostsListener implements ActionListener{
