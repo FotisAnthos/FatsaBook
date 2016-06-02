@@ -6,56 +6,46 @@ public class Post implements Comparable<Post> {
 
 	private Date date;
 	private String postText;
-	private User user;//the creator
+	private User creator;//the creator
 	private User anotherUser;//points to the user timeline the post is displayed, null if displayed in a group
 	private Group agroup;//points to the group timeline the post is displayed, null if displayed in a User's timeline
 	private ArrayList<Integer> replies; //replies -> String(?) -> postID
 	private ArrayList<User> Likes; //likes -> String -> user.mail
 	private static int No_ofPosts;
-	/**
-	 * the creator
-	 */
-	private User owner;
+	
+	
 	private int post_id;
 
 
-	public Post(String postText, User creator, User anotherUser) {//Used for creating posts in User's timelines
+	public Post(String postText, User creator, User anotherUser, Group agroup) {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		Date date = new Date(ts.getTime());
 		this.date = date;
-		this.anotherUser = anotherUser;
+		this.anotherUser = anotherUser;//null if posted in a group
+		this.setAgroup(agroup);//null if posted in a user's timeline
 
 		this.postText = postText;
-		this.user = creator;
+		this.creator = creator;
 		this.replies = null;
 		this.Likes = null;
 		No_ofPosts++;
 	}
 
 
-	public Post(String postText, User creator, Group agroup) {//Used for creating posts in Groups
-		Timestamp ts = new Timestamp(System.currentTimeMillis());
-		Date date = new Date(ts.getTime());
-		this.date = date;
-		this.agroup = agroup;
-
-		this.postText = postText;
-		this.user = creator;
-		this.replies = null;
-		this.Likes = null;
-		No_ofPosts++;
-	}
+	
 
 
-	public Post(Date date, String postText, User user, ArrayList<Integer> replies, ArrayList<User> likes, User owner,
+	public Post(Date date, String postText, User creator, User anotherUser, Group agroup, ArrayList<Integer> replies, ArrayList<User> likes,
 			int post_id) {
 
 		this.date = date;
 		this.postText = postText;
-		this.user = user;
+		this.creator = creator;
+		this.anotherUser = anotherUser;//null if posted in a group
+		this.setAgroup(agroup);//null if posted in a user's timeline
 		this.replies = replies;
-		Likes = likes;
-		this.owner = owner;
+		this.Likes = likes;
+
 		this.post_id = post_id;
 	}//To be used only from DataBase class when loading saved files
 
@@ -107,7 +97,7 @@ public class Post implements Comparable<Post> {
 
 	//overrides toString
 	public String toString() {
-		String print = "| " +this.date+ " | " +this.user.getName()+ " : " +this.postText;
+		String print = "| " +this.date+ " | " +this.creator.getName()+ " : " +this.postText;
 
 		return print;
 	}
@@ -120,8 +110,8 @@ public class Post implements Comparable<Post> {
 
 
 
-	public User getUser() {
-		return user;
+	public User getCreator() {
+		return creator;
 	}
 
 	public void setReply(Post reply2) {
@@ -148,6 +138,32 @@ public class Post implements Comparable<Post> {
 	public void setPostText(String postText) {
 		this.postText = postText;
 	}
+
+
+	public User getAnotherUser() {
+		return anotherUser;
+	}
+
+
+	public void setAnotherUser(User anotherUser) {
+		this.anotherUser = anotherUser;
+	}
+
+
+	public Group getAgroup() {
+		return agroup;
+	}
+
+
+
+
+
+	public void setAgroup(Group agroup) {
+		this.agroup = agroup;
+	}
+
+
+
 
 
 	@Override //TODO check again, may create some problem in sorting //Override for implementation Comparable

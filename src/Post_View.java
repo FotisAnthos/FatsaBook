@@ -2,7 +2,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
 
-public class Post_View extends javax.swing.JFrame {
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class Post_View {
 	private User activeUser;
 	private int posts_displayed;
 	private String displayPlace;
@@ -12,13 +15,6 @@ public class Post_View extends javax.swing.JFrame {
 	public Post_View(User activeUser, String displayPlace) {
 		this.activeUser = activeUser;
 		this.displayPlace = displayPlace;
-		display(null);//TODO this must change
-
-
-
-
-
-
 	}
 
 	/**
@@ -28,70 +24,54 @@ public class Post_View extends javax.swing.JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-	private void initComponents() {
+	private void initComponents(String header) {//String header contains how the panel will be named
+		panel = new JPanel();
+		panel.setName(header);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        postText = new javax.swing.JTextArea();
+        likeButton = new javax.swing.JButton();
+        commentButton = new javax.swing.JButton();
 
-		jPanel1 = new javax.swing.JPanel();
-		postDescription = new javax.swing.JLabel();
-		postText = new javax.swing.JTextField();
-		LikeButton = new javax.swing.JButton();
-		NewCommentButton = new javax.swing.JButton();
+        postText.setColumns(20);
+        postText.setRows(5);
+        jScrollPane1.setViewportView(postText);
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        likeButton.setText("Like!");
 
-		postDescription.setText("Description User->User or User->Group");
+        commentButton.setText("Comment");
 
-		postText.setText("jTextField1");
-
-		LikeButton.setText("Like");
-
-		NewCommentButton.setText("Comment");
-
-		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-		jPanel1.setLayout(jPanel1Layout);
-		jPanel1Layout.setHorizontalGroup(
-				jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(postText, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(postDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGroup(jPanel1Layout.createSequentialGroup()
-										.addComponent(LikeButton)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(NewCommentButton)))
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
-		jPanel1Layout.setVerticalGroup(
-				jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup()
-						.addComponent(postDescription)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(postText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(LikeButton)
-								.addComponent(NewCommentButton))
-						.addGap(0, 29, Short.MAX_VALUE))
-				);
-
-		getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-
-		pack();                      
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(likeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(commentButton)
+                .addGap(0, 307, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(likeButton)
+                    .addComponent(commentButton)))
+        );
+    }// </editor-fold>                        
 
 
-
-
-
-	}
-
-
-	// Variables declaration - do not modify                     
-	private javax.swing.JButton LikeButton;
-	private javax.swing.JButton NewCommentButton;
-	private javax.swing.JLabel postDescription;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JTextField postText;
-	// End of variables declaration   
+    // Variables declaration - do not modify   
+	private javax.swing.JPanel panel;
+    private javax.swing.JButton commentButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea postText;
+    private javax.swing.JButton likeButton;
+    // End of variables declaration   
+	private Object String;
+    
 	public Post postToBeDisplayedUser(User activeUser,User anotherUser){
 
 		if(activeUser.isFriend(anotherUser)){								 
@@ -114,9 +94,24 @@ public class Post_View extends javax.swing.JFrame {
 		return null;
 	}
 	
-	public void display(Post apost){//Post apost will be defined by postToBeDisplayedUser/postToBeDisplayedGroup/postToBeDisplayedHomePage
-		initComponents();
+	public void displayPost(Post apost){//Post apost will be defined by postToBeDisplayedUser/postToBeDisplayedGroup/postToBeDisplayedHomePage
+		//String header contains how the panel will be named
+		String s = "";
+		if(apost.getAnotherUser() != null){
+			s = (apost.getCreator().toString() + " to " + apost.getAnotherUser().getName()+"'s Timeline");
+		}
+		else if(apost.getAnotherUser() != null){
+			s = (apost.getCreator().toString() + " to " + apost.getAgroup().getName());	
+		}
+		else {
+			
+			JOptionPane.showMessageDialog(null,"","Warning",JOptionPane.WARNING_MESSAGE);
+		}
+			
+		initComponents(s);
 		postText.setText(apost.getPostText());
+		
+		
 		
 		
 		

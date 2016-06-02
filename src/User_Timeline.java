@@ -129,7 +129,7 @@ public class User_Timeline extends JFrame {
 
 	class postToTimelineActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			DataBase.PostCreationGUI(activeUser, friend, null);
+			DataBase.createPost(activeUser, friend, null);
 		}
 	}
 

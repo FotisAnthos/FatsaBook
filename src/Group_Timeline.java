@@ -134,7 +134,7 @@ public class Group_Timeline extends JFrame {
 	
 	class newPostButton implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			DataBase.PostCreationGUI(activeUser, null, group);
+			DataBase.createPost(activeUser, null, group);
 		}
 	}
 

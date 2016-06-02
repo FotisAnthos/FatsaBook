@@ -229,22 +229,11 @@ public final class DataBase {
 //		DataBase.posts = posts;
 //	}
 	
-	public static void createPost(User creator, User anotherUser, Group agroup, String PostText){
-		
-		if(anotherUser!=null || agroup!=null){
-			if(anotherUser!=null){
-				Post apost = new Post(PostText, creator, anotherUser);
-				anotherUser.addPost(apost);
-			}
-			else if(agroup!=null ){
-				Post apost = new Post(PostText, creator, agroup);
-				agroup.addPost(apost);
-			}
-		}
-		else JOptionPane.showMessageDialog(null,"Post could not be created!!","Message",JOptionPane.PLAIN_MESSAGE);
-	}
 	
-	public static void PostCreationGUI(final User activeUser, final User anotherUser, final Group agroup){
+	
+	
+	
+	public static void createPost(final User activeUser, final User anotherUser, final Group agroup){
 		final JFrame f = new JFrame();
 		javax.swing.JLabel CreatePostLabel;
 	    javax.swing.JScrollPane jScrollPane1;
@@ -261,10 +250,11 @@ public final class DataBase {
 
     postButton.setText("Post");
     postButton.addActionListener(new ActionListener(){
-    	public void actionPerformed(ActionEvent e)
+    	public void actionPerformed(ActionEvent e)//Actual Creation of Post
 		{	
-			createPost(activeUser, anotherUser, agroup, postTextField.getText());
-			f.setVisible(false);
+    		Post apost = new Post(postTextField.getText(), activeUser, anotherUser, agroup);
+			if(apost == null) JOptionPane.showMessageDialog(null,"Post could not be created!!","Message",JOptionPane.PLAIN_MESSAGE);
+    		f.setVisible(false);
 		}
     });
 
