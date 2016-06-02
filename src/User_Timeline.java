@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -32,8 +33,9 @@ public class User_Timeline extends JFrame {
 		this.friend = friend;
 		this.activeUser=activeuser;
 		
-		 frame = new JFrame(friend.getName()+ "'s Timeline");
-	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame = new JFrame(friend.getName()+ "'s Timeline");
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
+	    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        
 	        
 	     addfriend = new JButton("Add friend");

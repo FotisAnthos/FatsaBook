@@ -24,6 +24,7 @@ public class CreateGroupScreen extends JFrame {
 		super("Create Group Screen");
 		
 		frame = new JFrame();
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		contentPane = new JPanel();
 		name = new JTextField("Group name",15);
 		info = new JTextField("Write some info...",20);

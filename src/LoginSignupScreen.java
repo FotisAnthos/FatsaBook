@@ -25,9 +25,9 @@ public class LoginSignupScreen extends JFrame {
 	
 	
 	public LoginSignupScreen(){
-		super("Login & Signup Screen");
 
-		frame = new JFrame();
+		frame = new JFrame("Login & Signup Screen");
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		contentPane = new JPanel();	
 		label = new JLabel("E-mail:");
 		contentPane.add(label);	

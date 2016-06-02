@@ -1,6 +1,8 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 public class PrivateGroup extends Group {
 
@@ -37,6 +39,7 @@ public class PrivateGroup extends Group {
 		else{
 			members.add(user);
 			user.addToGroup(this);
+			JOptionPane.showMessageDialog(null,"You added " + this.getName()+ " to your groups!","Message",JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 
