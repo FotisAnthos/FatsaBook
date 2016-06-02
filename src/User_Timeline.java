@@ -31,146 +31,153 @@ public class User_Timeline extends JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">                          
 	private void initComponents() {
 
-        SearchButton = new javax.swing.JButton();
-        GroupsButton = new javax.swing.JButton();
-        commonFriendsButton = new javax.swing.JButton();
-        isFriends = new javax.swing.JToggleButton();
-        morePostsButton = new javax.swing.JButton();
-        postToTimelineButton = new javax.swing.JButton();
-        BackButton = new javax.swing.JButton();
+		SearchButton = new javax.swing.JButton();
+		GroupsButton = new javax.swing.JButton();
+		commonFriendsButton = new javax.swing.JButton();
+		isFriendsButton = new javax.swing.JToggleButton();
+		morePostsButton = new javax.swing.JButton();
+		postToTimelineButton = new javax.swing.JButton();
+		BackButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        SearchButton.setText("Search");
-        SearchButton.addActionListener(new SearchActionListener());
+		SearchButton.setText("Search");
+		SearchButton.addActionListener(new SearchActionListener());
 
-        GroupsButton.setText("Groups");
-        GroupsButton.addActionListener(new groupsActionListener());
+		GroupsButton.setText("Groups");
+		GroupsButton.addActionListener(new groupsActionListener());
 
-        commonFriendsButton.setText("Common Friends");
-        commonFriendsButton.addActionListener(new CommonFriendsListener());
+		commonFriendsButton.setText("Common Friends");
+		commonFriendsButton.addActionListener(new CommonFriendsListener());
 
-        isFriends.setText("jToggleButton1");//TODO
+		if(!activeUser.equals(friend)){
+			if(activeUser.isFriend(friend)) isFriendsButton.setText("Delete Friend");
+			else isFriendsButton.setText("Add Friend");
+			isFriendsButton.addActionListener(new isFriendsButtonActionListener());			
+		}else isFriendsButton.setEnabled(false);
 
-        morePostsButton.setText("More Posts");
-        morePostsButton.addActionListener(new NextPostsListener());
 
-        postToTimelineButton.setText("Post to Timeline");
-        postToTimelineButton.addActionListener(new postToTimelineActionListener());
+		morePostsButton.setText("More Posts");
+		morePostsButton.addActionListener(new NextPostsListener());
 
-        BackButton.setText("Back to Home Page");
+		postToTimelineButton.setText("Post to Timeline");
+		postToTimelineButton.addActionListener(new postToTimelineActionListener());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(morePostsButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(BackButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SearchButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GroupsButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(commonFriendsButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(postToTimelineButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(isFriends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchButton)
-                    .addComponent(GroupsButton)
-                    .addComponent(commonFriendsButton)
-                    .addComponent(isFriends)
-                    .addComponent(BackButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(postToTimelineButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-                .addComponent(morePostsButton))
-        );
+		BackButton.setText("Back to Home Page");
 
-        pack();
-    }// </editor-fold>                           
-                                               
-       
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(morePostsButton)
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(layout.createSequentialGroup()
+						.addComponent(BackButton)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(SearchButton)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(GroupsButton)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(commonFriendsButton)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+								.addComponent(postToTimelineButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(isFriendsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addContainerGap(65, Short.MAX_VALUE))
+				);
+		layout.setVerticalGroup(
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(SearchButton)
+								.addComponent(GroupsButton)
+								.addComponent(commonFriendsButton)
+								.addComponent(isFriendsButton)
+								.addComponent(BackButton))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(postToTimelineButton)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
+						.addComponent(morePostsButton))
+				);
 
-		//Listeners
-		class SearchButtonActionPerformed implements ActionListener
+		pack();
+	}// </editor-fold>                           
+
+
+
+	//Listeners
+	class isFriendsButtonActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			if(isFriendsButton.getText().equals("Add Friend")){
+				activeUser.addFriend(friend);
+				DataBase.save();
+				isFriendsButton.setText("Delete Friend");
+				
+			}
+			else if(isFriendsButton.getText().equals("Delete Friend")){
+			activeUser.removeFriend(friend);
+			DataBase.save();
+			isFriendsButton.setText("Add Friend");
+			}
+
+		}
+	}
+
+	class postToTimelineActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			DataBase.PostCreationGUI(activeUser, friend, null);
+		}
+	}
+
+
+	class BackListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			setVisible(false);
+		}
+
+	}
+
+	class CommonFriendsListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			//TODO
+		}
+	}
+
+	class NextPostsListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			//TODO
+		}
+	}
+
+	class SearchActionListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
 		{
-			public void actionPerformed(ActionEvent e)
-			{
-				new SearchScreen(activeUser);
-			}
-		}         
-		
-		class postToTimelineActionListener implements ActionListener{
-			public void actionPerformed(ActionEvent e){
-				DataBase.PostCreationGUI(activeUser, friend, null);
-			}
+			new SearchScreen(activeUser);
 		}
-                                             
-		class GroupsButtonActionPerformed implements ActionListener
+
+	}
+	class groupsActionListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
 		{
-			public void actionPerformed(ActionEvent e)
-			{
-				//TODO
-				new DisplayLists(activeUser, activeUser.getFriends(), activeUser.getGroups());
-			}
-		}  
-		class BackListener implements ActionListener{
-			public void actionPerformed(ActionEvent e){
-				setVisible(false);
-			}
-
+			//TODO
+			new DisplayLists(activeUser, activeUser.getFriends(), activeUser.getGroups());
 		}
 
-		class CommonFriendsListener implements ActionListener{
-			public void actionPerformed(ActionEvent e){
-					//TODO
-			}
-		}
+	}
 
-		class NextPostsListener implements ActionListener{
-			public void actionPerformed(ActionEvent e){
-				//TODO
-			}
-		}
 
-		class SearchActionListener implements ActionListener
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				new SearchScreen(activeUser);
-			}
-
-		}
-		class groupsActionListener implements ActionListener
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				//TODO
-				new DisplayLists(activeUser, activeUser.getFriends(), activeUser.getGroups());
-			}
-
-		}
-
-	
 
 
 	// Variables declaration - do not modify                     
 	private javax.swing.JButton GroupsButton;
 	private javax.swing.JButton SearchButton;
 	private javax.swing.JButton commonFriendsButton;
-	private javax.swing.JToggleButton isFriends;
+	private javax.swing.JToggleButton isFriendsButton;
 	private javax.swing.JButton morePostsButton;
 	private javax.swing.JButton postToTimelineButton;
 	private javax.swing.JButton BackButton;
@@ -178,7 +185,7 @@ public class User_Timeline extends JFrame {
 
 
 
-/*class AddFriendListener implements ActionListener{
+	/*class AddFriendListener implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		activeUser.addFriend(friend);
 		addfriend.setEnabled(false);
