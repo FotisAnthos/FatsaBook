@@ -1,60 +1,90 @@
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.event.*;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.DefaultCaret;
 
-import javax.swing.*;
+public class CreateGroupScreen {
 
-public class CreateGroupScreen extends JFrame {
-
-	private JPanel contentPane;
-	
 	private JFrame frame;
-
 	private JTextField name;
-	private JTextField info;
-
-	private JButton GECK;
 	private ButtonGroup buttongroup;
-	private JRadioButton opengroup;
-	private JRadioButton privategroup;
+	JRadioButton opengroup;
+	JRadioButton privategroup;
+	JTextPane info;
 
 	public CreateGroupScreen() {
-		
-		super("Create Group Screen");
-		
-		frame = new JFrame();
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame("Create Group Screen");
+		frame.getContentPane().setFont(new Font("Arial", Font.PLAIN, 18));
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
-		contentPane = new JPanel();
-		name = new JTextField("Group name",15);
-		info = new JTextField("Write some info...",20);
-		contentPane.add(name);
-		contentPane.add(info);
-
-		GECK = new JButton("Create Group");
-		contentPane.add(GECK);
-		GECK.addActionListener(new GECKActionListener());
-
-		opengroup = new JRadioButton("Open Group", true);
-		opengroup.setBackground(Color.cyan);
-		privategroup = new JRadioButton("Private Group", false);
-		privategroup.setBackground(Color.cyan);
-
+		frame.setVisible(true);
+		frame.setBounds(100, 100, 662, 429);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblCreateGroup = new JLabel("Create Group");
+		lblCreateGroup.setFont(new Font("Arial", Font.PLAIN, 25));
+		lblCreateGroup.setBounds(226, 13, 157, 62);
+		frame.getContentPane().add(lblCreateGroup);
+		
+		JLabel lblGroupName = new JLabel("Group Name:");
+		lblGroupName.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblGroupName.setBounds(128, 80, 121, 29);
+		frame.getContentPane().add(lblGroupName);
+		
+		JLabel lblGroupInfo = new JLabel("Group Info:");
+		lblGroupInfo.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblGroupInfo.setBounds(236, 122, 94, 29);
+		frame.getContentPane().add(lblGroupInfo);
+		
+		name = new JTextField();
+		name.setFont(new Font("Arial", Font.PLAIN, 18));
+		name.setBounds(314, 81, 146, 29);
+		frame.getContentPane().add(name);
+		name.setColumns(10);
+		
+		info = new JTextPane();
+		DefaultCaret caret = (DefaultCaret)info.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		info.setFont(new Font("Arial", Font.PLAIN, 18));
+		info.setBounds(128, 164, 332, 87);
+		frame.getContentPane().add(info);
+		
+		opengroup = new JRadioButton("Open Group",true);
+		opengroup.setFont(new Font("Arial", Font.PLAIN, 16));
+		opengroup.setBounds(333, 270, 127, 25);
+		frame.getContentPane().add(opengroup);
+		
+		privategroup = new JRadioButton("Private Group",false);
+		privategroup.setFont(new Font("Arial", Font.PLAIN, 16));
+		privategroup.setBounds(122, 270, 127, 25);
+		frame.getContentPane().add(privategroup);
+		
 		buttongroup = new ButtonGroup();
 		buttongroup.add(opengroup);
 		buttongroup.add(privategroup);
-
-		contentPane.add(opengroup);
-		contentPane.add(privategroup);
 		
-		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER,50,50));
-		
-		contentPane.setBackground(Color.cyan);
-		frame.setContentPane(contentPane);
-		frame.getContentPane().setSize(900, 900);
-		frame.pack();
-		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		JButton create = new JButton("Create Group");
+		create.setFont(new Font("Arial", Font.PLAIN, 16));
+		create.setBounds(209, 317, 146, 52);
+		create.addActionListener(new GECKActionListener());
+		frame.getContentPane().add(create);
 	}
 	
 	class GECKActionListener implements ActionListener {

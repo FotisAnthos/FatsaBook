@@ -159,7 +159,7 @@ public final class DataBase {
 
 
 
-	public static Group getPost(int r) {
+	public static Group getPost(Post r) {
 		for(Group gr : groups) {
 			if(gr.getName().equals(r)) {
 				return gr;
@@ -225,7 +225,7 @@ public final class DataBase {
 //		DataBase.posts = posts;
 //	}
 	
-	public static void createPost(User creator, User anotherUser, Group agroup, String PostText){
+	public static Post createPost(User creator, User anotherUser, Group agroup, String PostText){
 		Post apost = new Post(PostText, creator);
 		if(anotherUser!=null || agroup!=null){
 			if(anotherUser!=null){
@@ -234,7 +234,9 @@ public final class DataBase {
 			else if(agroup!=null ){
 				agroup.addPost(apost);
 			}
+			return apost;
 		}
+		return null;
 	}
 
 

@@ -9,7 +9,7 @@ public class Post implements Serializable {
 	private String postText;
 	private User user;//the creator
 	
-	private ArrayList<Integer> replies; //replies -> String(?) -> postID
+	private ArrayList<Post> replies= new ArrayList<Post>();; //replies -> String(?) -> postID
 	private ArrayList<User> Likes = new ArrayList<User>(); //likes -> String -> user.mail
 	private static int No_ofPosts;
 	/**
@@ -27,13 +27,13 @@ public class Post implements Serializable {
 		
 		this.postText = postText;
 		this.user = creator;
-		this.replies = null;
+//		this.replies = null;
 //		this.Likes = null;
 		No_ofPosts++;
 	}
 	
 
-	public Post(Date date, String postText, User user, ArrayList<Integer> replies, ArrayList<User> likes, User owner,
+	public Post(Date date, String postText, User user, ArrayList<Post> replies, ArrayList<User> likes, User owner,
 			int post_id) {
 		this.date = date;
 		this.postText = postText;
@@ -52,7 +52,7 @@ public class Post implements Serializable {
 	}
 
 	public void printReplies () {
-		for(int r : replies)
+		for(Post r : replies)
 		{
 			DataBase.getPost(r);
 		}
@@ -130,12 +130,16 @@ public class Post implements Serializable {
 	public void setPostText(String postText) {
 		this.postText = postText;
 	}
-
-
-	@Override //TODO check again, may create some problem in sorting //Override for implementation Comparable
-	public int compareTo(Post apost) {
-		 return (date.compareTo(apost.getDate()));
+	
+	public ArrayList<Post> getReplies(){
+		return replies;
 	}
+
+
+
+//	public int compareTo(Post apost) {
+//		 return (date.compareTo(apost.getDate()));
+//	}
 
 
 }
