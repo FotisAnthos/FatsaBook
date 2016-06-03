@@ -17,6 +17,7 @@ public class User_Timeline {
 	JButton btnAddFriend;
 	JButton btnDeleteFriend;
 	JButton btnMorePosts;
+	JScrollPane scrollpane;
 	private User activeuser,friend;
 
 
@@ -74,8 +75,7 @@ public class User_Timeline {
 		if(!activeuser.isFriend(friend))
 			btnMorePosts.setEnabled(false);
 		
-		
-		panel = new Post_View(activeuser,friend);
+		panel =new Post_View(activeuser,friend);
 		panel.setBounds(12, 66, 601, 262);
 		if(activeuser.isFriend(friend) || activeuser.equals(friend))
 			frame.getContentPane().add(panel);
@@ -121,10 +121,16 @@ public class User_Timeline {
 	        	btnAddFriend.setEnabled(true);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(false);
+	        	if(btnMorePosts.isVisible())
+	        		frame.getContentPane().remove(panel);
+	        	else{
+	        		scrollpane.setViewportView(new JPanel());
+	        		scrollpane.revalidate();
+	        	}
+	        		
 	        	btnMorePosts.setEnabled(false);
-	        	frame.getContentPane().remove(panel);
-	        	frame.repaint();
 	        	frame.revalidate();
+	        	frame.repaint();
 		}
 			
 	}
@@ -153,7 +159,7 @@ public class User_Timeline {
 	class NextPostsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			frame.getContentPane().remove(panel);
-			JScrollPane scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			scrollpane.setBounds(12, 66, 601, 262);
 			frame.getContentPane().add(scrollpane);
 			btnMorePosts.setEnabled(false);

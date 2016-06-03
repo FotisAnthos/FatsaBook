@@ -1,21 +1,17 @@
-import java.awt.EventQueue;
-
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-
-import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.DefaultCaret;
 
 public class CreateGroupScreen {
 
@@ -34,7 +30,7 @@ public class CreateGroupScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Create Group Screen");
 		frame.getContentPane().setFont(new Font("Arial", Font.PLAIN, 18));
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		frame.setVisible(true);
@@ -64,6 +60,8 @@ public class CreateGroupScreen {
 		name.setColumns(10);
 		
 		info = new JTextPane();
+		DefaultCaret caret = (DefaultCaret)info.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		info.setFont(new Font("Arial", Font.PLAIN, 18));
 		info.setBounds(128, 164, 332, 87);
 		frame.getContentPane().add(info);

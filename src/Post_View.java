@@ -1,5 +1,6 @@
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,9 +8,13 @@ import java.util.Collections;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import javax.swing.text.DefaultCaret;
 
 
 
@@ -18,6 +23,8 @@ public class Post_View extends JPanel {
 	private Post aPost;
 
 	private JPanel postPanel = new JPanel();
+	private JTextPane txtComment;
+	private JFrame frame1;
 	private JPanel groupallPanel = new JPanel();
 	private JPanel createpost = new JPanel();
 	private JButton Post1;
@@ -26,8 +33,8 @@ public class Post_View extends JPanel {
 	private JButton Comment;
 	private JButton Like;
 	private User activeUser;
-	private User anotherUser;
-	private Group agroup;
+	private User anotherUser=null;
+	private Group agroup=null;
 	
 	
 	public Post_View(User activeUser, User anotherUser){//Used for displaying posts on User_Timeline
@@ -194,8 +201,53 @@ public class Post_View extends JPanel {
 	{
 		public void actionPerformed(ActionEvent e)
 		{	
+			int i;
+			frame1 = new JFrame();
+			frame1.setVisible(true);
+			frame1.setBounds(12, 66, 662, 429);
+			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame1.getContentPane().setLayout(null);
 			
+			JLabel lblPost = new JLabel(aPost.getUser().getName()+ " : " +aPost.getPostText());
+			lblPost.setHorizontalAlignment(SwingConstants.CENTER);
+			lblPost.setFont(new Font("Arial", Font.PLAIN, 18));
+			lblPost.setBounds(12, 13, 620, 51);
+			frame1.getContentPane().add(lblPost);
+			
+			JPanel panel = new JPanel();
+			panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+			panel.setBounds(12, 72, 620, 192);
+			
+			if(aPost.getReplies().size()>=1){
+				panel.removeAll();
+				for(i=aPost.getReplies().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
+					panel.add(aPostView(aPost.getReplies().get(i-1)));
+				}
+			}
+			frame1.getContentPane().add(panel);
+			
+			txtComment = new JTextPane();
+			DefaultCaret caret = (DefaultCaret)txtComment.getCaret();
+			caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+			txtComment.setBounds(12, 277, 620, 58);
+			frame1.getContentPane().add(txtComment);
+
+			
+			JButton btnComment = new JButton("Comment");
+			btnComment.setFont(new Font("Arial", Font.PLAIN, 16));
+			btnComment.setBounds(246, 344, 152, 25);
+			btnComment.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(anotherUser==null){
+						Post temp =DataBase.createPost(activeUser, null, agroup, txtComment.getText());
+						aPost.getReplies().add(temp);
+						DataBase.save();
+					}
+				}
+			});
+			frame1.getContentPane().add(btnComment);
 		}
+		
 	}
 
 }
