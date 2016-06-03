@@ -10,8 +10,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import CreateUserScreen.CreationKitActionListener;
-
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
