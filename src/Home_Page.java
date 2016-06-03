@@ -5,6 +5,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -30,6 +31,7 @@ public class Home_Page {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Arial", Font.PLAIN, 18));
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 662, 429);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

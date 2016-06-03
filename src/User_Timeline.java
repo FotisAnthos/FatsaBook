@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -27,6 +28,7 @@ public class User_Timeline {
 	 */
 	private void initialize() {
 		frame = new JFrame(friend.getName() + " 's Timeline");
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 662, 429);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
