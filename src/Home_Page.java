@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -56,6 +57,7 @@ public class Home_Page extends JFrame{
 		friends.addActionListener(new friendsActionListener());
 		timeline.addActionListener(new timelineActionListener());
 		nextposts.addActionListener(new nextpostsActionListener());
+		this.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		
 //		 JComponent newContentPane = new Post_View(activeUser);
 //		 newContentPane.setOpaque(true); //content panes must be opaque

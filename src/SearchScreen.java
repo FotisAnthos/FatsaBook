@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -47,6 +48,7 @@ public class SearchScreen extends JFrame{
 		contentPane.add(groupsearch);
 
 		this.setContentPane(contentPane);
+		this.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 
 		this.setSize(getPreferredSize());
 		pack();

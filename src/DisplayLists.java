@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -29,6 +30,8 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	private User user;
 	private ArrayList<User> users;
 	private ArrayList<Group> groups;
+	
+	protected User_Timeline usertimeline;
 	
 	
 	public DisplayLists(User user,ArrayList<User> u,ArrayList<Group> g){
@@ -103,10 +106,10 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			int index = list.getSelectedIndex();
 			
 			if(groups==null && !user.equals(list.getSelectedValue())){
-				new User_Timeline(user,user.getFriends().get(index));
+				usertimeline = new User_Timeline(user,user.getFriends().get(index));
 			}
 			else if(groups==null && user.equals(list.getSelectedValue())){
-				new User_Timeline(user,user);
+				usertimeline = new User_Timeline(user,user);
 			}
 			else if(users==null)
 				new Group_Timeline(user.getGroups().get(index),user);
@@ -129,6 +132,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g) {
         //Create and set up the window.
         frame = new JFrame("List");
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         //Create and set up the content pane.

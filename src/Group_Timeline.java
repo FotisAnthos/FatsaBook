@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -32,6 +33,7 @@ public class Group_Timeline extends JFrame {
 		this.g=g;
 		
 		frame = new JFrame(g.getName() + " Timeline");
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         back = new JButton("Back");
@@ -84,8 +86,9 @@ public class Group_Timeline extends JFrame {
 	
 	class addgroupListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			if(!g.isMember(u))
-				g.addMember(u);
+			if(!g.isMember(u)){
+				g.addMember(u);	
+			}
 			
 			addgroup.setEnabled(false);
 			deletegroup.setEnabled(true);

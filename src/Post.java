@@ -1,15 +1,16 @@
+import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.*;
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Date;
 
-public class Post implements Comparable<Post> {
+public class Post implements Serializable {
 
 	private Date date;
 	private String postText;
 	private User user;//the creator
 	
 	private ArrayList<Integer> replies; //replies -> String(?) -> postID
-	private ArrayList<User> Likes; //likes -> String -> user.mail
+	private ArrayList<User> Likes = new ArrayList<User>(); //likes -> String -> user.mail
 	private static int No_ofPosts;
 	/**
 	 * the creator
@@ -27,7 +28,7 @@ public class Post implements Comparable<Post> {
 		this.postText = postText;
 		this.user = creator;
 		this.replies = null;
-		this.Likes = null;
+//		this.Likes = null;
 		No_ofPosts++;
 	}
 	

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -23,7 +24,8 @@ public class User_Timeline extends JFrame {
 	private JButton nextPosts;
 	public DisplayLists m_Display_Lists;
 	private User activeUser,friend;
-	private JFrame frame;
+	protected JFrame frame;
+	
 
 
 	public User_Timeline(User activeuser,User friend){
@@ -31,8 +33,9 @@ public class User_Timeline extends JFrame {
 		this.friend = friend;
 		this.activeUser=activeuser;
 		
-		 frame = new JFrame(friend.getName()+ "'s Timeline");
-	     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame = new JFrame(friend.getName()+ "'s Timeline");
+		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
+	    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        
 	        
 	     addfriend = new JButton("Add friend");
@@ -48,8 +51,7 @@ public class User_Timeline extends JFrame {
 	        	addfriend.setVisible(false);
 	        	deletefriend.setVisible(false);
 	        }
-	        
-		        	
+	          	
 	        addfriend.addActionListener(new AddFriendListener());
 	        deletefriend.addActionListener(new DeleteFriendListener());
 	        
@@ -92,6 +94,10 @@ public class User_Timeline extends JFrame {
 		frame.pack();
 		frame.setVisible(true);
 		
+	}
+	
+	public void repaintWindow() {
+	    this.frame.repaint();
 	}
 	
 	class AddFriendListener implements ActionListener{
