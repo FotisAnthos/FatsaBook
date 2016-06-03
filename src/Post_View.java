@@ -17,9 +17,9 @@ public class Post_View extends JPanel {
 	
 	private Post aPost;
 
-	private JPanel postPanel;
-	private JPanel groupallPanel;
-	private JPanel createpost;
+	private JPanel postPanel = new JPanel();
+	private JPanel groupallPanel = new JPanel();
+	private JPanel createpost = new JPanel();
 	private JButton Post1;
 	private JButton Post2;
 	private JTextField postfield;
@@ -50,12 +50,14 @@ public class Post_View extends JPanel {
 
 		createpost.add(postfield, BorderLayout.NORTH);
 		createpost.add(Post1, BorderLayout.CENTER);
-
-		if(anotherUser.getPersonalPosts().size()>=1){
-			for(i=anotherUser.getPersonalPosts().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
-				postPanel.add(aPostView(anotherUser.getPersonalPosts().get(i-1)));
-			}
-		}
+		
+		
+		postToBeDisplayedUser(activeUser,anotherUser);
+//		if(anotherUser.getPersonalPosts().size()>=1){
+//			for(i=anotherUser.getPersonalPosts().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
+//				postPanel.add(aPostView(anotherUser.getPersonalPosts().get(i-1)));
+//			}
+//		}
 		groupallPanel.add(createpost);
 		groupallPanel.add(postPanel);
 		add(groupallPanel);
@@ -68,7 +70,6 @@ public class Post_View extends JPanel {
 		this.agroup = agroup;	
 		int i;
 
-		postPanel = new JPanel();
 		postPanel.setLayout(new BoxLayout(postPanel,BoxLayout.Y_AXIS));
 
 		createpost = new JPanel();
@@ -99,7 +100,7 @@ public class Post_View extends JPanel {
 	public JPanel aPostView(Post aPost){
 		this.aPost = aPost;
 		JPanel apanel = new JPanel();
-		JLabel alabel = new JLabel(aPost.getPostText());
+		JLabel alabel = new JLabel(aPost.getUser().getName() + ": " +aPost.getPostText());
 
 		JButton likebutton = new JButton("Like!");
 		JButton commentbutton = new JButton("Comment");
@@ -126,18 +127,15 @@ public class Post_View extends JPanel {
 
 
 
-//	public int postToBeDisplayedUser(User activeUser,User anotherUser){
-//		int count;
-//		if(activeUser.isFriend(anotherUser)){
-//			Collections.sort(anotherUser.getPersonalPosts());
-//		}
-
-//		if(activeUser.isFriend(anotherUser)){									 
-//			Collections.sort(auser.getPersonalPosts()); //TODO check / Collections.sort refers to List not ArrayList
-//			return auser.getPersonalPosts().get(posts_displayed++);	
-//		}
-//		return null;
-//	}
+	public void postToBeDisplayedUser(User activeUser,User anotherUser){
+		int i;
+		if(anotherUser.getPersonalPosts().size()>=1){
+			postPanel.removeAll();
+			for(i=anotherUser.getPersonalPosts().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
+				postPanel.add(aPostView(anotherUser.getPersonalPosts().get(i-1)));
+			}
+		}
+	}
 
 
 //	public Post postToBeDisplayedGroup(Group agroup){ 
@@ -155,6 +153,11 @@ public class Post_View extends JPanel {
 		{	
 			DataBase.createPost(activeUser, anotherUser, null, postfield.getText());
 			postfield.setText("");
+			postToBeDisplayedUser(activeUser,anotherUser);
+			remove(groupallPanel);
+			add(groupallPanel);
+			repaint();
+			revalidate();
 			DataBase.save();
 		}
 	}

@@ -1,19 +1,22 @@
-import javax.swing.JFrame;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class User_Timeline {
 
 	private JFrame frame;
+	private JPanel panel;
 	JButton btnAddFriend;
 	JButton btnDeleteFriend;
+	JButton btnMorePosts;
 	private User activeuser,friend;
 
 
@@ -31,7 +34,7 @@ public class User_Timeline {
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 662, 429);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		btnAddFriend = new JButton("Add Friend");
@@ -59,17 +62,24 @@ public class User_Timeline {
 		JButton btnCommonFriends = new JButton("Common Friends");
 		btnCommonFriends.setBounds(445, 13, 173, 31);
 		btnCommonFriends.setFont(new Font("Arial", Font.PLAIN, 16));
-		frame.getContentPane().add(btnCommonFriends);
+		btnCommonFriends.addActionListener(new CommonFriendsListener());
+		if(!activeuser.equals(friend))
+			frame.getContentPane().add(btnCommonFriends);
 		
-		JButton btnMorePosts = new JButton("More Posts");
+		btnMorePosts = new JButton("More Posts");
 		btnMorePosts.setBounds(204, 333, 143, 25);
 		btnMorePosts.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnMorePosts.addActionListener(new NextPostsListener());
 		frame.getContentPane().add(btnMorePosts);
+		if(!activeuser.isFriend(friend))
+			btnMorePosts.setEnabled(false);
 		
-		JPanel panel = new Post_View(activeuser,friend);
-		panel.setBounds(12, 66, 620, 262);
-		frame.getContentPane().add(panel);
+		
+		panel = new Post_View(activeuser,friend);
+		panel.setBounds(12, 66, 601, 262);
+		if(activeuser.isFriend(friend) || activeuser.equals(friend))
+			frame.getContentPane().add(panel);
+		
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(535, 333, 97, 25);
@@ -80,8 +90,9 @@ public class User_Timeline {
 		JButton btnFriends = new JButton("Friends");
 		btnFriends.setBounds(314, 13, 119, 31);
 		btnFriends.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnFriends.addActionListener(new CommonFriendsListener());
+		btnFriends.addActionListener(new FriendsActionListener());
 		frame.getContentPane().add(btnFriends);
+		
 		
 		if(friend!=null){
 			frame.getContentPane().add(btnAddFriend);
@@ -95,6 +106,11 @@ public class User_Timeline {
 	        	btnAddFriend.setEnabled(false);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(true);
+	        	btnMorePosts.setEnabled(true);
+	        	frame.getContentPane().add(panel);
+	        	frame.repaint();
+	        	frame.revalidate();
+	        	
 		}
 			
 	}
@@ -105,6 +121,10 @@ public class User_Timeline {
 	        	btnAddFriend.setEnabled(true);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(false);
+	        	btnMorePosts.setEnabled(false);
+	        	frame.getContentPane().remove(panel);
+	        	frame.repaint();
+	        	frame.revalidate();
 		}
 			
 	}
@@ -118,22 +138,36 @@ public class User_Timeline {
 	
 	class CommonFriendsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			
+			ArrayList<User> common = new ArrayList<User>();
+			for(User myfriend: activeuser.getFriends()){
+				for(User hisfriend: friend.getFriends()){
+					if(myfriend.getName().equals(hisfriend.getName()) && myfriend.getMail().equals(hisfriend.getMail()))
+						common.add(myfriend);
+				}
+			}
+			if(common!=null)
+				DisplayLists.createAndShowGUI(activeuser, common, null);
 		}
 	}
 	
 	class NextPostsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			
+			frame.getContentPane().remove(panel);
+			JScrollPane scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			scrollpane.setBounds(12, 66, 601, 262);
+			frame.getContentPane().add(scrollpane);
+			btnMorePosts.setEnabled(false);
+        	frame.repaint();
+        	frame.revalidate();
 		}
 	}
 	
-	class groupsActionListener implements ActionListener
+	class FriendsActionListener implements ActionListener
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 //TODO
-			 new DisplayLists(activeuser, activeuser.getFriends(), activeuser.getGroups());
+			 DisplayLists.createAndShowGUI(activeuser, friend.getFriends(), null);
 		 	}
 		
 	}

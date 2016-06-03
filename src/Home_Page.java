@@ -29,7 +29,7 @@ public class Home_Page {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("My HomePage");
 		frame.getContentPane().setFont(new Font("Arial", Font.PLAIN, 18));
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		frame.setVisible(true);
@@ -86,7 +86,7 @@ public class Home_Page {
 		group.add(rdbtnGroupSearch);
 		
 		JButton search = new JButton("Search");
-		search.addActionListener(new friendsActionListener());
+		search.addActionListener(new SearchActionListener());
 		search.setFont(new Font("Arial", Font.PLAIN, 16));
 		search.setBounds(487, 141, 116, 42);
 		frame.getContentPane().add(search);
