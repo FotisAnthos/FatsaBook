@@ -208,6 +208,8 @@ public class User_Timeline extends JFrame {
 		int i;
 		for(i=0; i<numberOfPosts; i++){
 		postsPanel.add(UserTimelineView_Post.display(friend, null));
+		postsPanel.repaint();
+		postsPanel.revalidate();
 		}
 	}
 
