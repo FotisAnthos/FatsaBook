@@ -1,121 +1,108 @@
+import javax.swing.JFrame;
+import javax.swing.JButton;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
+import java.awt.Font;
 
-public class User_Timeline extends JFrame {
+public class User_Timeline {
 
-
-	private JButton back;
-	private  JButton addfriend;
-	private  JButton deletefriend;
-	private JButton common_Friends;
-	private JButton nextPosts;
-	public DisplayLists m_Display_Lists;
-	private User activeUser,friend;
-	protected JFrame frame;
-	
+	private JFrame frame;
+	JButton btnAddFriend;
+	JButton btnDeleteFriend;
+	private User activeuser,friend;
 
 
-	public User_Timeline(User activeuser,User friend){
-		
+	public User_Timeline(User activeuser,User friend) {
+		this.activeuser = activeuser;
 		this.friend = friend;
-		this.activeUser=activeuser;
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame(friend.getName() + " 's Timeline");
+		frame.setVisible(true);
+		frame.setBounds(100, 100, 662, 429);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
-		frame = new JFrame(friend.getName()+ "'s Timeline");
-		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
-	    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	        
-	        
-	     addfriend = new JButton("Add friend");
-	     deletefriend = new JButton("Delete friend");
-	        
-	        if(!activeuser.equals(friend)){
-	        	if(activeuser.isFriend(friend))
-		        	addfriend.setEnabled(false);
-		        else if(!activeuser.isFriend(friend))
-		        	deletefriend.setEnabled(false);
-	        }
-	        else{
-	        	addfriend.setVisible(false);
-	        	deletefriend.setVisible(false);
-	        }
-	          	
-	        addfriend.addActionListener(new AddFriendListener());
-	        deletefriend.addActionListener(new DeleteFriendListener());
-	        
-	        common_Friends = new JButton("See friends");
-	        common_Friends.addActionListener(new CommonFriendsListener());
-	        nextPosts = new JButton("See more posts");
-	        nextPosts.addActionListener(new NextPostsListener());
-	        back = new JButton("Back");
-	        back.addActionListener(new BackListener());
-	        
-	 
-	        JPanel newContentPane = new Post_View(activeUser,friend);
-	        newContentPane.setOpaque(true); //content panes must be opaque
-	        frame.setContentPane(newContentPane);
+		btnAddFriend = new JButton("Add Friend");
+		btnAddFriend.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnAddFriend.setBounds(24, 13, 119, 31);
 		
-		JPanel rightPane = new JPanel();
-		rightPane.setLayout(new BoxLayout(rightPane,
-                BoxLayout.Y_AXIS));
-		rightPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-		rightPane.add(new JSeparator(SwingConstants.VERTICAL));
-		rightPane.add(Box.createVerticalStrut(5));
+		btnDeleteFriend = new JButton("Delete Friend");
+		btnDeleteFriend.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnDeleteFriend.setBounds(156, 13, 137, 31);
+
 		
+		if(!activeuser.equals(friend)){
+        	if(activeuser.isFriend(friend))
+        		btnAddFriend.setEnabled(false);
+	        else if(!activeuser.isFriend(friend))
+	        	btnDeleteFriend.setEnabled(false);
+        }
+        else{
+        	btnAddFriend.setVisible(false);
+        	btnDeleteFriend.setVisible(false);
+        }
+		btnAddFriend.addActionListener(new AddFriendListener());
+		btnDeleteFriend.addActionListener(new DeleteFriendListener());
+		
+		JButton btnCommonFriends = new JButton("Common Friends");
+		btnCommonFriends.setBounds(445, 13, 173, 31);
+		btnCommonFriends.setFont(new Font("Arial", Font.PLAIN, 16));
+		frame.getContentPane().add(btnCommonFriends);
+		
+		JButton btnMorePosts = new JButton("More Posts");
+		btnMorePosts.setBounds(204, 333, 143, 25);
+		btnMorePosts.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnMorePosts.addActionListener(new NextPostsListener());
+		frame.getContentPane().add(btnMorePosts);
+		
+		JPanel panel = new Post_View(activeuser,friend);
+		panel.setBounds(12, 66, 620, 262);
+		frame.getContentPane().add(panel);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(535, 333, 97, 25);
+		btnBack.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnBack.addActionListener(new BackListener());
+		frame.getContentPane().add(btnBack);
+		
+		JButton btnFriends = new JButton("Friends");
+		btnFriends.setBounds(314, 13, 119, 31);
+		btnFriends.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnFriends.addActionListener(new CommonFriendsListener());
+		frame.getContentPane().add(btnFriends);
 		
 		if(friend!=null){
-			rightPane.add(addfriend);
-			rightPane.add(Box.createRigidArea(new Dimension(0,20)));
-			rightPane.add(deletefriend);
-			rightPane.add(Box.createRigidArea(new Dimension(0,20)));
+			frame.getContentPane().add(btnAddFriend);
+			frame.getContentPane().add(btnDeleteFriend);
 		}
-			
-		rightPane.add(common_Friends);
-		rightPane.add(Box.createRigidArea(new Dimension(0,20)));
-		rightPane.add(nextPosts);
-		rightPane.add(Box.createRigidArea(new Dimension(0,20)));
-		rightPane.add(back);
-		
-		frame.add(rightPane, BorderLayout.EAST);
-		
-		
-		frame.pack();
-		frame.setVisible(true);
-		
-	}
-	
-	public void repaintWindow() {
-	    this.frame.repaint();
 	}
 	
 	class AddFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	activeUser.addFriend(friend);
-	        	addfriend.setEnabled(false);
+	        	activeuser.addFriend(friend);
+	        	btnAddFriend.setEnabled(false);
 	        	DataBase.save();
-	        	deletefriend.setEnabled(true);
+	        	btnDeleteFriend.setEnabled(true);
 		}
 			
 	}
 	
 	class DeleteFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	activeUser.removeFriend(friend);
-	        	addfriend.setEnabled(true);
+	        	activeuser.removeFriend(friend);
+	        	btnAddFriend.setEnabled(true);
 	        	DataBase.save();
-	        	deletefriend.setEnabled(false);
+	        	btnDeleteFriend.setEnabled(false);
 		}
 			
 	}
@@ -139,24 +126,13 @@ public class User_Timeline extends JFrame {
 		}
 	}
 	
-	class SearchActionListener implements ActionListener
-	{
-		 public void actionPerformed(ActionEvent e)
-		 	{
-			 	new SearchScreen(activeUser);
-		 	}
-		
-	}
 	class groupsActionListener implements ActionListener
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 //TODO
-			 new DisplayLists(activeUser, activeUser.getFriends(), activeUser.getGroups());
+			 new DisplayLists(activeuser, activeuser.getFriends(), activeuser.getGroups());
 		 	}
 		
 	}
-
-
 }
-
