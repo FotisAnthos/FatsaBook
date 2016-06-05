@@ -99,7 +99,7 @@ public class Home_Page {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists.createAndShowGUI(activeuser,null ,activeuser.getGroups() );
+			 DisplayLists.createAndShowGUI(activeuser,null ,activeuser.getGroups(),null );
 			 frame.dispose();
 		 	}
 		
@@ -108,7 +108,7 @@ public class Home_Page {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists.createAndShowGUI(activeuser,activeuser.getFriends() ,null );
+			 DisplayLists.createAndShowGUI(activeuser,activeuser.getFriends() ,null ,null);
 			 frame.dispose();
 		 	}
 		
@@ -131,6 +131,7 @@ public class Home_Page {
 				User anotherUser = DataBase.findUser(searchfield.getText());
 				if(anotherUser != null){
 					new User_Timeline(activeuser, anotherUser);
+					frame.dispose();
 				}
 				else JOptionPane.showMessageDialog(null, "User could not be found, try another mail","Warning", JOptionPane.PLAIN_MESSAGE);
 			}
@@ -138,6 +139,7 @@ public class Home_Page {
 				Group agroup = DataBase.getGroupInstance(searchfield.getText());
 				if(agroup != null){
 					new Group_Timeline(agroup, activeuser);
+					frame.dispose();
 				}
 				else JOptionPane.showMessageDialog(null, "Group could not be found, try another group name", "Warning", JOptionPane.PLAIN_MESSAGE);
 			}
