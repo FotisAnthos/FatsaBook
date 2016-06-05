@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -49,21 +50,11 @@ public class Post_View extends JPanel {
 
 		postPanel.setLayout(new BoxLayout(postPanel,BoxLayout.Y_AXIS));
 
-		createpost = new JPanel();
+
 		groupallPanel = new JPanel();
 		groupallPanel.setLayout(new BoxLayout(groupallPanel,BoxLayout.Y_AXIS));
-		
-		Post1 = new JButton("Post");
-		postfield = new JTextField(20);
-		Post1.addActionListener(new PostListener1());
-
-
-		createpost.add(postfield, BorderLayout.NORTH);
-		createpost.add(Post1, BorderLayout.CENTER);
-		
-		
+			
 		postToBeDisplayedUser(anotherUser);
-		groupallPanel.add(createpost);
 		groupallPanel.add(postPanel);
 		add(groupallPanel);
 	}
@@ -76,19 +67,10 @@ public class Post_View extends JPanel {
 
 		postPanel.setLayout(new BoxLayout(postPanel,BoxLayout.Y_AXIS));
 
-		createpost = new JPanel();
 		groupallPanel = new JPanel();
 		groupallPanel.setLayout(new BoxLayout(groupallPanel,BoxLayout.Y_AXIS));
-		
-		Post1 = new JButton("Post");
-		postfield = new JTextField(20);
-		Post1.addActionListener(new PostListener2());
-
-		createpost.add(postfield, BorderLayout.NORTH);
-		createpost.add(Post1, BorderLayout.CENTER);
 
 		postToBeDisplayedGroup(agroup);
-		groupallPanel.add(createpost);
 		groupallPanel.add(postPanel);
 		add(groupallPanel);
 	}
@@ -98,19 +80,10 @@ public class Post_View extends JPanel {
 		
 		postPanel.setLayout(new BoxLayout(postPanel,BoxLayout.Y_AXIS));
 
-		createpost = new JPanel();
 		groupallPanel = new JPanel();
 		groupallPanel.setLayout(new BoxLayout(groupallPanel,BoxLayout.Y_AXIS));
-		
-		Post1 = new JButton("Post");
-		postfield = new JTextField(20);
-		Post1.addActionListener(new PostListener3());
-
-		createpost.add(postfield, BorderLayout.NORTH);
-		createpost.add(Post1, BorderLayout.CENTER);
 
 		postToBeDisplayedHomePage();
-		groupallPanel.add(createpost);
 		groupallPanel.add(postPanel);
 		add(groupallPanel);
 		
@@ -210,6 +183,7 @@ public class Post_View extends JPanel {
 	
 	public void postToBeDisplayedHomePage(){
 		List<Post> all = new ArrayList<Post>();
+		all.removeAll(all);
 		for(int i=0;i<activeUser.getGroups().size();i++){
 			for(Post post: activeUser.getGroups().get(i).getGroupPosts()){
 				all.add(post);
@@ -231,39 +205,6 @@ public class Post_View extends JPanel {
 		}
 	}
 
-
-	class PostListener1 implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{	
-			DataBase.createPost(activeUser, anotherUser, null, postfield.getText());
-			postfield.setText("");
-			postToBeDisplayedUser(anotherUser);
-			repaint();
-			DataBase.save();
-		}
-	}
-	
-	class PostListener2 implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{	
-			DataBase.createPost(activeUser, null, agroup, postfield.getText());
-			postfield.setText("");
-			postToBeDisplayedGroup(agroup);
-			repaint();
-			DataBase.save();
-		}
-	}
-	
-	class PostListener3 implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{	
-			DataBase.createPost(activeUser, anotherUser, null, postfield.getText());
-//			DataBase.save();
-		}
-	}
 	
 	class likeButtonListener implements ActionListener
 	{
@@ -273,6 +214,7 @@ public class Post_View extends JPanel {
 			DataBase.save();
 		}
 	}
+	
 	
 	class commentButtonListener implements ActionListener
 	{
@@ -305,12 +247,6 @@ public class Post_View extends JPanel {
 				}
 			}
 			frame1.getContentPane().add(scrollpane);
-			
-			txtComment = new JTextPane();
-			DefaultCaret caret = (DefaultCaret)txtComment.getCaret();
-			caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-			txtComment.setBounds(12, 277, 620, 58);
-			frame1.getContentPane().add(txtComment);
 
 			
 			JButton btnComment = new JButton("Comment");
@@ -318,10 +254,8 @@ public class Post_View extends JPanel {
 			btnComment.setBounds(246, 344, 152, 25);
 			btnComment.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-						Post temp =DataBase.createPost(activeUser, null, null, txtComment.getText());
-						aPost.getReplies().add(temp);
-						DataBase.save();
-						frame1.repaint();
+						frame1.dispose();
+						DataBase.createPostFrame(activeUser, null, null, aPost);
 				}
 			});
 			frame1.getContentPane().add(btnComment);

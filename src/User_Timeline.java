@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -21,6 +22,7 @@ public class User_Timeline {
 	JButton btnMorePosts;
 	JScrollPane scrollpane;
 	private User activeUser,friend;
+	private JButton btnPostNewPost;
 
 
 	public User_Timeline(User activeuser,User friend) {
@@ -53,14 +55,14 @@ public class User_Timeline {
 		}
 		else
 			isFriendsButton.setEnabled(false);
-		
+		frame.getContentPane().add(isFriendsButton);
 
 		
 		JButton btnCommonFriends = new JButton("Friends In Common");
 		btnCommonFriends.setBounds(428, 13, 173, 31);
 		btnCommonFriends.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnCommonFriends.addActionListener(new CommonFriendsListener());
-		if(!activeUser.equals(friend))
+//		if(!activeUser.equals(friend))
 			frame.getContentPane().add(btnCommonFriends);
 		
 
@@ -68,13 +70,13 @@ public class User_Timeline {
 		scrollpane.setAutoscrolls(true);
 		scrollpane.setBounds(12, 66, 601, 262);
 		scrollpane.setBorder(null);
-		if(activeUser.isFriend(friend) || activeUser.equals(friend))
+//		if(activeUser.isFriend(friend) || activeUser.equals(friend))
 			frame.getContentPane().add(scrollpane);
 
 		
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(535, 333, 97, 25);
+		btnBack.setBounds(535, 336, 97, 33);
 		btnBack.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnBack.addActionListener(new BackListener());
 		frame.getContentPane().add(btnBack);
@@ -84,6 +86,12 @@ public class User_Timeline {
 		btnFriends.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnFriends.addActionListener(new FriendsActionListener());
 		frame.getContentPane().add(btnFriends);
+		
+		btnPostNewPost = new JButton("Post New Post");
+		btnPostNewPost.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnPostNewPost.setBounds(178, 336, 149, 33);
+		btnPostNewPost.addActionListener(new PostListener());
+		frame.getContentPane().add(btnPostNewPost);
 	}
 	
 	class isFriendsButtonActionListener implements ActionListener{
@@ -167,4 +175,15 @@ public class User_Timeline {
 		 	}
 		
 	}
+	
+	class PostListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{	
+			DataBase.createPostFrame(activeUser,friend,null,null);
+			frame.dispose();
+		}
+	}
+	
+	
 }

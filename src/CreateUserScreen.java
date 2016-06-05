@@ -27,7 +27,7 @@ public class CreateUserScreen {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Create a new User");
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 662, 429);
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
