@@ -15,15 +15,16 @@ public class User_Timeline {
 
 	private JFrame frame;
 	private Post_View panel;
+	private JButton isFriendsButton;
 	JButton btnAddFriend;
 	JButton btnDeleteFriend;
 	JButton btnMorePosts;
 	JScrollPane scrollpane;
-	private User activeuser,friend;
+	private User activeUser,friend;
 
 
 	public User_Timeline(User activeuser,User friend) {
-		this.activeuser = activeuser;
+		this.activeUser = activeuser;
 		this.friend = friend;
 		initialize();
 	}
@@ -39,41 +40,35 @@ public class User_Timeline {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		btnAddFriend = new JButton("Add Friend");
-		btnAddFriend.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnAddFriend.setBounds(24, 13, 119, 31);
+		isFriendsButton = new JButton();
+		isFriendsButton.setBounds(34, 13, 149, 31);
+		isFriendsButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		if(!activeUser.equals(friend)){
+			if(activeUser.isFriend(friend))
+				isFriendsButton.setText("Delete Friend");
+			else 
+				isFriendsButton.setText("Add Friend");
+			isFriendsButton.addActionListener(new isFriendsButtonActionListener());	
+			frame.getContentPane().add(isFriendsButton);
+		}
+		else
+			isFriendsButton.setEnabled(false);
 		
-		btnDeleteFriend = new JButton("Delete Friend");
-		btnDeleteFriend.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnDeleteFriend.setBounds(156, 13, 137, 31);
 
 		
-		if(!activeuser.equals(friend)){
-        	if(activeuser.isFriend(friend))
-        		btnAddFriend.setEnabled(false);
-	        else if(!activeuser.isFriend(friend))
-	        	btnDeleteFriend.setEnabled(false);
-        }
-        else{
-        	btnAddFriend.setVisible(false);
-        	btnDeleteFriend.setVisible(false);
-        }
-		btnAddFriend.addActionListener(new AddFriendListener());
-		btnDeleteFriend.addActionListener(new DeleteFriendListener());
-		
 		JButton btnCommonFriends = new JButton("Friends In Common");
-		btnCommonFriends.setBounds(445, 13, 173, 31);
+		btnCommonFriends.setBounds(428, 13, 173, 31);
 		btnCommonFriends.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnCommonFriends.addActionListener(new CommonFriendsListener());
-		if(!activeuser.equals(friend))
+		if(!activeUser.equals(friend))
 			frame.getContentPane().add(btnCommonFriends);
 		
 
-		scrollpane = new JScrollPane(new Post_View(activeuser,friend),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollpane = new JScrollPane(new Post_View(activeUser,friend),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollpane.setAutoscrolls(true);
 		scrollpane.setBounds(12, 66, 601, 262);
 		scrollpane.setBorder(null);
-		if(activeuser.isFriend(friend) || activeuser.equals(friend))
+		if(activeUser.isFriend(friend) || activeUser.equals(friend))
 			frame.getContentPane().add(scrollpane);
 
 		
@@ -85,25 +80,41 @@ public class User_Timeline {
 		frame.getContentPane().add(btnBack);
 		
 		JButton btnFriends = new JButton("Friends");
-		btnFriends.setBounds(314, 13, 119, 31);
+		btnFriends.setBounds(244, 13, 119, 31);
 		btnFriends.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnFriends.addActionListener(new FriendsActionListener());
 		frame.getContentPane().add(btnFriends);
-		
-		
-		if(friend!=null){
-			frame.getContentPane().add(btnAddFriend);
-			frame.getContentPane().add(btnDeleteFriend);
+	}
+	
+	class isFriendsButtonActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			if(isFriendsButton.getText().equals("Add Friend")){
+				activeUser.addFriend(friend);
+				DataBase.save();
+				isFriendsButton.setText("Delete Friend");
+				panel =new Post_View(activeUser,friend);
+	        	frame.getContentPane().add(scrollpane);
+	        	frame.repaint();
+	        	frame.revalidate();
+			}
+			else if(isFriendsButton.getText().equals("Delete Friend")){
+				activeUser.removeFriend(friend);
+				DataBase.save();
+				isFriendsButton.setText("Add Friend");
+				frame.getContentPane().remove(scrollpane);
+	        	frame.getContentPane().revalidate();
+	        	frame.getContentPane().repaint();
+			}
 		}
 	}
 	
 	class AddFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	activeuser.addFriend(friend);
+	        	activeUser.addFriend(friend);
 	        	btnAddFriend.setEnabled(false);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(true);
-	        	panel =new Post_View(activeuser,friend);
+	        	panel =new Post_View(activeUser,friend);
 	        	frame.getContentPane().add(scrollpane);
 	        	frame.repaint();
 	        	frame.revalidate();
@@ -114,7 +125,7 @@ public class User_Timeline {
 	
 	class DeleteFriendListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-	        	activeuser.removeFriend(friend);
+	        	activeUser.removeFriend(friend);
 	        	btnAddFriend.setEnabled(true);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(false);
@@ -127,8 +138,8 @@ public class User_Timeline {
 	
 	class BackListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			frame.setVisible(false);
-			new Home_Page(activeuser);
+			frame.dispose();
+			new Home_Page(activeUser);
 		}
 			
 	}
@@ -136,14 +147,14 @@ public class User_Timeline {
 	class CommonFriendsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			ArrayList<User> common = new ArrayList<User>();
-			for(User myfriend: activeuser.getFriends()){
+			for(User myfriend: activeUser.getFriends()){
 				for(User hisfriend: friend.getFriends()){
 					if(myfriend.getName().equals(hisfriend.getName()) && myfriend.getMail().equals(hisfriend.getMail()))
 						common.add(myfriend);
 				}
 			}
 			if(common!=null)
-				DisplayLists.createAndShowGUI(activeuser, common, null);
+				DisplayLists.createAndShowGUI(activeUser, common, null,frame);
 		}
 	}
 	
@@ -152,7 +163,7 @@ public class User_Timeline {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 //TODO
-			 DisplayLists.createAndShowGUI(activeuser, friend.getFriends(), null);
+			 DisplayLists.createAndShowGUI(activeUser, friend.getFriends(), null,frame);
 		 	}
 		
 	}

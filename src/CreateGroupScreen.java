@@ -16,13 +16,15 @@ import javax.swing.text.DefaultCaret;
 public class CreateGroupScreen {
 
 	private JFrame frame;
+	private User user;
 	private JTextField name;
 	private ButtonGroup buttongroup;
 	JRadioButton opengroup;
 	JRadioButton privategroup;
 	JTextPane info;
 
-	public CreateGroupScreen() {
+	public CreateGroupScreen(User user) {
+		this.user = user;
 		initialize();
 	}
 
@@ -85,6 +87,17 @@ public class CreateGroupScreen {
 		create.setBounds(209, 317, 146, 52);
 		create.addActionListener(new GECKActionListener());
 		frame.getContentPane().add(create);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new Home_Page(user);
+			}
+		});
+		btnBack.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnBack.setBounds(529, 334, 103, 35);
+		frame.getContentPane().add(btnBack);
 	}
 	
 	class GECKActionListener implements ActionListener {
@@ -99,7 +112,8 @@ public class CreateGroupScreen {
 						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
 					else{
 			        	DataBase.save();
-			        	frame.setVisible(false);
+			        	frame.dispose();
+			        	new Home_Page(user);
 					}
 
 				}
@@ -108,7 +122,8 @@ public class CreateGroupScreen {
 						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
 					else{
 			        	DataBase.save();
-			        	frame.setVisible(false);
+			        	frame.dispose();
+			        	new Home_Page(user);
 					}
 				}
 			}
