@@ -124,6 +124,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	class BackListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			frame.setVisible(false);
+			new Home_Page(user);
 		}
 			
 	}

@@ -28,6 +28,7 @@ public final class DataBase {
 		}
 		return null;		
 	}
+	
 
 	public static boolean createUser(String name, String mail, char[] password) {
 		if(!isUser(mail)){
@@ -230,13 +231,15 @@ public final class DataBase {
 		if(anotherUser!=null || agroup!=null){
 			if(anotherUser!=null){
 				anotherUser.addPost(apost);
+				apost.setOwner(anotherUser);
 			}
 			else if(agroup!=null ){
 				agroup.addPost(apost);
+				apost.setGroup(agroup);
 			}
 			return apost;
 		}
-		return null;
+		return apost;
 	}
 
 

@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -10,7 +11,7 @@ public class User implements Serializable{
 	private ArrayList<User> friends = new ArrayList<User>();
 	private ArrayList<Group> groups = new ArrayList<Group>();
 	
-	private ArrayList<Post> personalPosts = new ArrayList<Post>();
+	private List<Post> personalPosts = new ArrayList<Post>();
 
 	
 	
@@ -37,6 +38,7 @@ public class User implements Serializable{
 		}
 		return(Arrays.equals(password, this.password));
 	}
+	
 	
 	public boolean isFriend(User other) {
 		for(User friend : friends) {
@@ -189,7 +191,7 @@ public class User implements Serializable{
 	}
 	
 
-	public ArrayList<Post> getPersonalPosts() {
+	public List<Post> getPersonalPosts() {
 		return personalPosts;
 	}
 

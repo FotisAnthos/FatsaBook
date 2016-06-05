@@ -16,6 +16,7 @@ public class Post implements Serializable {
 	 * the creator
 	 */
 	private User owner;
+	private Group group;
 	private int post_id;
 
 	
@@ -133,6 +134,22 @@ public class Post implements Serializable {
 	
 	public ArrayList<Post> getReplies(){
 		return replies;
+	}
+	
+	public void setOwner(User u){
+		this.owner = u;
+	}
+	
+	public User getOwner(){
+		return owner;
+	}
+	
+	public void setGroup(Group g){
+		this.group = g;
+	}
+	
+	public Group getGroup(){
+		return group;
 	}
 
 

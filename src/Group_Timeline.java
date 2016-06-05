@@ -51,11 +51,11 @@ public class Group_Timeline {
         addgroup.addActionListener(new addgroupListener());
         deletegroup.addActionListener(new deletegroupListener());
 
-		btnMorePosts = new JButton("More Posts");
-		btnMorePosts.setBounds(204, 333, 143, 25);
-		btnMorePosts.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnMorePosts.addActionListener(new NextPostsListener());
-		frame.getContentPane().add(btnMorePosts);
+//		btnMorePosts = new JButton("More Posts");
+//		btnMorePosts.setBounds(204, 333, 143, 25);
+//		btnMorePosts.setFont(new Font("Arial", Font.PLAIN, 16));
+//		btnMorePosts.addActionListener(new NextPostsListener());
+//		frame.getContentPane().add(btnMorePosts);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(535, 333, 97, 25);
@@ -70,15 +70,19 @@ public class Group_Timeline {
 		frame.getContentPane().add(Members_List);
 		
 		panel = new Post_View(u,g);
-		panel.setBounds(12, 66, 620, 262);
+//		panel.setBounds(12, 66, 620, 262);
+		scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollpane.setBounds(12, 66, 620, 262);
+		scrollpane.setBorder(null);
 		
 		  if(g.isMember(u)){
 	        	addgroup.setEnabled(false);
-	        	frame.getContentPane().add(panel);
+	        	frame.getContentPane().add(scrollpane);
+//	        	frame.getContentPane().add(panel);
 	        }
 	        else{
 	        	deletegroup.setEnabled(false);
-	        	btnMorePosts.setEnabled(false);
+//	        	btnMorePosts.setEnabled(false);
 	        }
 		
 	}
@@ -88,11 +92,11 @@ public class Group_Timeline {
 			g.addMember(u);			
 			addgroup.setEnabled(false);
 			deletegroup.setEnabled(true);
-			btnMorePosts.setEnabled(true);
+//			btnMorePosts.setEnabled(true);
 	        DataBase.save();
 	        panel = new Post_View(u,g);
-			panel.setBounds(12, 59, 620, 261);
-			frame.getContentPane().add(panel);
+//			panel.setBounds(12, 59, 620, 261);
+			frame.getContentPane().add(scrollpane);
 			frame.repaint();
 			frame.revalidate();
 	        
@@ -107,35 +111,36 @@ public class Group_Timeline {
 				deletegroup.setEnabled(false);
 	        	DataBase.save();
 	        	
-	        	if(btnMorePosts.isEnabled())
-	        		frame.getContentPane().remove(panel);
-	        	else{
+//	        	if(btnMorePosts.isEnabled())
+//	        		frame.getContentPane().remove(panel);
+//	        	else{
 	        		frame.getContentPane().remove(scrollpane);
-	        	}
+//	        	}
 	        		
-	        	btnMorePosts.setEnabled(false);
+//	        	btnMorePosts.setEnabled(false);
 	        	frame.getContentPane().revalidate();
 	        	frame.getContentPane().repaint();
 		}
 			
 	}
 	
-	class NextPostsListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			frame.getContentPane().remove(panel);
-			scrollpane = new JScrollPane(panel);
-			scrollpane.setBounds(12, 66, 601, 262);
-			scrollpane.setBorder(null);
-			frame.getContentPane().add(scrollpane);
-			btnMorePosts.setEnabled(false);
-        	frame.getContentPane().repaint();
-        	frame.getContentPane().revalidate();
-		}
-	}
+//	class NextPostsListener implements ActionListener{
+//		public void actionPerformed(ActionEvent e){
+//			frame.getContentPane().remove(panel);
+//			scrollpane = new JScrollPane(panel);
+//			scrollpane.setBounds(12, 66, 601, 262);
+//			scrollpane.setBorder(null);
+//			frame.getContentPane().add(scrollpane);
+//			btnMorePosts.setEnabled(false);
+//        	frame.getContentPane().repaint();
+//        	frame.getContentPane().revalidate();
+//		}
+//	}
 	
 	class BackListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			frame.setVisible(false);
+			frame.dispose();
+			new Home_Page(u);
 		}
 			
 	}

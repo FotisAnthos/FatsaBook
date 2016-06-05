@@ -2,8 +2,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +20,7 @@ import java.awt.event.ActionEvent;
 public class Home_Page {
 
 	private JFrame frame;
+	private JScrollPane scrollpane;
 	private JRadioButton rdbtnUsersSearch;
 	private JRadioButton rdbtnGroupSearch;
 	private User activeuser;
@@ -55,15 +59,14 @@ public class Home_Page {
 		btnTimeline.setBounds(317, 34, 120, 42);
 		frame.getContentPane().add(btnTimeline);
 		
-		JButton btnMorePosts = new JButton("More Posts");
-		btnMorePosts.addActionListener(new nextpostsActionListener());
-		btnMorePosts.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnMorePosts.setBounds(141, 335, 128, 34);
-		frame.getContentPane().add(btnMorePosts);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(12, 107, 425, 211);
-		frame.getContentPane().add(panel_1);
+//		JPanel panel_1 = new JPanel();
+//		panel_1.setBounds(12, 107, 425, 262);
+//		frame.getContentPane().add(panel_1);
+		scrollpane = new JScrollPane(new Post_View(activeuser),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollpane.setAutoscrolls(true);
+		scrollpane.setBounds(12, 107, 425, 262);
+		scrollpane.setBorder(null);
+		frame.getContentPane().add(scrollpane);
 		
 		searchfield = new JTextField();
 		searchfield.setBounds(467, 34, 165, 42);
@@ -97,6 +100,7 @@ public class Home_Page {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 DisplayLists.createAndShowGUI(activeuser,null ,activeuser.getGroups() );
+			 frame.dispose();
 		 	}
 		
 	}
@@ -105,6 +109,7 @@ public class Home_Page {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 DisplayLists.createAndShowGUI(activeuser,activeuser.getFriends() ,null );
+			 frame.dispose();
 		 	}
 		
 	}
@@ -113,16 +118,9 @@ public class Home_Page {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 new User_Timeline(activeuser, activeuser);// Because the activeUser wants to go to his Timeline
+			 frame.dispose();
 		 	}
 		
-	}
-	class nextpostsActionListener implements ActionListener
-	{
-		 public void actionPerformed(ActionEvent e)
-		 	{
-			 	//TODO
-
-		 	}	
 	}
 	
 	class SearchActionListener implements ActionListener

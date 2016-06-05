@@ -14,7 +14,7 @@ import javax.swing.ScrollPaneConstants;
 public class User_Timeline {
 
 	private JFrame frame;
-	private JPanel panel;
+	private Post_View panel;
 	JButton btnAddFriend;
 	JButton btnDeleteFriend;
 	JButton btnMorePosts;
@@ -68,18 +68,14 @@ public class User_Timeline {
 		if(!activeuser.equals(friend))
 			frame.getContentPane().add(btnCommonFriends);
 		
-		btnMorePosts = new JButton("More Posts");
-		btnMorePosts.setBounds(204, 333, 143, 25);
-		btnMorePosts.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnMorePosts.addActionListener(new NextPostsListener());
-		frame.getContentPane().add(btnMorePosts);
-		if(!activeuser.isFriend(friend))
-			btnMorePosts.setEnabled(false);
-		
-		panel =new Post_View(activeuser,friend);
-		panel.setBounds(12, 66, 601, 262);
+
+		scrollpane = new JScrollPane(new Post_View(activeuser,friend),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollpane.setAutoscrolls(true);
+		scrollpane.setBounds(12, 66, 601, 262);
+		scrollpane.setBorder(null);
 		if(activeuser.isFriend(friend) || activeuser.equals(friend))
-			frame.getContentPane().add(panel);
+			frame.getContentPane().add(scrollpane);
+
 		
 		
 		JButton btnBack = new JButton("Back");
@@ -107,10 +103,8 @@ public class User_Timeline {
 	        	btnAddFriend.setEnabled(false);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(true);
-	        	btnMorePosts.setEnabled(true);
 	        	panel =new Post_View(activeuser,friend);
-	    		panel.setBounds(12, 66, 601, 262);
-	        	frame.getContentPane().add(panel);
+	        	frame.getContentPane().add(scrollpane);
 	        	frame.repaint();
 	        	frame.revalidate();
 	        	
@@ -124,13 +118,7 @@ public class User_Timeline {
 	        	btnAddFriend.setEnabled(true);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(false);
-	        	if(btnMorePosts.isEnabled())
-	        		frame.getContentPane().remove(panel);
-	        	else{
-	        		frame.getContentPane().remove(scrollpane);
-	        	}
-	        		
-	        	btnMorePosts.setEnabled(false);
+	        	frame.getContentPane().remove(scrollpane);
 	        	frame.getContentPane().revalidate();
 	        	frame.getContentPane().repaint();
 		}
@@ -140,6 +128,7 @@ public class User_Timeline {
 	class BackListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			frame.setVisible(false);
+			new Home_Page(activeuser);
 		}
 			
 	}
@@ -155,19 +144,6 @@ public class User_Timeline {
 			}
 			if(common!=null)
 				DisplayLists.createAndShowGUI(activeuser, common, null);
-		}
-	}
-	
-	class NextPostsListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			frame.getContentPane().remove(panel);
-			scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			scrollpane.setBounds(12, 66, 601, 262);
-			scrollpane.setBorder(null);
-			frame.getContentPane().add(scrollpane);
-			btnMorePosts.setEnabled(false);
-        	frame.getContentPane().repaint();
-        	frame.getContentPane().revalidate();
 		}
 	}
 	
