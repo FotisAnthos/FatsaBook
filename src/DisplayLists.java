@@ -22,11 +22,9 @@ import javax.swing.event.ListSelectionListener;
 
 public class DisplayLists extends JPanel implements ListSelectionListener {
 	private JList list;
-	private static JFrame previousframe=null;
 	private DefaultListModel listmodel;
 	private static JFrame frame;
 	private JButton timelinebutton;
-	private JButton backtohome;
 	private JButton back;
 	private JButton createGroupButton;
 	private User user;
@@ -57,10 +55,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 	timelinebutton = new JButton("Go to Timeline");
 	 	timelinebutton.addActionListener(new TimelineListener());
 	 	
-	 	backtohome = new JButton("Back To HomePage");
-        backtohome.addActionListener(new BacktoHomeListener());
-        
-    	back = new JButton("Back");
+	 	back = new JButton("Back");
         back.addActionListener(new BackListener());
 	 	
         createGroupButton = new JButton("Create New Group");
@@ -70,9 +65,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	 	buttonPane.setLayout(new BoxLayout(buttonPane,
                 BoxLayout.LINE_AXIS));
 	 	buttonPane.add(timelinebutton);
-	 	if(previousframe!=null)
-	 		buttonPane.add(back);
-	 	buttonPane.add(backtohome);
+	 	buttonPane.add(back);
 
 	 	buttonPane.add(Box.createHorizontalStrut(5));
 	 	buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
@@ -114,45 +107,36 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			
 			if(groups==null && !user.equals(list.getSelectedValue())){
 				usertimeline = new User_Timeline(user,user.getFriends().get(index));
-				frame.dispose();
+				frame.setVisible(false);
 			}
 			else if(groups==null && user.equals(list.getSelectedValue())){
 				usertimeline = new User_Timeline(user,user);
-				frame.dispose();
+				frame.setVisible(false);
 			}
 			else if(users==null){
 				new Group_Timeline(user.getGroups().get(index),user);
-				frame.dispose();
+				frame.setVisible(false);
 			}
 
 		}
 	}
 	
-	class BacktoHomeListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			frame.dispose();
-			if(previousframe!=null)
-				previousframe.dispose();
-			new Home_Page(user);
-		}	
-	}
-	
 	class BackListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			frame.dispose();
+			frame.setVisible(false);
+			new Home_Page(user);
 		}
 			
 	}
 	
 	class createGroupListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			new CreateGroupScreen(user);
-			frame.dispose();
+			new CreateGroupScreen();
+			frame.setVisible(false);
 		}
 	}
 	
-	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g,JFrame frame1) {
-		previousframe = frame1;
+	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g) {
         //Create and set up the window.
         frame = new JFrame("List");
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
