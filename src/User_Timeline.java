@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,7 +61,7 @@ public class User_Timeline {
 		btnAddFriend.addActionListener(new AddFriendListener());
 		btnDeleteFriend.addActionListener(new DeleteFriendListener());
 		
-		JButton btnCommonFriends = new JButton("Common Friends");
+		JButton btnCommonFriends = new JButton("Friends In Common");
 		btnCommonFriends.setBounds(445, 13, 173, 31);
 		btnCommonFriends.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnCommonFriends.addActionListener(new CommonFriendsListener());
@@ -107,6 +108,8 @@ public class User_Timeline {
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(true);
 	        	btnMorePosts.setEnabled(true);
+	        	panel =new Post_View(activeuser,friend);
+	    		panel.setBounds(12, 66, 601, 262);
 	        	frame.getContentPane().add(panel);
 	        	frame.repaint();
 	        	frame.revalidate();
@@ -121,16 +124,15 @@ public class User_Timeline {
 	        	btnAddFriend.setEnabled(true);
 	        	DataBase.save();
 	        	btnDeleteFriend.setEnabled(false);
-	        	if(btnMorePosts.isVisible())
+	        	if(btnMorePosts.isEnabled())
 	        		frame.getContentPane().remove(panel);
 	        	else{
-	        		scrollpane.setViewportView(new JPanel());
-	        		scrollpane.revalidate();
+	        		frame.getContentPane().remove(scrollpane);
 	        	}
 	        		
 	        	btnMorePosts.setEnabled(false);
-	        	frame.revalidate();
-	        	frame.repaint();
+	        	frame.getContentPane().revalidate();
+	        	frame.getContentPane().repaint();
 		}
 			
 	}
@@ -159,12 +161,13 @@ public class User_Timeline {
 	class NextPostsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			frame.getContentPane().remove(panel);
-			scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			scrollpane.setBounds(12, 66, 601, 262);
+			scrollpane.setBorder(null);
 			frame.getContentPane().add(scrollpane);
 			btnMorePosts.setEnabled(false);
-        	frame.repaint();
-        	frame.revalidate();
+        	frame.getContentPane().repaint();
+        	frame.getContentPane().revalidate();
 		}
 	}
 	

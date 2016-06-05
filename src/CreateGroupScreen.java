@@ -35,7 +35,7 @@ public class CreateGroupScreen {
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 662, 429);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblCreateGroup = new JLabel("Create Group");

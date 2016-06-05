@@ -33,7 +33,6 @@ public class PrivateGroup extends Group {
 	//adds the selected user if not a member
 	public void addMember(User user) {
 		if(isMember(user)){
-			System.out.println(user.getName()+" is already a member!");
 			return;
 		}
 		else{

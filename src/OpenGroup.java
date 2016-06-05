@@ -3,6 +3,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 
 public class OpenGroup extends Group {
 
@@ -32,12 +34,12 @@ public class OpenGroup extends Group {
 	//adds the selected user if not a member
 	public void addMember(User user) {
 		if(isMember(user)){
-			System.out.println(user.getName()+" is already a member!");
 			return;
 		}
 
 		members.add(user);
 		user.addToGroup(this);
+		JOptionPane.showMessageDialog(null,"You added " + this.getName()+ " to your groups!","Message",JOptionPane.PLAIN_MESSAGE);
 	}
 
 

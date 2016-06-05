@@ -31,7 +31,7 @@ public class CreateUserScreen {
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 662, 429);
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblSignUp = new JLabel("Sign Up");

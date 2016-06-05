@@ -107,12 +107,17 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			
 			if(groups==null && !user.equals(list.getSelectedValue())){
 				usertimeline = new User_Timeline(user,user.getFriends().get(index));
+				frame.setVisible(false);
 			}
 			else if(groups==null && user.equals(list.getSelectedValue())){
 				usertimeline = new User_Timeline(user,user);
+				frame.setVisible(false);
 			}
-			else if(users==null)
+			else if(users==null){
 				new Group_Timeline(user.getGroups().get(index),user);
+				frame.setVisible(false);
+			}
+
 		}
 	}
 	
@@ -126,6 +131,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	class createGroupListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			new CreateGroupScreen();
+			frame.setVisible(false);
 		}
 	}
 	
