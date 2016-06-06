@@ -155,7 +155,6 @@ public class Post_View extends JPanel {
 	}
 
 
-
 	public void postToBeDisplayedUser(User anotherUser){
 		Collections.sort(anotherUser.getPersonalPosts(), new Comparator<Post>() {
 	        public int compare(Post post2, Post post1)
@@ -240,6 +239,7 @@ public class Post_View extends JPanel {
 			scrollpane.setBounds(12, 72, 620, 192);
 			scrollpane.setBorder(null);
 			
+			System.out.println(aPost.getOwner() + aPost.getPostText());
 			if(aPost.getReplies().size()>=1){
 				panel.removeAll();
 				for(i=aPost.getReplies().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto

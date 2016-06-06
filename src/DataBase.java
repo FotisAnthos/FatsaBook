@@ -275,12 +275,12 @@ public final class DataBase {
     		f.dispose();
     		if(anotherUser==null && agroup==null && aPost!=null){
     			aPost.getReplies().add(apost);
-    			DataBase.save();
     		}
-    		if(anotherUser==null)
+    		if(anotherUser==null && agroup!=null)
     			new Group_Timeline(agroup,activeUser);
-    		else if(agroup==null)
+    		else if(anotherUser!=null && agroup==null)
     			new User_Timeline(activeUser,anotherUser);
+    		DataBase.save();
     		
 		}
     });

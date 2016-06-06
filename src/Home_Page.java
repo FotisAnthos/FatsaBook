@@ -23,12 +23,13 @@ public class Home_Page {
 	private JScrollPane scrollpane;
 	private JRadioButton rdbtnUsersSearch;
 	private JRadioButton rdbtnGroupSearch;
-	private User activeuser;
+	private User activeUser;
 	private JTextField searchfield;
+	private JButton post;
 
 
 	public Home_Page(User activeuser) {
-		this.activeuser = activeuser;
+		this.activeUser = activeuser;
 		initialize();	
 	}
 
@@ -62,7 +63,7 @@ public class Home_Page {
 //		JPanel panel_1 = new JPanel();
 //		panel_1.setBounds(12, 107, 425, 262);
 //		frame.getContentPane().add(panel_1);
-		scrollpane = new JScrollPane(new Post_View(activeuser),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollpane = new JScrollPane(new Post_View(activeUser),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollpane.setAutoscrolls(true);
 		scrollpane.setBounds(12, 107, 425, 262);
 		scrollpane.setBorder(null);
@@ -93,13 +94,24 @@ public class Home_Page {
 		search.setFont(new Font("Arial", Font.PLAIN, 16));
 		search.setBounds(487, 141, 116, 42);
 		frame.getContentPane().add(search);
+		
+		post = new JButton("Post");
+		post.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				DataBase.createPostFrame(activeUser, activeUser, null, null);
+			}
+		});
+		post.setFont(new Font("Arial", Font.PLAIN, 16));
+		post.setBounds(487, 308, 116, 42);
+		frame.getContentPane().add(post);
 	}
 	
 	class groupsActionListener implements ActionListener
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists.createAndShowGUI(activeuser,null ,activeuser.getGroups(),null );
+			 DisplayLists.createAndShowGUI(activeUser,null ,activeUser.getGroups(),null );
 			 frame.dispose();
 		 	}
 		
@@ -108,7 +120,7 @@ public class Home_Page {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists.createAndShowGUI(activeuser,activeuser.getFriends() ,null ,null);
+			 DisplayLists.createAndShowGUI(activeUser,activeUser.getFriends() ,null ,null);
 			 frame.dispose();
 		 	}
 		
@@ -117,7 +129,7 @@ public class Home_Page {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 new User_Timeline(activeuser, activeuser);// Because the activeUser wants to go to his Timeline
+			 new User_Timeline(activeUser, activeUser);// Because the activeUser wants to go to his Timeline
 			 frame.dispose();
 		 	}
 		
@@ -130,7 +142,7 @@ public class Home_Page {
 			if(rdbtnUsersSearch.isSelected()){
 				User anotherUser = DataBase.findUser(searchfield.getText());
 				if(anotherUser != null){
-					new User_Timeline(activeuser, anotherUser);
+					new User_Timeline(activeUser, anotherUser);
 					frame.dispose();
 				}
 				else JOptionPane.showMessageDialog(null, "User could not be found, try another mail","Warning", JOptionPane.PLAIN_MESSAGE);
@@ -138,7 +150,7 @@ public class Home_Page {
 			else if(rdbtnGroupSearch.isSelected()){
 				Group agroup = DataBase.getGroupInstance(searchfield.getText());
 				if(agroup != null){
-					new Group_Timeline(agroup, activeuser);
+					new Group_Timeline(agroup, activeUser);
 					frame.dispose();
 				}
 				else JOptionPane.showMessageDialog(null, "Group could not be found, try another group name", "Warning", JOptionPane.PLAIN_MESSAGE);
