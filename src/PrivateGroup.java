@@ -68,12 +68,6 @@ public class PrivateGroup extends Group {
 
 	}
 
-	public void printWall() {
-		System.out.println("Group " + super.getName() + " wall");
-		for (Post post : posts){
-			post.printPost();
-		}
-	}
 	public boolean removeMember(User user){
 		if(members.remove(user))
 			return true;

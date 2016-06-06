@@ -45,35 +45,22 @@ public class User_Timeline {
 		isFriendsButton = new JButton();
 		isFriendsButton.setBounds(34, 13, 149, 31);
 		isFriendsButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		if(!activeUser.equals(friend)){
-			if(activeUser.isFriend(friend))
-				isFriendsButton.setText("Delete Friend");
-			else 
-				isFriendsButton.setText("Add Friend");
-			isFriendsButton.addActionListener(new isFriendsButtonActionListener());	
-			frame.getContentPane().add(isFriendsButton);
-		}
-		else
-			isFriendsButton.setEnabled(false);
-		frame.getContentPane().add(isFriendsButton);
-
 		
 		JButton btnCommonFriends = new JButton("Friends In Common");
 		btnCommonFriends.setBounds(428, 13, 173, 31);
 		btnCommonFriends.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnCommonFriends.addActionListener(new CommonFriendsListener());
-//		if(!activeUser.equals(friend))
+		if(!activeUser.equals(friend)){
 			frame.getContentPane().add(btnCommonFriends);
+			frame.getContentPane().add(isFriendsButton);
+		}
 		
 
 		scrollpane = new JScrollPane(new Post_View(activeUser,friend),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollpane.setAutoscrolls(true);
 		scrollpane.setBounds(12, 66, 601, 262);
 		scrollpane.setBorder(null);
-//		if(activeUser.isFriend(friend) || activeUser.equals(friend))
-			frame.getContentPane().add(scrollpane);
-
-		
+		frame.getContentPane().add(scrollpane);		
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(535, 336, 97, 33);
@@ -92,6 +79,18 @@ public class User_Timeline {
 		btnPostNewPost.setBounds(178, 336, 149, 33);
 		btnPostNewPost.addActionListener(new PostListener());
 		frame.getContentPane().add(btnPostNewPost);
+		
+		if(!activeUser.equals(friend)){
+			if(activeUser.isFriend(friend))
+				isFriendsButton.setText("Delete Friend");
+			else {
+				isFriendsButton.setText("Add Friend");
+				btnPostNewPost.setEnabled(false);
+			}
+
+			isFriendsButton.addActionListener(new isFriendsButtonActionListener());	
+			frame.getContentPane().add(isFriendsButton);
+		}
 	}
 	
 	class isFriendsButtonActionListener implements ActionListener{
@@ -100,6 +99,7 @@ public class User_Timeline {
 				activeUser.addFriend(friend);
 				DataBase.save();
 				isFriendsButton.setText("Delete Friend");
+				btnPostNewPost.setEnabled(true);
 				panel =new Post_View(activeUser,friend);
 	        	frame.getContentPane().add(scrollpane);
 	        	frame.repaint();
@@ -109,6 +109,7 @@ public class User_Timeline {
 				activeUser.removeFriend(friend);
 				DataBase.save();
 				isFriendsButton.setText("Add Friend");
+				btnPostNewPost.setEnabled(false);
 				frame.getContentPane().remove(scrollpane);
 	        	frame.getContentPane().revalidate();
 	        	frame.getContentPane().repaint();

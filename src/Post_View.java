@@ -89,38 +89,108 @@ public class Post_View extends JPanel {
 		
 	}
 
-	public JPanel aPostView(Post aPost){
+	public JPanel aPostView(final Post aPost){
 		this.aPost = aPost;
 		JPanel apanel = new JPanel();
+		
+		apanel.setLayout(new BorderLayout(0, 0));
 		JLabel alabel = new JLabel(aPost.getUser().getName() + ": " +aPost.getPostText());
-
-		JButton likebutton = new JButton("Like!");
+		alabel.setHorizontalAlignment(SwingConstants.CENTER);
+		apanel.add(alabel, BorderLayout.NORTH);
+		
+		JButton likebutton = new JButton("Like");
+		apanel.add(likebutton, BorderLayout.CENTER);
+		
 		JButton commentbutton = new JButton("Comment");
-		likebutton.addActionListener(new likeButtonListener());
-		commentbutton.addActionListener(new commentButtonListener());
+		apanel.add(commentbutton, BorderLayout.EAST);
+		
+		final JLabel likeslabel;
+		if (aPost.NumberOfLikes()>0){
+			likeslabel = new JLabel(aPost.NumberOfLikes() + "");
+		}
+		else
+			likeslabel = new JLabel("0");
+		apanel.add(likeslabel, BorderLayout.WEST);
+		
+		likebutton.addActionListener(new ActionListener(){				
+			public void actionPerformed(ActionEvent e)
+			{	
+				aPost.addLike(activeUser);
+				likeslabel.setText(aPost.NumberOfLikes() + "");
+				DataBase.save();
+			}
+		});
+		commentbutton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){	
+				int i;
+				frame1 = new JFrame();
+				frame1.setVisible(true);
+				frame1.setBounds(12, 66, 662, 429);
+				frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				frame1.getContentPane().setLayout(null);
+
+				JLabel lblPost = new JLabel(aPost.getUser().getName()+ " : " +aPost.getPostText());
+				lblPost.setHorizontalAlignment(SwingConstants.CENTER);
+				lblPost.setFont(new Font("Arial", Font.PLAIN, 18));
+				lblPost.setBounds(12, 13, 620, 51);
+				frame1.getContentPane().add(lblPost);
+
+				JPanel panel1 = new JPanel();
+				JPanel panel = new JPanel();
+				panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+				scrollpane = new JScrollPane(panel1,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				scrollpane.setBounds(12, 72, 620, 192);
+				scrollpane.setBorder(null);
+
+				if(aPost.getReplies().size()>=1){
+					panel.removeAll();
+					for(i=aPost.getReplies().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
+						panel.add(aPostView(aPost.getReplies().get(i-1)));
+					}
+				}
+				panel1.add(panel);
+				frame1.getContentPane().add(scrollpane);
+
+
+				JButton btnComment = new JButton("Comment");
+				btnComment.setFont(new Font("Arial", Font.PLAIN, 16));
+				btnComment.setBounds(246, 344, 152, 25);
+				btnComment.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						frame1.dispose();
+						DataBase.createPostFrame(activeUser, null, null, aPost);
+					}
+				});
+				frame1.getContentPane().add(btnComment);
+				
+				JButton btnBack = new JButton("Back");
+				btnBack.setFont(new Font("Arial", Font.PLAIN, 16));
+				btnBack.setBounds(535, 340, 97, 25);
+				btnBack.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						frame1.dispose();
+					}
+				});
+				frame1.getContentPane().add(btnBack);
+			}
+		});
 
 		JPanel actions = new JPanel();
 
 		actions.add(likebutton);
 		actions.add(commentbutton);
-
-		apanel.add(alabel,BorderLayout.NORTH);
-		if (aPost.NumberOfLikes()>0){
-			JLabel likeslabel = new JLabel(aPost.NumberOfLikes() + " ");
-			apanel.add(likeslabel);
-		}
-		
 		apanel.add(actions, BorderLayout.CENTER);
-
 
 		this.setSize(getPreferredSize());
 		return apanel;
 	}
 	
-	public JPanel aPostViewHomePage(Post aPost){
+	public JPanel aPostViewHomePage(final Post aPost){
 		this.aPost = aPost;
-		JLabel alabel;
 		JPanel apanel = new JPanel();
+		
+		apanel.setLayout(new BorderLayout(0, 0));
+		
 		String labelname="";
 		if(aPost.getOwner()!=null){
 			labelname = aPost.getUser().getName() + " to "+ aPost.getOwner().getName() + " : "  +aPost.getPostText();
@@ -129,30 +199,99 @@ public class Post_View extends JPanel {
 			labelname = aPost.getUser().getName() + " to "+ aPost.getGroup().getName() + " : "  +aPost.getPostText();
 		}
 		
-		alabel = new JLabel(labelname);
-		apanel.add(alabel,BorderLayout.NORTH);
+		JLabel alabel = new JLabel(labelname);
+		alabel.setHorizontalAlignment(SwingConstants.CENTER);
+		apanel.add(alabel, BorderLayout.NORTH);
 		
-		JButton likebutton = new JButton("Like!");
+		JButton likebutton = new JButton("Like");
+		apanel.add(likebutton, BorderLayout.CENTER);
+		
 		JButton commentbutton = new JButton("Comment");
-		likebutton.addActionListener(new likeButtonListener());
-		commentbutton.addActionListener(new commentButtonListener());
-
-		JPanel actions = new JPanel();
-
-		actions.add(likebutton);
-		actions.add(commentbutton);
-
-		if (aPost.NumberOfLikes()>0){
-			JLabel likeslabel = new JLabel(aPost.NumberOfLikes() + " ");
-			apanel.add(likeslabel);
-		}
+		apanel.add(commentbutton, BorderLayout.EAST);
 		
-		apanel.add(actions, BorderLayout.CENTER);
+		final JLabel likeslabel;
+		if (aPost.NumberOfLikes()>0){
+			likeslabel = new JLabel(aPost.NumberOfLikes() + "");
+		}
+		else
+			likeslabel = new JLabel("0");
+		apanel.add(likeslabel, BorderLayout.WEST);
 
 
-		this.setSize(getPreferredSize());
-		return apanel;
-	}
+			
+		likebutton.addActionListener(new ActionListener(){				
+				public void actionPerformed(ActionEvent e)
+				{	
+					aPost.addLike(activeUser);
+					likeslabel.setText(aPost.NumberOfLikes()+ "");
+					DataBase.save();
+				}	
+		});
+			
+		commentbutton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){	
+					int i;
+					frame1 = new JFrame();
+					frame1.setVisible(true);
+					frame1.setBounds(12, 66, 662, 429);
+					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame1.getContentPane().setLayout(null);
+
+					JLabel lblPost = new JLabel(aPost.getUser().getName()+ " : " +aPost.getPostText());
+					lblPost.setHorizontalAlignment(SwingConstants.CENTER);
+					lblPost.setFont(new Font("Arial", Font.PLAIN, 18));
+					lblPost.setBounds(12, 13, 620, 51);
+					frame1.getContentPane().add(lblPost);
+
+					JPanel panel = new JPanel();
+					panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+					//			panel.setBounds(12, 72, 620, 192);
+					scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+					scrollpane.setBounds(12, 72, 620, 192);
+					scrollpane.setBorder(null);
+
+					if(aPost.getReplies().size()>=1){
+						panel.removeAll();
+						for(i=aPost.getReplies().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
+							panel.add(aPostView(aPost.getReplies().get(i-1)));
+						}
+					}
+					frame1.getContentPane().add(scrollpane);
+
+
+					JButton btnComment = new JButton("Comment");
+					btnComment.setFont(new Font("Arial", Font.PLAIN, 16));
+					btnComment.setBounds(246, 344, 152, 25);
+					btnComment.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							frame1.dispose();
+							DataBase.createPostFrame(activeUser, null, null, aPost);
+						}
+					});
+					frame1.getContentPane().add(btnComment);
+					
+					JButton btnBack = new JButton("Back");
+					btnBack.setFont(new Font("Arial", Font.PLAIN, 16));
+					btnBack.setBounds(535, 340, 97, 25);
+					btnBack.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							frame1.dispose();
+						}
+					});
+					frame1.getContentPane().add(btnBack);
+				}
+			});
+
+			JPanel actions = new JPanel();
+
+			actions.add(likebutton);
+			actions.add(commentbutton);
+			apanel.add(actions, BorderLayout.CENTER);
+
+
+			this.setSize(getPreferredSize());
+			return apanel;
+		}
 
 
 	public void postToBeDisplayedUser(User anotherUser){
@@ -205,62 +344,6 @@ public class Post_View extends JPanel {
 	}
 
 	
-	class likeButtonListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{	
-			aPost.addLike(activeUser);
-			DataBase.save();
-		}
-	}
 	
-	
-	class commentButtonListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{	
-			int i;
-			frame1 = new JFrame();
-			frame1.setVisible(true);
-			frame1.setBounds(12, 66, 662, 429);
-			frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			frame1.getContentPane().setLayout(null);
-			
-			JLabel lblPost = new JLabel(aPost.getUser().getName()+ " : " +aPost.getPostText());
-			lblPost.setHorizontalAlignment(SwingConstants.CENTER);
-			lblPost.setFont(new Font("Arial", Font.PLAIN, 18));
-			lblPost.setBounds(12, 13, 620, 51);
-			frame1.getContentPane().add(lblPost);
-			
-			JPanel panel = new JPanel();
-			panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-//			panel.setBounds(12, 72, 620, 192);
-			scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			scrollpane.setBounds(12, 72, 620, 192);
-			scrollpane.setBorder(null);
-			
-			System.out.println(aPost.getOwner() + aPost.getPostText());
-			if(aPost.getReplies().size()>=1){
-				panel.removeAll();
-				for(i=aPost.getReplies().size();i>0;i--){ // gia na emfanizetai to teleutaio post pou dimiourgithike prwto
-					panel.add(aPostView(aPost.getReplies().get(i-1)));
-				}
-			}
-			frame1.getContentPane().add(scrollpane);
-
-			
-			JButton btnComment = new JButton("Comment");
-			btnComment.setFont(new Font("Arial", Font.PLAIN, 16));
-			btnComment.setBounds(246, 344, 152, 25);
-			btnComment.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-						frame1.dispose();
-						DataBase.createPostFrame(activeUser, null, null, aPost);
-				}
-			});
-			frame1.getContentPane().add(btnComment);
-		}
-		
-	}
 
 }

@@ -41,7 +41,6 @@ public abstract class Group implements Serializable{
 	public abstract boolean removeMember(User user);
 	public abstract void addPost(Post post);
 	public abstract void addReplyToPost(Post post, Post reply);
-	public abstract void printWall();
 	public abstract boolean canAddPost(User user);
 
 	public ArrayList<Post> getGroupPosts() {

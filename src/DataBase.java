@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -7,10 +8,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.text.DefaultCaret;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
 //from this class we recover data from the save files
 public final class DataBase {
@@ -250,69 +258,93 @@ public final class DataBase {
 	}
 	
 	public static void createPostFrame(final User activeUser, final User anotherUser, final Group agroup,final Post aPost){
-		final JFrame f = new JFrame("Create a new Post");
-		f.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
+		final javax.swing.JFrame f = new javax.swing.JFrame();
 		javax.swing.JLabel CreatePostLabel;
-	    javax.swing.JScrollPane jScrollPane1;
-	    javax.swing.JButton postButton;
-	    final java.awt.TextArea postTextField;
-	jScrollPane1 = new javax.swing.JScrollPane();
-    CreatePostLabel = new javax.swing.JLabel();
-    postButton = new javax.swing.JButton();
-    postTextField = new java.awt.TextArea();
+		javax.swing.JButton postButton, btnPost;
+		final javax.swing.JTextArea postTextField;
+		javax.swing.JPanel contentPane;
 
-    
+		
+		
+		CreatePostLabel = new javax.swing.JLabel();
+		postButton = new javax.swing.JButton();
+		postTextField = new javax.swing.JTextArea();
 
-    CreatePostLabel.setText("Create Post");
+		f.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+		f.setBounds(100, 100, 450, 300);
+		contentPane = new javax.swing.JPanel();
+		contentPane.setBorder(new javax.swing.border.EmptyBorder(5, 5, 5, 5));
+		f.setContentPane(contentPane);
 
-    postButton.setText("Post");
-    postButton.addActionListener(new ActionListener(){
-    	public void actionPerformed(ActionEvent e)//Actual Creation of Post
-		{	
-			Post apost =DataBase.createPost(activeUser, anotherUser, agroup, postTextField.getText());
-			if(apost == null) 
-				JOptionPane.showMessageDialog(null,"Post could not be created!!","Message",JOptionPane.PLAIN_MESSAGE);
-    		f.dispose();
-    		if(anotherUser==null && agroup==null && aPost!=null){
-    			aPost.getReplies().add(apost);
-    		}
-    		if(anotherUser==null && agroup!=null)
-    			new Group_Timeline(agroup,activeUser);
-    		else if(anotherUser!=null && agroup==null)
-    			new User_Timeline(activeUser,anotherUser);
-    		DataBase.save();
-    		
+		postTextField.setLineWrap(true);
+		postTextField.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 13));
+		postTextField.setTabSize(12);
+
+		btnPost = new javax.swing.JButton("Post");
+		btnPost.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e)//Actual Creation of Post
+			{	
+				Post apost =DataBase.createPost(activeUser, anotherUser, agroup, postTextField.getText());
+				if(apost == null) 
+					JOptionPane.showMessageDialog(null,"Post could not be created!!","Message",JOptionPane.PLAIN_MESSAGE);
+	    		f.dispose();
+	    		if(anotherUser==null && agroup==null && aPost!=null){
+	    			aPost.getReplies().add(apost);
+	    		}
+	    		if(anotherUser==null && agroup!=null)
+	    			new Group_Timeline(agroup,activeUser);
+	    		else if(anotherUser!=null && agroup==null)
+	    			new User_Timeline(activeUser,anotherUser);
+	    		DataBase.save();
+	    		
+			}
+	    });
+
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				f.dispose();
+				new Home_Page(activeUser);			
+			}
 		}
-    });
-
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(f.getContentPane());
-    f.getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup()
-            .addContainerGap(47, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(postTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(postButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(CreatePostLabel)
-                    .addGap(111, 111, 111)))
-            .addContainerGap(53, Short.MAX_VALUE))
-    );
-    layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup()
-            .addComponent(CreatePostLabel)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-            .addComponent(postTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(postButton)
-            .addContainerGap(66, Short.MAX_VALUE))
-    );
-
-    f.pack();
-    f.setVisible(true);
-}
 
 
+				);
+
+		JLabel lblCreatePost = new JLabel("Create Post:");
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+				gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+										.addGap(35)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+												.addComponent(btnPost)
+												.addComponent(postTextField, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)))
+								.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(btnBack)
+										.addGap(133)
+										.addComponent(lblCreatePost, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addGap(136)))
+						.addGap(39))
+				);
+		gl_contentPane.setVerticalGroup(
+				gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(btnBack)
+										.addGap(16))
+								.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(lblCreatePost)
+										.addPreferredGap(ComponentPlacement.RELATED)))
+						.addComponent(postTextField, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnPost)
+						.addGap(23))
+				);
+		contentPane.setLayout(gl_contentPane);
+		f.setVisible(true);
+	}
 }

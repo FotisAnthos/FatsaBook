@@ -62,18 +62,21 @@ public class Group_Timeline {
 		scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollpane.setBounds(12, 66, 620, 262);
 		scrollpane.setBorder(null);
-		if(g.isMember(activeUser)){
-			isMemberButton.setText("Delete Group");
-			frame.getContentPane().add(scrollpane);
-		}
-		else 
-			isMemberButton.setText("Add Group");
 		
 		btnPostNewPost = new JButton("Post New Post");
 		btnPostNewPost.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnPostNewPost.setBounds(178, 336, 149, 33);
 		btnPostNewPost.addActionListener(new PostListener());
 		frame.getContentPane().add(btnPostNewPost);
+		
+		if(g.isMember(activeUser)){
+			isMemberButton.setText("Delete Group");
+			frame.getContentPane().add(scrollpane);
+		}
+		else {
+			isMemberButton.setText("Add Group");
+			btnPostNewPost.setEnabled(false);
+		}
 	}
 	
 	class isMemberButtonActionListener implements ActionListener{
@@ -82,6 +85,7 @@ public class Group_Timeline {
 				g.addMember(activeUser);
 				DataBase.save();
 				isMemberButton.setText("Delete Group");
+				btnPostNewPost.setEnabled(true);
 		        panel = new Post_View(activeUser,g);
 				frame.getContentPane().add(scrollpane);
 				frame.repaint();
@@ -91,6 +95,7 @@ public class Group_Timeline {
 				activeUser.deleteFromGroup(g);
 				DataBase.save();
 				isMemberButton.setText("Add Group");
+				btnPostNewPost.setEnabled(false);
 				frame.getContentPane().remove(scrollpane);
 	        	frame.getContentPane().revalidate();
 	        	frame.getContentPane().repaint();
