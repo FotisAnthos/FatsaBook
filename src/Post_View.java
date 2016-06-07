@@ -123,7 +123,7 @@ public class Post_View extends JPanel {
 		commentbutton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
 				int i;
-				frame1 = new JFrame();
+				frame1 = new JFrame("Post");
 				frame1.setVisible(true);
 				frame1.setBounds(12, 66, 662, 429);
 				frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -231,7 +231,7 @@ public class Post_View extends JPanel {
 		commentbutton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){	
 					int i;
-					frame1 = new JFrame();
+					frame1 = new JFrame("Post");
 					frame1.setVisible(true);
 					frame1.setBounds(12, 66, 662, 429);
 					frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -243,10 +243,10 @@ public class Post_View extends JPanel {
 					lblPost.setBounds(12, 13, 620, 51);
 					frame1.getContentPane().add(lblPost);
 
+					JPanel panel1 = new JPanel();
 					JPanel panel = new JPanel();
 					panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-					//			panel.setBounds(12, 72, 620, 192);
-					scrollpane = new JScrollPane(panel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+					scrollpane = new JScrollPane(panel1,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 					scrollpane.setBounds(12, 72, 620, 192);
 					scrollpane.setBorder(null);
 
@@ -256,6 +256,7 @@ public class Post_View extends JPanel {
 							panel.add(aPostView(aPost.getReplies().get(i-1)));
 						}
 					}
+					panel1.add(panel);
 					frame1.getContentPane().add(scrollpane);
 
 

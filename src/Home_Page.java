@@ -60,9 +60,6 @@ public class Home_Page {
 		btnTimeline.setBounds(317, 34, 120, 42);
 		frame.getContentPane().add(btnTimeline);
 		
-//		JPanel panel_1 = new JPanel();
-//		panel_1.setBounds(12, 107, 425, 262);
-//		frame.getContentPane().add(panel_1);
 		scrollpane = new JScrollPane(new Post_View(activeUser),ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollpane.setAutoscrolls(true);
 		scrollpane.setBounds(12, 107, 425, 262);

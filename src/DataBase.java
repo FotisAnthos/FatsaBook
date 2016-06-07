@@ -187,12 +187,8 @@ public final class DataBase {
 	public static boolean checkUserPassword(String mail,char[] password) {
 		for(User u : users) {
 			if(u.getMail().equals(mail)) {
-				//				while(true)
-				//				{
-				//				String input = JOptionPane.showInputDialog("Enter Input:");
 				if(u.isPasswordCorrect(password)) 
 					return true;
-				//				}
 			}
 		}	
 		JOptionPane.showMessageDialog(null,"User not found!","Message",JOptionPane.PLAIN_MESSAGE);
@@ -232,14 +228,6 @@ public final class DataBase {
 	public static void setGroups(ArrayList<Group> groups) {
 		DataBase.groups = groups;
 	}
-
-//	public static ArrayList<Post> getPosts() {
-//		return posts;
-//	}
-//
-//	public static void setPosts(ArrayList<Post> posts) {
-//		DataBase.posts = posts;
-//	}
 	
 	public static Post createPost(User creator, User anotherUser, Group agroup, String PostText){
 		Post apost = new Post(PostText, creator);
@@ -258,7 +246,8 @@ public final class DataBase {
 	}
 	
 	public static void createPostFrame(final User activeUser, final User anotherUser, final Group agroup,final Post aPost){
-		final javax.swing.JFrame f = new javax.swing.JFrame();
+		final javax.swing.JFrame f = new javax.swing.JFrame("Create a Post");
+		f.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		javax.swing.JLabel CreatePostLabel;
 		javax.swing.JButton postButton, btnPost;
 		final javax.swing.JTextArea postTextField;

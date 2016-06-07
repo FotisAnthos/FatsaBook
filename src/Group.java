@@ -7,7 +7,6 @@ public abstract class Group implements Serializable{
 	protected String info;
 	protected ArrayList<Post> posts = new ArrayList<Post>();
 	protected ArrayList<User> members = new ArrayList<User>();
-	protected ArrayList<User> admins = new ArrayList<User>();
 
 
 	public Group(String name,String info) {
