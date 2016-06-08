@@ -23,29 +23,20 @@ import javax.swing.border.EmptyBorder;
 //from this class we recover data from the save files
 public final class DataBase {
 
-
-
 	protected static  ArrayList<User> users = new ArrayList<User>();
 	protected static ArrayList<Group> groups = new ArrayList<Group>();
 
 
 	public DataBase() {		
-				this.users = null;
-				this.groups = null;
+				DataBase.users = null;
+				DataBase.groups = null;
 
 	}
 
-	public static User findUser(String mail) {
-		for(User u: users) {
-			if(mail.equals(u.getMail())){
-				return u;
-			}
-		}
-		return null;		
-	}
 	
 
 	public static boolean createUser(String name, String mail, char[] password) {
+		//creates a new User and adds him to users(ArrayList)
 		if(!isUser(mail)){
 			User u = new User(name, mail, password);
 			users.add(u);
@@ -54,13 +45,8 @@ public final class DataBase {
 		return false;
 	}
 
-	public static void deleteUser(User auser) {
-		char[] input = JOptionPane.showInputDialog("Enter password to delete user").toCharArray();
-		if(auser.isPasswordCorrect(input)) users.remove(auser); 
-		JOptionPane.showMessageDialog(null, auser.getName()+ "Deleted!!", "User Deleted!", JOptionPane.INFORMATION_MESSAGE);
-	}
-
 	public static  boolean createGroup(String name, String info, boolean is_open) {
+		//Creates a new Group, and adds it to groups(ArrayList)
 		//if group is to be open b==true else b==false
 		if(!isGroup(name)) {
 			if(is_open) {
@@ -76,19 +62,8 @@ public final class DataBase {
 		return false; //Group not Created		
 	}
 
-	public static boolean deleteGroup(String name){
-		if(isGroup(name)){
-			//TODO show confirmation panel
-			Group agroup = getGroupInstance(name);
-			groups.remove(agroup);
-
-		}
-		return false;		
-	}
-
-	//TODO save --find better way
 	public static boolean save() {
-
+		//Saves users(ArrayList) and groups(ArrayList) to 2 .txt files
 		try {
 			FileOutputStream fileOut = new FileOutputStream(".users.txt");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -118,6 +93,7 @@ public final class DataBase {
 	}
 
 	public static boolean retrieve() {
+		//Retrieves users(ArrayList) and groups(ArrayList) from .txt files
 		ArrayList<User> users = null;
 		ArrayList<Group> groups = null;
 		try
@@ -156,15 +132,8 @@ public final class DataBase {
 		return true;
 	}
 
-
-	public ArrayList<Group> getgroups() {
-		// TODO Retrieve groups from savefiles
-		return groups;
-	}
-
-	//TODO complete getUserInstance
-
 	public static Group getGroupInstance(String groupname) {
+		//return a Group from groups(ArrayList) based on groupname
 		for(Group g : groups) {
 			if(g.getName().equals(groupname)) {
 				return g;
@@ -176,6 +145,7 @@ public final class DataBase {
 
 
 	public static Group getPost(Post r) {
+		//returns a Group from groups(ArrayList) if Post r is found in it
 		for(Group gr : groups) {
 			if(gr.getName().equals(r)) {
 				return gr;
@@ -185,6 +155,7 @@ public final class DataBase {
 	}
 
 	public static boolean checkUserPassword(String mail,char[] password) {
+		//returns true if mail and password belong to a User in users(ArrayList), returns false otherwise
 		for(User u : users) {
 			if(u.getMail().equals(mail)) {
 				if(u.isPasswordCorrect(password)) 
@@ -196,6 +167,7 @@ public final class DataBase {
 	}
 
 	public static boolean isUser(String mail) {
+		//Checks if a specific User(based on mail) is added to users(ArrayList)
 		for(User u : users) {
 			if(u.getMail().equals(mail)) {
 				return true;
@@ -203,8 +175,19 @@ public final class DataBase {
 		}
 		return false;
 	}
+	
+	public static User findUser(String mail) {
+		//finds a User based on email
+		for(User u: users) {
+			if(mail.equals(u.getMail())){
+				return u;
+			}
+		}
+		return null;		
+	}
 
 	public static boolean isGroup(String g) {
+		////Checks if a specific Group(based on name) is added to groups(ArrayList)
 		for(Group gr : groups) {
 			if(gr.getName().equals(g)) {
 				return true;
@@ -212,24 +195,9 @@ public final class DataBase {
 		}
 		return false;
 	}
-
-	public static ArrayList<User> getUsers() {
-		return users;
-	}
-
-	public static void setUsers(ArrayList<User> users) {
-		DataBase.users = users;
-	}
-
-	public static ArrayList<Group> getGroups() {
-		return groups;
-	}
-
-	public static void setGroups(ArrayList<Group> groups) {
-		DataBase.groups = groups;
-	}
 	
 	public static Post createPost(User creator, User anotherUser, Group agroup, String PostText){
+		//Creates a new Post 
 		Post apost = new Post(PostText, creator);
 		if(anotherUser!=null || agroup!=null){
 			if(anotherUser!=null){
@@ -246,6 +214,7 @@ public final class DataBase {
 	}
 	
 	public static void createPostFrame(final User activeUser, final User anotherUser, final Group agroup,final Post aPost){
+		// Creates a new frame to write a Post
 		final javax.swing.JFrame f = new javax.swing.JFrame("Create a Post");
 		f.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
 		javax.swing.JLabel CreatePostLabel;

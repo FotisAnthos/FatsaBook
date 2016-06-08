@@ -100,8 +100,19 @@ public class Home_Page {
 			}
 		});
 		post.setFont(new Font("Arial", Font.PLAIN, 16));
-		post.setBounds(487, 308, 116, 42);
+		post.setBounds(487, 230, 116, 42);
 		frame.getContentPane().add(post);
+		
+		JButton logout = new JButton("Log out");
+		logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				new LoginSignupScreen();
+			}
+		});
+		logout.setFont(new Font("Arial", Font.PLAIN, 16));
+		logout.setBounds(541, 344, 91, 25);
+		frame.getContentPane().add(logout);
 	}
 	
 	class groupsActionListener implements ActionListener

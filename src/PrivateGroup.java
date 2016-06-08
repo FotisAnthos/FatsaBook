@@ -74,19 +74,4 @@ public class PrivateGroup extends Group {
 		return false;
 	}
 
-//	public boolean addAdmin(){
-//		return false;
-//	}
-//
-//	public boolean isAdmin(){
-//		return false;
-//	}
-//
-//	public boolean removeAdmin(){
-//		return false;
-//	}
-	
-
-	
-
 }

@@ -60,7 +60,8 @@ public class User_Timeline {
 		scrollpane.setAutoscrolls(true);
 		scrollpane.setBounds(12, 66, 601, 262);
 		scrollpane.setBorder(null);
-		frame.getContentPane().add(scrollpane);		
+		if(activeUser.isFriend(friend))
+			frame.getContentPane().add(scrollpane);		
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(535, 336, 97, 33);
@@ -155,15 +156,10 @@ public class User_Timeline {
 	
 	class CommonFriendsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			ArrayList<User> common = new ArrayList<User>();
-			for(User myfriend: activeUser.getFriends()){
-				for(User hisfriend: friend.getFriends()){
-					if(myfriend.getName().equals(hisfriend.getName()) && myfriend.getMail().equals(hisfriend.getMail()))
-						common.add(myfriend);
-				}
-			}
-			if(common!=null)
-				DisplayLists.createAndShowGUI(activeUser, common, null,frame);
+			ArrayList<User> commons = new ArrayList<User>();
+			commons = activeUser.findCommonFriends(friend);
+			if(commons!=null)
+				DisplayLists.createAndShowGUI(activeUser, commons, null,frame);
 		}
 	}
 	

@@ -29,12 +29,11 @@ public abstract class Group implements Serializable{
 		this.name = name;
 	}
 
-	public abstract String getInfo();
-
 	public void setInfo(String info) {
 		this.info = info;
 	}
 
+	public abstract String getInfo();
 	public abstract boolean isMember(User user);
 	public abstract void addMember(User user);
 	public abstract boolean removeMember(User user);

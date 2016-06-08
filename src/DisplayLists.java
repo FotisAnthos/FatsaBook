@@ -104,10 +104,6 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 
 	}
 	
-//	public void addObject(Object object){
-//		listmodel.addElement(object);
-//	}
-	
 	class TimelineListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			int index = list.getSelectedIndex();
@@ -124,6 +120,8 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 				new Group_Timeline(user.getGroups().get(index),user);
 				frame.dispose();
 			}
+			if(previousframe!=null)
+				previousframe.dispose();
 
 		}
 	}
@@ -172,11 +170,11 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
         if (e.getValueIsAdjusting() == false) {
  
             if (list.getSelectedIndex() == -1) {
-            //No selection, disable fire button.
+            //No selection, disable the timelinebutton.
                 timelinebutton.setEnabled(false);
  
             } else {
-            //Selection, enable the fire button.
+            //Selection, enable the timeline button.
             	timelinebutton.setEnabled(true);
             }
         }

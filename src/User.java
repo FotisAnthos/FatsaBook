@@ -75,16 +75,16 @@ public class User implements Serializable{
 		groups.add(group);
 	}
 
+	//NOT USED
 	public ArrayList<User> findCommonFriends(User other) {
 		ArrayList<User> commons = new ArrayList<User>();
 
-		for(User friends1 : this.friends) {
-			for(User friends2 : other.friends) {
-				if(friends2.hashCode() == friends1.hashCode())
-					commons.add(friends1);
+		for(User myfriend : this.friends) {
+			for(User hisfriend : other.friends) {
+				if(myfriend.getName().equals(hisfriend.getName()) && myfriend.getMail().equals(hisfriend.getMail()))
+					commons.add(myfriend);
 			}
 		}
-
 		return commons;
 	}
 
