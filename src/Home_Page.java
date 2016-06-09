@@ -157,9 +157,16 @@ public class Home_Page {
 			}
 			else if(rdbtnGroupSearch.isSelected()){
 				Group agroup = DataBase.getGroupInstance(searchfield.getText());
-				if(agroup != null){
+				if(agroup != null && agroup.getClass().getName()=="OpenGroup"){
 					new Group_Timeline(agroup, activeUser);
 					frame.dispose();
+				}
+				else if(agroup!=null && agroup.getClass().getName()=="PrivateGroup"){
+					if(agroup.isMember(activeUser)){
+						new Group_Timeline(agroup, activeUser);
+						frame.dispose();
+					}
+					else JOptionPane.showMessageDialog(null, "Group could not be found, try another group name", "Warning", JOptionPane.PLAIN_MESSAGE);
 				}
 				else JOptionPane.showMessageDialog(null, "Group could not be found, try another group name", "Warning", JOptionPane.PLAIN_MESSAGE);
 			}

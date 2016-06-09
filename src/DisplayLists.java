@@ -207,6 +207,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 					User anotherUser = DataBase.findUser(textField.getText());
 					if(anotherUser != null){
 						agroup.addMember(anotherUser);
+						JOptionPane.showMessageDialog(null,anotherUser.getName() + " was added to " + agroup.getName(),"Message",JOptionPane.PLAIN_MESSAGE);
 						DataBase.save();
 						listmodel.addElement(anotherUser);
 						frame1.dispose();

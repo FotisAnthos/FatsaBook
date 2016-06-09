@@ -50,13 +50,13 @@ public abstract class Group implements Serializable{
 			return;
 		}
 		admins.add(user);
+		this.addMember(user);
 	}
 
 	public abstract String getInfo();
 	public abstract boolean isMember(User user);
 	public abstract void addMember(User user);
 	public abstract boolean removeMember(User user);
-	public abstract boolean removeAdmin(User user);
 	public abstract void addPost(Post post);
 	public abstract void addReplyToPost(Post post, Post reply);
 	public abstract boolean canAddPost(User user);
