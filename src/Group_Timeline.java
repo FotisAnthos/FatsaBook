@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -96,6 +97,7 @@ public class Group_Timeline {
 		public void actionPerformed(ActionEvent e){
 			if(isMemberButton.getText().equals("Become Member")){
 				g.addMember(activeUser);
+				JOptionPane.showMessageDialog(null,"You added " + g.getName()+ " to your groups!","Message",JOptionPane.PLAIN_MESSAGE);
 				DataBase.save();
 				isMemberButton.setText("Leave Group");
 				btnPostNewPost.setEnabled(true);
