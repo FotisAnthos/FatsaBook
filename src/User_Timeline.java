@@ -60,7 +60,8 @@ public class User_Timeline {
 		scrollpane.setAutoscrolls(true);
 		scrollpane.setBounds(12, 66, 601, 262);
 		scrollpane.setBorder(null);
-		frame.getContentPane().add(scrollpane);		
+		if(activeUser.isFriend(friend))
+			frame.getContentPane().add(scrollpane);		
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(535, 336, 97, 33);
@@ -106,43 +107,17 @@ public class User_Timeline {
 	        	frame.revalidate();
 			}
 			else if(isFriendsButton.getText().equals("Delete Friend")){
-				activeUser.removeFriend(friend);
-				DataBase.save();
-				isFriendsButton.setText("Add Friend");
-				btnPostNewPost.setEnabled(false);
-				frame.getContentPane().remove(scrollpane);
-	        	frame.getContentPane().revalidate();
-	        	frame.getContentPane().repaint();
+				int reply =activeUser.removeFriend(friend);
+				if (reply==JOptionPane.YES_OPTION){
+					DataBase.save();
+					isFriendsButton.setText("Add Friend");
+					btnPostNewPost.setEnabled(false);
+					frame.getContentPane().remove(scrollpane);
+	        		frame.getContentPane().revalidate();
+	        		frame.getContentPane().repaint();
+				}
 			}
 		}
-	}
-	
-	class AddFriendListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-	        	activeUser.addFriend(friend);
-	        	btnAddFriend.setEnabled(false);
-	        	DataBase.save();
-	        	btnDeleteFriend.setEnabled(true);
-	        	panel =new Post_View(activeUser,friend);
-	        	frame.getContentPane().add(scrollpane);
-	        	frame.repaint();
-	        	frame.revalidate();
-	        	
-		}
-			
-	}
-	
-	class DeleteFriendListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-	        	activeUser.removeFriend(friend);
-	        	btnAddFriend.setEnabled(true);
-	        	DataBase.save();
-	        	btnDeleteFriend.setEnabled(false);
-	        	frame.getContentPane().remove(scrollpane);
-	        	frame.getContentPane().revalidate();
-	        	frame.getContentPane().repaint();
-		}
-			
 	}
 	
 	class BackListener implements ActionListener{
@@ -155,15 +130,10 @@ public class User_Timeline {
 	
 	class CommonFriendsListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			ArrayList<User> common = new ArrayList<User>();
-			for(User myfriend: activeUser.getFriends()){
-				for(User hisfriend: friend.getFriends()){
-					if(myfriend.getName().equals(hisfriend.getName()) && myfriend.getMail().equals(hisfriend.getMail()))
-						common.add(myfriend);
-				}
-			}
-			if(common!=null)
-				DisplayLists.createAndShowGUI(activeUser, common, null,frame);
+			ArrayList<User> commons = new ArrayList<User>();
+			commons = activeUser.findCommonFriends(friend);
+			if(commons!=null)
+				DisplayLists.createAndShowGUI(activeUser,null, commons, null,frame);
 		}
 	}
 	
@@ -172,7 +142,7 @@ public class User_Timeline {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 //TODO
-			 DisplayLists.createAndShowGUI(activeUser, friend.getFriends(), null,frame);
+			 DisplayLists.createAndShowGUI(activeUser,null, friend.getFriends(), null,frame);
 		 	}
 		
 	}

@@ -107,25 +107,28 @@ public class CreateGroupScreen {
 				String groupname = name.getText();
 				String groupinfo = info.getText();
 				
-				if(buttongroup.getSelection() == opengroup ) {
-					if(!DataBase.createGroup(groupname, groupinfo, true)) 
-						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
-					else{
-			        	DataBase.save();
-			        	frame.dispose();
-			        	new Home_Page(user);
-					}
+				int reply = JOptionPane.showConfirmDialog(null, "Are you sure?","Message",JOptionPane.YES_NO_OPTION);
+				if(reply == JOptionPane.YES_OPTION){
+					if(opengroup.isSelected()) {
+						if(!DataBase.createGroup(groupname, groupinfo, true,user)) 
+							JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
+						else{
+				        	DataBase.save();
+				        	frame.dispose();
+				        	new Home_Page(user);
+						}
 
-				}
-				else {
-					if(!(DataBase.createGroup(name.getText(), info.getText(), false)))
-						JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
-					else{
-			        	DataBase.save();
-			        	frame.dispose();
-			        	new Home_Page(user);
 					}
-				}
+					else if(privategroup.isSelected()){
+						if(!(DataBase.createGroup(name.getText(), info.getText(), false,user)))
+							JOptionPane.showMessageDialog(frame, "Error-Create Group Failed!");
+						else{
+				        	DataBase.save();
+				        	frame.dispose();
+				        	new Home_Page(user);
+						}
+					}
+				}		
 			}
 			else
 				JOptionPane.showMessageDialog(frame, "Error-Group already exists!");

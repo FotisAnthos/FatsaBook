@@ -60,7 +60,7 @@ public class Post_View extends JPanel {
 	}
 	
 	
-	public Post_View(User activeUser, Group agroup){ //Used for displaying posts on Group_Timeline\
+	public Post_View(User activeUser, Group agroup){ //Used for displaying posts on Group_Timeline
 		this.activeUser = activeUser;
 		this.agroup = agroup;	
 		int i;
@@ -75,7 +75,7 @@ public class Post_View extends JPanel {
 		add(groupallPanel);
 	}
 	
-	public Post_View(User activeUser){ ////Used for displaying posts on Home_Page
+	public Post_View(User activeUser){ //Used for displaying posts on Home_Page
 		this.activeUser = activeUser;
 		
 		postPanel.setLayout(new BoxLayout(postPanel,BoxLayout.Y_AXIS));
@@ -90,6 +90,7 @@ public class Post_View extends JPanel {
 	}
 
 	public JPanel aPostView(final Post aPost){
+		// User for displaying a specific post on User_Timeline and Group_Timeline
 		this.aPost = aPost;
 		JPanel apanel = new JPanel();
 		
@@ -186,6 +187,7 @@ public class Post_View extends JPanel {
 	}
 	
 	public JPanel aPostViewHomePage(final Post aPost){
+		//Used for displaying a specific post on Home_Page
 		this.aPost = aPost;
 		JPanel apanel = new JPanel();
 		
@@ -296,6 +298,7 @@ public class Post_View extends JPanel {
 
 
 	public void postToBeDisplayedUser(User anotherUser){
+		//Sorts an ArrayList based on Date(for users)
 		Collections.sort(anotherUser.getPersonalPosts(), new Comparator<Post>() {
 	        public int compare(Post post2, Post post1)
 	        {
@@ -309,6 +312,7 @@ public class Post_View extends JPanel {
 
 
 	public void postToBeDisplayedGroup(Group agroup){ 
+		//Sorts an ArrayList based on Date(for groups)
 		Collections.sort(agroup.getGroupPosts(), new Comparator<Post>() {
 	        public int compare(Post post2, Post post1)
 	        {
@@ -321,6 +325,7 @@ public class Post_View extends JPanel {
 	}
 	
 	public void postToBeDisplayedHomePage(){
+		//Adds all Posts from all friends and groups that a user has , and then sorts them by date
 		List<Post> all = new ArrayList<Post>();
 		all.removeAll(all);
 		for(int i=0;i<activeUser.getGroups().size();i++){

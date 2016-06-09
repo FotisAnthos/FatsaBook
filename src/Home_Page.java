@@ -101,19 +101,34 @@ public class Home_Page {
 			}
 		});
 		post.setFont(new Font("Arial", Font.PLAIN, 16));
-		post.setBounds(487, 308, 116, 42);
+		post.setBounds(487, 230, 116, 42);
 		frame.getContentPane().add(post);
+		
+		JButton logout = new JButton("Log out");
+		logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				new LoginSignupScreen();
+			}
+		});
+		logout.setFont(new Font("Arial", Font.PLAIN, 16));
+		logout.setBounds(541, 344, 91, 25);
+		frame.getContentPane().add(logout);
 	}
 	
 	class groupsActionListener implements ActionListener
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
+<<<<<<< HEAD
 			 ArrayList<Group> groupShow = new ArrayList<Group>();
 				for(Group tempG : activeUser.getGroups()){
 					groupShow.add(DataBase.getGroupInstance(tempG.getName()));
 				}
 			 DisplayLists.createAndShowGUI(activeUser, null, groupShow, null );
+=======
+			 DisplayLists.createAndShowGUI(activeUser,null,null ,activeUser.getGroups(),null );
+>>>>>>> refs/remotes/origin/Lydia
 			 frame.dispose();
 		 	}
 		
@@ -122,7 +137,7 @@ public class Home_Page {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists.createAndShowGUI(activeUser,activeUser.getFriends() ,null ,null);
+			 DisplayLists.createAndShowGUI(activeUser,null,activeUser.getFriends() ,null ,null);
 			 frame.dispose();
 		 	}
 		
@@ -147,7 +162,7 @@ public class Home_Page {
 					new User_Timeline(activeUser, anotherUser);
 					frame.dispose();
 				}
-				else JOptionPane.showMessageDialog(null, "User could not be found, try another mail","Warning", JOptionPane.PLAIN_MESSAGE);
+				else JOptionPane.showMessageDialog(null, "User could not be found, try another name","Warning", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if(rdbtnGroupSearch.isSelected()){
 				Group agroup = DataBase.getGroupInstance(searchfield.getText());

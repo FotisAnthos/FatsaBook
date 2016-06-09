@@ -59,20 +59,7 @@ public class Post implements Serializable {
 		}
 
 	}
-	/*
-	//dieukolynsh ektypwshs olwn twn replies toy post wste na xrhsimopoihthei sth
-	//methodo getLatestPost ths klasshs Group
-	public String printAllReplies() {
-		String repl = "\n";
-		String mark = "  -> ";
-		Post temp = this.reply;
-		while (temp != null){
-			repl += mark + temp.toString() + "\n";
-			temp = temp.reply;
-		}
-		return repl;
-	}
-	*/
+
 	public boolean addLike(User auser)
 	{
 		for(User like : Likes){
