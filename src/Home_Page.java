@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Home_Page {
@@ -108,7 +109,11 @@ public class Home_Page {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-			 DisplayLists.createAndShowGUI(activeUser,null ,activeUser.getGroups(),null );
+			 ArrayList<Group> groupShow = new ArrayList<Group>();
+				for(Group tempG : activeUser.getGroups()){
+					groupShow.add(DataBase.getGroupInstance(tempG.getName()));
+				}
+			 DisplayLists.createAndShowGUI(activeUser, null, groupShow, null );
 			 frame.dispose();
 		 	}
 		

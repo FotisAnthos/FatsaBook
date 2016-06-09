@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -121,7 +122,8 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 				frame.dispose();
 			}
 			else if(users==null){
-				new Group_Timeline(user.getGroups().get(index),user);
+				
+				new Group_Timeline(DataBase.getGroupInstance(((Group) list.getSelectedValue()).getName()), user);
 				frame.dispose();
 			}
 
@@ -151,15 +153,17 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 		}
 	}
 	
-	public static void createAndShowGUI(User user,ArrayList<User> u,ArrayList<Group> g,JFrame frame1) {
+	public static void createAndShowGUI(User user, ArrayList<User> u, ArrayList<Group> g,JFrame frame1) {
 		previousframe = frame1;
+		
+		
         //Create and set up the window.
         frame = new JFrame("List");
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = new DisplayLists(user,u,g);
+        JComponent newContentPane = new DisplayLists(user, u, g);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
