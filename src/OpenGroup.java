@@ -36,7 +36,6 @@ public class OpenGroup extends Group {
 		if(isMember(user)){
 			return;
 		}
-
 		members.add(user);
 		user.addToGroup(this);
 		JOptionPane.showMessageDialog(null,"You added " + this.getName()+ " to your groups!","Message",JOptionPane.PLAIN_MESSAGE);

@@ -42,7 +42,7 @@ public class Group_Timeline {
 		
 		isMemberButton = new JButton();
 		isMemberButton.setFont(new Font("Arial", Font.PLAIN, 16));
-		isMemberButton.setBounds(103, 13, 149, 31);
+		isMemberButton.setBounds(90, 13, 162, 31);
 		isMemberButton.addActionListener(new isMemberButtonActionListener());
 		frame.getContentPane().add(isMemberButton);
 		
@@ -52,10 +52,10 @@ public class Group_Timeline {
 		btnBack.addActionListener(new BackListener());
 		frame.getContentPane().add(btnBack);
 		
-		JButton Members_List = new JButton("Members");
+		JButton Members_List = new JButton("Show Members");
 		Members_List.addActionListener(new MembersListener());
 		Members_List.setFont(new Font("Arial", Font.PLAIN, 16));
-		Members_List.setBounds(356, 13, 137, 31);
+		Members_List.setBounds(356, 13, 171, 31);
 		frame.getContentPane().add(Members_List);
 		
 		panel = new Post_View(activeUser,g);
@@ -69,34 +69,49 @@ public class Group_Timeline {
 		btnPostNewPost.addActionListener(new PostListener());
 		frame.getContentPane().add(btnPostNewPost);
 		
-		if(g.isMember(activeUser)){
-			isMemberButton.setText("Delete Group");
+		if(g.getClass().getName()=="PrivateGroup"){	
+			if(g.isMember(activeUser)){
+				isMemberButton.setText("Leave Group");
+				frame.getContentPane().add(scrollpane);
+			}
+			else{
+				isMemberButton.setText("Become Member");
+				btnPostNewPost.setEnabled(false);
+			}
+		}
+		else if(g.getClass().getName()=="OpenGroup"){
 			frame.getContentPane().add(scrollpane);
+			if(g.isMember(activeUser)){
+				isMemberButton.setText("Leave Group");
+			}
+			else {
+				isMemberButton.setText("Become Member");
+			}
 		}
-		else {
-			isMemberButton.setText("Add Group");
-			btnPostNewPost.setEnabled(false);
-		}
+		
+		
 	}
 	
 	class isMemberButtonActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			if(isMemberButton.getText().equals("Add Group")){
+			if(isMemberButton.getText().equals("Become Member")){
 				g.addMember(activeUser);
 				DataBase.save();
-				isMemberButton.setText("Delete Group");
+				isMemberButton.setText("Leave Group");
 				btnPostNewPost.setEnabled(true);
 		        panel = new Post_View(activeUser,g);
 				frame.getContentPane().add(scrollpane);
 				frame.repaint();
 				frame.revalidate();
 			}
-			else if(isMemberButton.getText().equals("Delete Group")){
+			else if(isMemberButton.getText().equals("Leave Group")){
 				activeUser.deleteFromGroup(g);
 				DataBase.save();
-				isMemberButton.setText("Add Group");
-				btnPostNewPost.setEnabled(false);
-				frame.getContentPane().remove(scrollpane);
+				isMemberButton.setText("Become Member");
+				if(g.getClass().getName()=="PrivateGroup"){
+					frame.getContentPane().remove(scrollpane);
+					btnPostNewPost.setEnabled(false);
+				}
 	        	frame.getContentPane().revalidate();
 	        	frame.getContentPane().repaint();
 			}
@@ -113,7 +128,7 @@ public class Group_Timeline {
 	
 	class MembersListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			DisplayLists.createAndShowGUI(activeUser,g.members ,null,frame);
+			DisplayLists.createAndShowGUI(activeUser,g,g.members ,null,frame);
 			
 		}
 	}

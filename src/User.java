@@ -5,30 +5,24 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-
+/* Diagraftikan oi methodoi findSuggestedFriends,printSuggestedFriends,printCommonFriends,
+ * printFriendList,printEnrolledGroups kai createPost */
 public class User implements Serializable{
 	
 	private ArrayList<User> friends = new ArrayList<User>();
-	private ArrayList<Group> groups = new ArrayList<Group>();
-	
+	private ArrayList<Group> groups = new ArrayList<Group>();	
 	private List<Post> personalPosts = new ArrayList<Post>();
-
 	
-	
-
 	private String name;
 	private String mail;
 	private char[] password;
-	public User_Timeline m_User_Timeline;
-	//TODO check password
+	
 	public User(String name, String mail, char[] cs) 
 	{
 		this.name = name;
 		this.mail = mail;
 		this.password = cs;
-	}
-	
-	
+	}	
 
 	public boolean isPasswordCorrect(char[] password)
 	{
@@ -51,14 +45,20 @@ public class User implements Serializable{
 
 
 	public void addFriend(User newFriend) {
-		friends.add(newFriend);
-		newFriend.friends.add(this);
-		JOptionPane.showMessageDialog(null,"You are now friends!","Message",JOptionPane.PLAIN_MESSAGE);
+		if(!isFriend(newFriend)){
+			friends.add(newFriend);
+			newFriend.friends.add(this);
+			JOptionPane.showMessageDialog(null,"You are now friends!","Message",JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 
-	public void removeFriend(User afriend){
-		friends.remove(afriend);
-		afriend.friends.remove(this);
+	public int removeFriend(User afriend){
+		int reply = JOptionPane.showConfirmDialog(null, "Are you sure?","Message",JOptionPane.YES_NO_OPTION);
+		if(reply == JOptionPane.YES_OPTION){
+			friends.remove(afriend);
+			afriend.friends.remove(this);
+		}
+		return reply;	
 	}
 	
 	public boolean deleteFromGroup(Group agroup){
@@ -75,7 +75,6 @@ public class User implements Serializable{
 		groups.add(group);
 	}
 
-	//NOT USED
 	public ArrayList<User> findCommonFriends(User other) {
 		ArrayList<User> commons = new ArrayList<User>();
 

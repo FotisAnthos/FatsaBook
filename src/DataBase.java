@@ -45,17 +45,19 @@ public final class DataBase {
 		return false;
 	}
 
-	public static  boolean createGroup(String name, String info, boolean is_open) {
+	public static  boolean createGroup(String name, String info, boolean is_open,User admin) {
 		//Creates a new Group, and adds it to groups(ArrayList)
 		//if group is to be open b==true else b==false
 		if(!isGroup(name)) {
 			if(is_open) {
 				Group agroup = new OpenGroup(name, info);
 				groups.add(agroup);
+				agroup.addAdmin(admin);
 			}
 			else {
 				Group agroup = new PrivateGroup(name, info);
 				groups.add(agroup);
+				agroup.addAdmin(admin);
 			}
 			return true; //Group Created
 		}
@@ -176,10 +178,10 @@ public final class DataBase {
 		return false;
 	}
 	
-	public static User findUser(String mail) {
+	public static User findUser(String name) {
 		//finds a User based on email
 		for(User u: users) {
-			if(mail.equals(u.getMail())){
+			if(name.equals(u.getName())){
 				return u;
 			}
 		}

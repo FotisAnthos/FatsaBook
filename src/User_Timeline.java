@@ -107,43 +107,17 @@ public class User_Timeline {
 	        	frame.revalidate();
 			}
 			else if(isFriendsButton.getText().equals("Delete Friend")){
-				activeUser.removeFriend(friend);
-				DataBase.save();
-				isFriendsButton.setText("Add Friend");
-				btnPostNewPost.setEnabled(false);
-				frame.getContentPane().remove(scrollpane);
-	        	frame.getContentPane().revalidate();
-	        	frame.getContentPane().repaint();
+				int reply =activeUser.removeFriend(friend);
+				if (reply==JOptionPane.YES_OPTION){
+					DataBase.save();
+					isFriendsButton.setText("Add Friend");
+					btnPostNewPost.setEnabled(false);
+					frame.getContentPane().remove(scrollpane);
+	        		frame.getContentPane().revalidate();
+	        		frame.getContentPane().repaint();
+				}
 			}
 		}
-	}
-	
-	class AddFriendListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-	        	activeUser.addFriend(friend);
-	        	btnAddFriend.setEnabled(false);
-	        	DataBase.save();
-	        	btnDeleteFriend.setEnabled(true);
-	        	panel =new Post_View(activeUser,friend);
-	        	frame.getContentPane().add(scrollpane);
-	        	frame.repaint();
-	        	frame.revalidate();
-	        	
-		}
-			
-	}
-	
-	class DeleteFriendListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-	        	activeUser.removeFriend(friend);
-	        	btnAddFriend.setEnabled(true);
-	        	DataBase.save();
-	        	btnDeleteFriend.setEnabled(false);
-	        	frame.getContentPane().remove(scrollpane);
-	        	frame.getContentPane().revalidate();
-	        	frame.getContentPane().repaint();
-		}
-			
 	}
 	
 	class BackListener implements ActionListener{
@@ -159,7 +133,7 @@ public class User_Timeline {
 			ArrayList<User> commons = new ArrayList<User>();
 			commons = activeUser.findCommonFriends(friend);
 			if(commons!=null)
-				DisplayLists.createAndShowGUI(activeUser, commons, null,frame);
+				DisplayLists.createAndShowGUI(activeUser,null, commons, null,frame);
 		}
 	}
 	
@@ -168,7 +142,7 @@ public class User_Timeline {
 		 public void actionPerformed(ActionEvent e)
 		 	{
 			 //TODO
-			 DisplayLists.createAndShowGUI(activeUser, friend.getFriends(), null,frame);
+			 DisplayLists.createAndShowGUI(activeUser,null, friend.getFriends(), null,frame);
 		 	}
 		
 	}
