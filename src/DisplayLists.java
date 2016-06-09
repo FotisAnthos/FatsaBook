@@ -114,7 +114,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			int index = list.getSelectedIndex();
 			
 			if(groups==null && !user.equals(list.getSelectedValue())){
-				usertimeline = new User_Timeline(user,user.getFriends().get(index));
+				usertimeline = new User_Timeline(user,user.getFriends().get(index-1));
 				frame.dispose();
 			}
 			else if(groups==null && user.equals(list.getSelectedValue())){
