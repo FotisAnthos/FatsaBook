@@ -1,13 +1,8 @@
 import java.awt.BorderLayout;
-<<<<<<< HEAD
-import java.awt.Component;
-=======
 import java.awt.Font;
->>>>>>> refs/remotes/origin/Lydia
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -40,64 +35,64 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 	private Group agroup;
 	private ArrayList<User> users;
 	private ArrayList<Group> groups;
-	
+
 	protected User_Timeline usertimeline;
 	protected Group_Timeline grouptimeline;
-	
-	
+
+
 	public DisplayLists(User user,Group group,ArrayList<User> u,ArrayList<Group> g){
 		super( new BorderLayout());
-		
+
 		this.agroup=group;
 		this.user = user;
 		users = u;
 		groups = g;
-		
+
 		listmodel = new DefaultListModel();
-	 	list= new JList(listmodel);
-	 	list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	 	ListSelectionModel listSelectionModel = list.getSelectionModel();
-	 	list.setSelectedIndex(0);
-	 	list.addListSelectionListener(this); //TODO
-	 	list.setVisibleRowCount(10);
-	 	JScrollPane listScrollPane = new JScrollPane(list);
-	 	
-	 	timelinebutton = new JButton("Go to Timeline");
-	 	timelinebutton.addActionListener(new TimelineListener());
-	 	
-	 	backtohome = new JButton("Back To HomePage");
-        backtohome.addActionListener(new BacktoHomeListener());
-        
-    	back = new JButton("Back");
-        back.addActionListener(new BackListener());
-        
-        JButton addadmin =new JButton("Add Admin");
-        addadmin.addActionListener(new AddAdminListener());
-        
-        JButton removemember =new JButton("Remove Member");
-        removemember.addActionListener(new RemoveMemberListener());
-        
-        JButton addmember =new JButton("Add Member");
-        addmember.addActionListener(new AddMemberListener());
-	 	
-        createGroupButton = new JButton("Create New Group");
-        createGroupButton.addActionListener(new createGroupListener());
-        
-	 	JPanel buttonPane = new JPanel();
-	 	buttonPane.setLayout(new BoxLayout(buttonPane,
-                BoxLayout.LINE_AXIS));
-	 	buttonPane.add(timelinebutton);
-	 	if(previousframe!=null)
-	 		buttonPane.add(back);
-	 	buttonPane.add(backtohome);
+		list= new JList(listmodel);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel listSelectionModel = list.getSelectionModel();
+		list.setSelectedIndex(0);
+		list.addListSelectionListener(this); //TODO
+		list.setVisibleRowCount(10);
+		JScrollPane listScrollPane = new JScrollPane(list);
 
-	 	buttonPane.add(Box.createHorizontalStrut(5));
-	 	buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
-	 	buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+		timelinebutton = new JButton("Go to Timeline");
+		timelinebutton.addActionListener(new TimelineListener());
+
+		backtohome = new JButton("Back To HomePage");
+		backtohome.addActionListener(new BacktoHomeListener());
+
+		back = new JButton("Back");
+		back.addActionListener(new BackListener());
+
+		JButton addadmin =new JButton("Add Admin");
+		addadmin.addActionListener(new AddAdminListener());
+
+		JButton removemember =new JButton("Remove Member");
+		removemember.addActionListener(new RemoveMemberListener());
+
+		JButton addmember =new JButton("Add Member");
+		addmember.addActionListener(new AddMemberListener());
+
+		createGroupButton = new JButton("Create New Group");
+		createGroupButton.addActionListener(new createGroupListener());
+
+		JPanel buttonPane = new JPanel();
+		buttonPane.setLayout(new BoxLayout(buttonPane,
+				BoxLayout.LINE_AXIS));
+		buttonPane.add(timelinebutton);
+		if(previousframe!=null)
+			buttonPane.add(back);
+		buttonPane.add(backtohome);
+
+		buttonPane.add(Box.createHorizontalStrut(5));
+		buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
+		buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
 
-	 	
-	 	if(groups==null){
+
+		if(groups==null){
 			listmodel.clear();
 			for(User user1: users){
 				listmodel.addElement(user1);
@@ -115,25 +110,25 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 		else if(users==null){
 			listmodel.clear();
 			for(Group group1: groups){
-				 listmodel.addElement(group1);
-			 }
-		 	buttonPane.add(createGroupButton);
+				listmodel.addElement(group1);
+			}
+			buttonPane.add(createGroupButton);
 		}
-	 	
-	 	if (list.getSelectedIndex() == -1) {
-            //No selection, disable timelinebutton button.
-                timelinebutton.setEnabled(false);
+
+		if (list.getSelectedIndex() == -1) {
+			//No selection, disable timelinebutton button.
+			timelinebutton.setEnabled(false);
 		}
-	 	
-	 	add(listScrollPane, BorderLayout.CENTER);
-	 	add(buttonPane, BorderLayout.PAGE_END);
+
+		add(listScrollPane, BorderLayout.CENTER);
+		add(buttonPane, BorderLayout.PAGE_END);
 
 	}
-	
+
 	class TimelineListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			int index = list.getSelectedIndex();
-			
+
 			if(groups==null && !user.equals(list.getSelectedValue())){
 				usertimeline = new User_Timeline(user,user.getFriends().get(index-1));
 				frame.dispose();
@@ -142,13 +137,8 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 				usertimeline = new User_Timeline(user,user);
 				frame.dispose();
 			}
-			else if(users==null){
-<<<<<<< HEAD
-				
+			else if(users==null){		
 				new Group_Timeline(DataBase.getGroupInstance(((Group) list.getSelectedValue()).getName()), user);
-=======
-				grouptimeline =new Group_Timeline(groups.get(index),user);
->>>>>>> refs/remotes/origin/Lydia
 				frame.dispose();
 			}
 			if(previousframe!=null)
@@ -156,12 +146,12 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 
 		}
 	}
-	
+
 	class AddAdminListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			int index = list.getSelectedIndex();
 			boolean flag=false;
-			
+
 			for(User admin : agroup.admins){
 				if(admin.equals(list.getSelectedValue()))
 					flag=true;
@@ -174,10 +164,10 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 				DataBase.save();
 				JOptionPane.showMessageDialog(frame, "Added new Admin");
 			}
-			
+
 		}	
 	}
-	
+
 	class RemoveMemberListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			int index = list.getSelectedIndex();
@@ -190,7 +180,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 				JOptionPane.showMessageDialog(frame, "Error-Can't delete an admin");
 		}	
 	}
-	
+
 	class AddMemberListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			final JFrame frame1 = new JFrame("Add a new Member");
@@ -199,13 +189,13 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			frame1.setBounds(100, 100, 450, 300);
 			frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame1.getContentPane().setLayout(null);
-			
+
 			final JTextField textField = new JTextField();
 			textField.setFont(new Font("Arial", Font.PLAIN, 16));
 			textField.setBounds(120, 55, 186, 27);
 			frame1.getContentPane().add(textField);
 			textField.setColumns(10);
-			
+
 			JButton btnAddMember = new JButton("Add Member");
 			btnAddMember.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -222,7 +212,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			btnAddMember.setFont(new Font("Arial", Font.PLAIN, 16));
 			btnAddMember.setBounds(144, 133, 134, 36);
 			frame1.getContentPane().add(btnAddMember);
-			
+
 			JButton btnBack = new JButton("Back");
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -234,7 +224,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			frame.getContentPane().add(btnBack);
 		}	
 	}
-	
+
 	class BacktoHomeListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			frame.dispose();
@@ -243,59 +233,54 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			new Home_Page(user);
 		}	
 	}
-	
+
 	class BackListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			frame.dispose();
 		}
-			
+
 	}
-	
+
 	class createGroupListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			new CreateGroupScreen(user);
 			frame.dispose();
 		}
 	}
-	
-<<<<<<< HEAD
-	public static void createAndShowGUI(User user, ArrayList<User> u, ArrayList<Group> g,JFrame frame1) {
-=======
+
+
 	public static void createAndShowGUI(User user,Group group,ArrayList<User> u,ArrayList<Group> g,JFrame frame1) {
->>>>>>> refs/remotes/origin/Lydia
+
 		previousframe = frame1;
-		
-		
-        //Create and set up the window.
-        frame = new JFrame("List");
+
+
+		//Create and set up the window.
+		frame = new JFrame("List");
 		frame.setIconImage(new ImageIcon("FatsaBook__2.jpg").getImage());
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
- 
-        //Create and set up the content pane.
-<<<<<<< HEAD
-        JComponent newContentPane = new DisplayLists(user, u, g);
-=======
-        JComponent  newContentPane = new DisplayLists(user,group,u,g);
->>>>>>> refs/remotes/origin/Lydia
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
- 
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }
-	
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		//Create and set up the content pane.
+
+		JComponent  newContentPane = new DisplayLists(user,group,u,g);
+		newContentPane.setOpaque(true); //content panes must be opaque
+		frame.setContentPane(newContentPane);
+
+		//Display the window.
+		frame.pack();
+		frame.setVisible(true);
+	}
+
 	public void valueChanged(ListSelectionEvent e) {
-        if (e.getValueIsAdjusting() == false) {
- 
-            if (list.getSelectedIndex() == -1) {
-            //No selection, disable the timelinebutton.
-                timelinebutton.setEnabled(false);
- 
-            } else {
-            //Selection, enable the timeline button.
-            	timelinebutton.setEnabled(true);
-            }
-        }
-    }
+		if (e.getValueIsAdjusting() == false) {
+
+			if (list.getSelectedIndex() == -1) {
+				//No selection, disable the timelinebutton.
+				timelinebutton.setEnabled(false);
+
+			} else {
+				//Selection, enable the timeline button.
+				timelinebutton.setEnabled(true);
+			}
+		}
+	}
 }//end Display_Lists

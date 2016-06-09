@@ -120,15 +120,7 @@ public class Home_Page {
 	{
 		 public void actionPerformed(ActionEvent e)
 		 	{
-<<<<<<< HEAD
-			 ArrayList<Group> groupShow = new ArrayList<Group>();
-				for(Group tempG : activeUser.getGroups()){
-					groupShow.add(DataBase.getGroupInstance(tempG.getName()));
-				}
-			 DisplayLists.createAndShowGUI(activeUser, null, groupShow, null );
-=======
 			 DisplayLists.createAndShowGUI(activeUser,null,null ,activeUser.getGroups(),null );
->>>>>>> refs/remotes/origin/Lydia
 			 frame.dispose();
 		 	}
 		
