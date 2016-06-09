@@ -131,7 +131,11 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 			int index = list.getSelectedIndex();
 			
 			if(groups==null && !user.equals(list.getSelectedValue())){
-				usertimeline = new User_Timeline(user,user.getFriends().get(index));
+				if(agroup!=null){
+					usertimeline = new User_Timeline(user,agroup.members.get(index));
+				}
+				else
+					usertimeline = new User_Timeline(user,user.getFriends().get(index));
 				frame.dispose();
 			}
 			else if(groups==null && user.equals(list.getSelectedValue())){
@@ -204,7 +208,7 @@ public class DisplayLists extends JPanel implements ListSelectionListener {
 					if(anotherUser != null){
 						agroup.addMember(anotherUser);
 						DataBase.save();
-						list.repaint();
+						listmodel.addElement(anotherUser);
 						frame1.dispose();
 					}
 					else JOptionPane.showMessageDialog(null, "User could not be found, try another name","Warning", JOptionPane.PLAIN_MESSAGE);
